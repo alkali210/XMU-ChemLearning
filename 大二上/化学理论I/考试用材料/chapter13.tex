@@ -1,0 +1,873 @@
+% 编译提示：使用 XeLaTeX 编译
+% 需要 ctex 宏包支持中文
+
+\documentclass[a4paper,9pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{ctex}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\usepackage[version=4]{mhchem}
+
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1.8cm}
+
+\setlength{\columnsep}{0.8cm}
+\setlength{\columnseprule}{0.4pt}
+\renewcommand{\columnseprulecolor}{\color{gray!50}}
+
+% 定义颜色方案
+\definecolor{sectioncolor}{RGB}{0,102,204}      % 深蓝色 - 用于章节标题
+\definecolor{subsectioncolor}{RGB}{0,153,153}   % 青色 - 用于小节标题
+\definecolor{keycolor}{RGB}{204,102,0}          % 橙色 - 用于关键点
+\definecolor{derivcolor}{RGB}{100,149,237}      % 浅蓝色 - 用于推导框
+\definecolor{boxbg}{RGB}{240,248,255}           % 淡蓝色背景
+\definecolor{keybg}{RGB}{255,248,240}           % 淡橙色背景
+
+% 自定义章节标题格式
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{sectioncolor}}
+  {\thesection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{subsectioncolor}}
+  {\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{0.8ex plus 0.3ex minus 0.1ex}{0.5ex plus 0.1ex}
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+% 自定义关键点环境
+\newenvironment{keypoint}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=keybg,
+  colframe=keycolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt,
+  before skip=0.15em,
+  after skip=0.3em]
+\small\noindent\textcolor{keycolor}{\textbf{关键点：}}}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义推导环境
+\newenvironment{derivation}
+{\par\vspace{0.15em}\noindent\begin{tcolorbox}[
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt,
+  before skip=0.15em,
+  after skip=0.15em]
+\scriptsize\noindent\textcolor{derivcolor}{\textbf{推导：}}\par}
+{\end{tcolorbox}\par\vspace{0.15em}}
+
+% 自定义示例环境
+\newenvironment{examplebox}
+{\par\vspace{0.15em}\noindent\begin{tcolorbox}[
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt,
+  before skip=0.15em,
+  after skip=0.15em]
+\scriptsize\noindent\textcolor{derivcolor}{\textbf{示例：}}\par
+\setlength{\parskip}{0.1ex}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}}
+{\end{tcolorbox}\par\vspace{0.15em}}
+
+% 页眉页脚设置
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\scriptsize13-\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{gray!50}\leaders\hrule height \footrulewidth\hfill}}
+
+% 紧凑标题
+\title{\vspace{-2em}\Large\bfseries\color{sectioncolor} Chapter 13 Collections - 分子光谱\vspace{-1em}}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+
+\begin{multicols}{2}
+    
+\scriptsize{\tableofcontents}
+
+
+\section{振动跃迁与双原子分子 (Vibrational Spectroscopy)}
+
+\subsection{简谐振子模型 (Harmonic Oscillator)}
+
+\textbf{经典力学}：
+\begin{itemize}
+    \item 回复力：$F = -k(r - r_e) = -kx$
+    \item 势能：$V(x) = \frac{1}{2}kx^2$
+    \item 角频率：$\omega = \sqrt{k/\mu}$，频率 $\nu = \frac{1}{2\pi}\sqrt{k/\mu}$
+\end{itemize}
+
+\textbf{量子力学}：
+\begin{equation}
+E_v = \left(v + \frac{1}{2}\right)\hbar\omega = \left(v + \frac{1}{2}\right)h\nu, \quad v = 0,1,2,\cdots
+\end{equation}
+项值（cm$^{-1}$）：$G(v) = \tilde{\nu}_e(v + 1/2)$
+
+\textbf{零点能}：$E_0 = \frac{1}{2}\hbar\omega = \frac{1}{2}h\nu$（量子效应，不可消除）
+
+\subsection{Morse振子模型 (Anharmonic Oscillator)}
+
+\textbf{Morse势函数}：
+\begin{equation}
+V_M(x) = D_e\left[1 - e^{-\beta x}\right]^2, \quad x = r - r_e
+\end{equation}
+其中 $D_e$ 为势阱深度（解离能），$\beta$ 为势阱陡度。
+
+\textbf{近谐近似}（$x \ll 1$）：$e^{-\beta x} \approx 1 - \beta x$
+\begin{equation}
+V_M(x) \approx D_e\beta^2 x^2 = \frac{1}{2}kx^2 \quad \Rightarrow \quad k = 2D_e\beta^2
+\end{equation}
+
+\textbf{能级公式}：
+\begin{equation}
+G(v) = \tilde{\omega}_e\left(v + \frac{1}{2}\right) - \tilde{\omega}_ex_e\left(v + \frac{1}{2}\right)^2
+\end{equation}
+
+\begin{keypoint}
+\textbf{非谐性常数}：
+\begin{equation}
+x_e = \frac{\hbar\beta^2}{2\mu\omega} = \frac{\tilde{\omega}_e}{4D_e}
+\end{equation}
+\textbf{解离能计算}：
+\begin{itemize}
+    \item 势阱深度：$D_e = \frac{\tilde{\omega}_e^2}{4\tilde{\omega}_ex_e} = \frac{\tilde{\omega}_e}{4x_e}$
+    \item 零点能修正：$D_0 = D_e - G(0) = D_e - \frac{\tilde{\omega}_e}{2} + \frac{\tilde{\omega}_ex_e}{4}$
+    \item 最大振动量子数：$v_{max} = \frac{1}{2x_e} - \frac{1}{2} = \frac{1-x_e}{2x_e}$
+\end{itemize}
+\end{keypoint}
+
+\textbf{振动跃迁}：
+\begin{itemize}
+    \item \textbf{基频吸收} ($v=0\to1$)：$\Delta\tilde{\nu}_{1\leftarrow0} = \tilde{\omega}_e - 2\tilde{\omega}_ex_e$
+    \item \textbf{第一泛频} ($v=0\to2$)：$\Delta\tilde{\nu}_{2\leftarrow0} = 2\tilde{\omega}_e - 6\tilde{\omega}_ex_e$
+    \item \textbf{热带} ($v=1\to2$，高温可见)：$\Delta\tilde{\nu}_{2\leftarrow1} = \tilde{\omega}_e - 4\tilde{\omega}_ex_e$
+    \item \textbf{相邻能级差}：$\Delta G_{v+1/2} = \tilde{\omega}_e - 2\tilde{\omega}_ex_e(v+1)$
+\end{itemize}
+
+\subsection{刚性转子与非刚性转子}
+
+\textbf{刚性转子能级}（双原子分子）：
+\begin{equation}
+F(J) = BJ(J+1), \quad J = 0,1,2,\cdots
+\end{equation}
+其中 $F(J)$ 为项值（cm$^{-1}$），$B = \frac{h}{8\pi^2 cI} = \frac{\hbar}{4\pi cI}$ 为转动常数，$I = \mu R_e^2$ 为转动惯量。
+
+\textbf{非刚性转子修正}：
+\begin{equation}
+F(J) = BJ(J+1) - DJ^2(J+1)^2
+\end{equation}
+$D$ 为离心畸变常数，$D = \frac{4B^3}{\tilde{\nu}_e^2}$。
+
+\textbf{谐振子能级}：
+\begin{equation}
+G(v) = \tilde{\nu}_e\left(v+\frac{1}{2}\right), \quad v = 0,1,2,\cdots
+\end{equation}
+
+\textbf{非谐振子能级}：
+\begin{equation}
+G(v) = \tilde{\nu}_e\left(v+\frac{1}{2}\right) - \tilde{\nu}_ex_e\left(v+\frac{1}{2}\right)^2
+\end{equation}
+$x_e$ 为非谐性常数（$\ll 1$）。
+
+\begin{keypoint}
+\textbf{解离能计算}：
+\begin{itemize}
+    \item 势能曲线零点：$D_e = \frac{\tilde{\omega}_e^2}{4\tilde{\omega}_ex_e}$
+    \item 零点能修正：$D_0 = D_e - \frac{\tilde{\omega}_e}{2} + \frac{\tilde{\omega}_ex_e}{4}$
+\end{itemize}
+\textbf{振动频率}：
+\begin{equation}
+\tilde{\omega}_e = \frac{1}{2\pi c}\sqrt{\frac{k}{\mu}}
+\end{equation}
+$k$ 为力常数，$\mu$ 为约化质量。
+\end{keypoint}
+
+\subsection{Morse势与光谱常数解题技巧}
+
+\textbf{关键公式组合}：
+\begin{itemize}
+    \item $\Delta G_{v+1/2} = G(v+1) - G(v) = \omega_e - 2\omega_e x_e(v+1)$
+    \item 解离能：$D_e = \frac{\omega_e^2}{4\omega_e x_e} = \frac{\omega_e}{4x_e}$
+    \item 零点能修正：$D_0 = D_e - \frac{\omega_e}{2}$
+    \item 非谐性导致谱线间距递减
+\end{itemize}
+
+\textbf{解题步骤}：
+\begin{enumerate}
+    \item 从两个跃迁能量求解 $\omega_e$ 和 $\omega_e x_e$
+    \item 判断HOMO/LUMO：激发对应成键$\to$反键
+    \item 键长变化：激发态通常键长增大
+    \item FC因子最大处：$R'$ 和 $R''$ 波函数重叠最大
+\end{enumerate}
+
+\subsection{同位素效应}
+
+\textbf{频率比}：
+\begin{equation}
+\frac{\omega_2}{\omega_1} = \sqrt{\frac{\mu_1}{\mu_2}}
+\end{equation}
+
+\textbf{约化质量}（双原子）：
+\begin{equation}
+\mu = \frac{m_1 m_2}{m_1 + m_2}
+\end{equation}
+
+\textbf{常见计算}：
+\begin{itemize}
+    \item $^{12}C^{16}O$ vs $^{13}C^{16}O$：频率比 $\approx 1.02$
+    \item $H_2$ vs $D_2$：频率比 $= \sqrt{2} \approx 1.41$
+    \item 重同位素 $\to$ 频率降低，谱线红移
+\end{itemize}
+
+
+
+
+\section{转动光谱 (Rotational Spectroscopy)}
+
+\subsection{刚性转子类型}
+
+\textbf{惯性矩主轴}：$I_a \leq I_b \leq I_c$
+
+\textbf{分类}：
+\begin{itemize}
+    \item \textbf{球形陀螺}：$I_a = I_b = I_c$（$CH_4$，$SF_6$）
+    \item \textbf{对称陀螺}：
+    \begin{itemize}
+        \item 长形（prolate）：$I_a < I_b = I_c$（$CH_3Cl$）
+        \item 扁形（oblate）：$I_a = I_b < I_c$（$C_6H_6$）
+    \end{itemize}
+    \item \textbf{非对称陀螺}：$I_a < I_b < I_c$（$H_2O$）
+\end{itemize}
+
+\textbf{转动常数}：
+\begin{equation}
+A = \frac{\hbar}{4\pi cI_a}, \quad B = \frac{\hbar}{4\pi cI_b}, \quad C = \frac{\hbar}{4\pi cI_c}
+\end{equation}
+
+\subsection{线性分子与对称陀螺}
+
+\textbf{线性分子能级}：
+\begin{equation}
+F(J) = BJ(J+1), \quad J = 0,1,2,\cdots
+\end{equation}
+
+\textbf{纯转动跃迁}：$\Delta J = \pm 1$
+\begin{equation}
+\tilde{\nu}(J \to J+1) = 2B(J+1), \quad J = 0,1,2,\cdots
+\end{equation}
+
+\textbf{对称陀螺能级}：
+\begin{equation}
+F(J,K) = BJ(J+1) + (A-B)K^2
+\end{equation}
+$K$ 为角动量在对称轴上的投影量子数，$|K| \leq J$。
+
+\textbf{选律}：
+\begin{itemize}
+    \item \textbf{纯转动（微波）}：$\Delta J = \pm 1$
+    \item \textbf{$K$ 选律取决于偶极矩方向}：$\mu\parallel$（沿对称轴）$\Rightarrow\Delta K = 0$；$\mu\perp$（垂直对称轴）$\Rightarrow\Delta K = \pm 1$
+\end{itemize}
+
+
+\subsection{振-转耦合光谱}
+
+\textbf{振-转能级}：
+\begin{equation}
+E_{v,J} = G(v) + F(J) = \tilde{\nu}_e\left(v+\frac{1}{2}\right) + BJ(J+1)
+\end{equation}
+
+非谐振子-非刚性转子：
+\begin{equation}
+\hspace{-5pt}E_{v,J} = \tilde{\nu}_e\left(v+\frac{1}{2}\right) - \tilde{\nu}_ex_e\left(v+\frac{1}{2}\right)^2 + B_vJ(J+1) - D_vJ^2(J+1)^2
+\end{equation}
+其中 $B_v = B_e - \alpha_e(v+1/2)$，考虑振动对转动常数的影响。
+
+\textbf{选律}：
+\begin{itemize}
+    \item \textbf{振动}：$\Delta v = \pm 1$（基频），$\pm 2, \pm 3, \cdots$（泛频，弱）
+    \item \textbf{转动}：$\Delta J = \pm 1$
+\end{itemize}
+
+\textbf{谱线结构}：
+\begin{itemize}
+    \item \textbf{P 支} ($\Delta J = -1$)：$\tilde{\nu}_P(\Delta J = -1) = \tilde{\nu}_{v',v''} - \tilde{B}_{v'}(J+1) - (\tilde{B}_{v'} - \tilde{B}_{v''})J^2$
+    \item \textbf{R 支} ($\Delta J = +1$)：$\tilde{\nu}_R(\Delta J = +1) = \tilde{\nu}_{v',v''} + 2\tilde{B}_{v'} + (3\tilde{B}_{v'} - \tilde{B}_{v''})J + (\tilde{B}_{v'} - \tilde{B}_{v''})J^2$
+\end{itemize}
+
+简化形式（$B_v \approx$ 常数）：
+\begin{align}
+\tilde{\nu}_P(J) &= \tilde{\nu}_0 - 2BJ, \quad J = 1,2,3,\cdots \\
+\tilde{\nu}_R(J) &= \tilde{\nu}_0 + 2B(J+1), \quad J = 0,1,2,\cdots
+\end{align}
+
+\textbf{谱线间距}：相邻谱线间距 $\approx 2B$。
+
+\begin{examplebox}
+\textbf{$^{12}C^{16}O$ 振-转光谱}：\\
+$\tilde{\nu}_e = 2170$ cm$^{-1}$，$B_e = 1.931$ cm$^{-1}$\\
+P支：$J = 1 \to 0$：$\tilde{\nu} = 2170 - 2(1.931)(1) = 2166$ cm$^{-1}$\\
+R支：$J = 0 \to 1$：$\tilde{\nu} = 2170 + 2(1.931)(1) = 2174$ cm$^{-1}$\\
+谱线间距：$\Delta\tilde{\nu} \approx 2B_e = 3.86$ cm$^{-1}$
+\end{examplebox}
+
+\subsection{离心畸变与非谐性}
+
+\textbf{离心畸变}：高 $J$ 值时，分子被拉伸，转动常数减小。
+\begin{equation}
+F(J) = BJ(J+1) - DJ^2(J+1)^2
+\end{equation}
+
+\textbf{非谐性常数 $x_e$}：
+\begin{itemize}
+    \item 典型值：$x_e \approx 0.01 - 0.03$
+    \item 导致泛频间距递减：$\Delta G_{v+1/2} = G(v+1) - G(v) = \tilde{\nu}_e - 2\tilde{\nu}_ex_e(v+1)$
+    \item 解离能估算：$D_e = \frac{\tilde{\nu}_e}{4x_e}$
+\end{itemize}
+
+\begin{examplebox}
+\textbf{$H^{35}Cl$ 光谱常数}：\\
+$\tilde{\nu}_e = 2990.95$ cm$^{-1}$，$\tilde{\nu}_ex_e = 52.82$ cm$^{-1}$\\
+$\Delta G_{1/2} = 2990.95 - 2(52.82) = 2885.3$ cm$^{-1}$\\
+$\Delta G_{3/2} = 2990.95 - 4(52.82) = 2779.7$ cm$^{-1}$\\
+间距递减：$\Delta G_{1/2} - \Delta G_{3/2} = 2\tilde{\nu}_ex_e = 105.6$ cm$^{-1}$
+\end{examplebox}
+
+
+\subsection{能级布居与Boltzmann分布}
+
+\begin{keypoint}
+\textbf{热平衡下的能级布居}（普适公式）：
+\begin{equation}
+\frac{N_{\text{upper}}}{N_{\text{lower}}} = \frac{g_{\text{upper}}}{g_{\text{lower}}} \exp\left(-\frac{\Delta E}{k_B T}\right)
+\end{equation}
+其中 $g$ 为能级简并度，$\Delta E = E_{\text{upper}} - E_{\text{lower}}$ 为能级差。
+
+\textbf{特殊情况}：
+\begin{itemize}
+    \item \textbf{振动能级}：$g_v = 1$（非简并），$\Delta E = h\nu$
+    \begin{equation}
+    \frac{N_v}{N_0} = \exp\left(-\frac{vh\nu}{k_B T}\right)
+    \end{equation}
+    \item \textbf{转动能级}：$g_J = 2J+1$（简并度），$\Delta E = hcBJ(J+1)$
+    \begin{equation}
+    \frac{N_J}{N_0} = (2J+1)\exp\left(-\frac{hcBJ(J+1)}{k_BT}\right)
+    \end{equation}
+    \item \textbf{电子能级}：$g_e$ 取决于电子态多重度 $2S+1$
+\end{itemize}
+
+\textbf{温度效应}：
+\begin{itemize}
+    \item 低温：仅最低能级有显著布居
+    \item 高温：高能级布居增加，热带（hot bands）出现
+    \item 最大布居：简并度与Boltzmann因子的竞争结果
+\end{itemize}
+\end{keypoint}
+
+\subsection{转动能级布居与最大强度}
+
+\textbf{应用Boltzmann分布}
+\begin{equation}
+\frac{N_J}{N_0} = (2J+1)\exp\left(-\frac{hc\tilde{B}J(J+1)}{k_BT}\right)
+\end{equation}
+
+\textbf{最大布居量子数}（对 $J$ 求导令 $dN_J/dJ = 0$）：
+\begin{equation}
+    J_{max} = \sqrt{\frac{k_BT}{2hc\tilde{B}}} - \frac{1}{2} 
+\end{equation}
+\hspace{3em}\scriptsize{*如果以$cm^{-1}$为单位，取$c=\tilde{c}=3\times10^{10}$ cm/s}
+
+\textbf{键长计算}（从转动常数）：
+\begin{equation}
+R = \sqrt{\frac{\hbar}{4\pi c\tilde{B}\mu}} = \sqrt{\frac{h}{8\pi^2 c\tilde{B}\mu}}
+\end{equation}
+
+\begin{examplebox}
+\textbf{$^{12}C^{16}O$ 转动光谱}：\\
+$\tilde{B} = 1.931$ cm$^{-1}$，$\tilde{D} = 6.1 \times 10^{-6}$ cm$^{-1}$\\
+$J = 0 \to 1$：$\tilde{\nu} = 2\tilde{B} = 3.862$ cm$^{-1}$\\
+$J = 1 \to 2$：$\tilde{\nu} = 4\tilde{B} = 7.724$ cm$^{-1}$\\
+间距恒定：$\Delta\tilde{\nu} = 2\tilde{B}$（忽略离心畸变）
+\end{examplebox}
+
+\subsection{核自旋统计权重}
+
+\textbf{同核双原子分子}：核自旋影响能级占据。
+\begin{itemize}
+    \item \textbf{Bose 子}（整数自旋，如 $^{16}O_2$）：对称波函数
+    \begin{itemize}
+        \item 偶数 $J$：核自旋对称 $\to$ 权重大
+        \item 奇数 $J$：核自旋反对称 $\to$ 权重小
+    \end{itemize}
+    \item \textbf{Fermi 子}（半整数自旋，如 $^{1}H_2$）：反对称波函数
+    \begin{itemize}
+        \item 偶数 $J$：para-H$_2$（核自旋反对称）$\to$ 权重 1
+        \item 奇数 $J$：ortho-H$_2$（核自旋对称）$\to$ 权重 3
+    \end{itemize}
+\end{itemize}
+
+\textbf{强度比}：
+\begin{equation}
+\frac{I(\text{ortho})}{I(\text{para})} = \frac{(2I+1)(I+1)}{I(2I+1)} = \frac{I+1}{I}
+\end{equation}
+$I$ 为核自旋量子数。对于 $^{1}H_2$（$I = 1/2$），比值 = 3:1。
+
+
+\section{原子与分子光谱项符号 (Term Symbols)}
+
+\subsection{原子光谱项}
+
+\textbf{原子光谱项符号}：
+\begin{equation}
+^{2S+1}L_J
+\end{equation}
+\begin{itemize}
+    \item $2S+1$：自旋多重度，S为总自旋角动量，各电子 $s_i$ 的矢量和，$\vec{S} = \sum_i \vec{s}_i$\\
+    取值范围（$n$电子）：$S = 0, 1, 2, \ldots$ 或 $1/2, 3/2, \ldots$
+    \item $L$：总轨道角动量，各电子 $l_i$ 的矢量和，$\vec{L} = \sum_i \vec{l}_i$\\
+    取值范围（两电子）：$|l_1 - l_2| \leq L \leq l_1 + l_2$
+    \item $J$：总角动量，$L$ 与 $S$ 的矢量和，$\vec{J} = \vec{L} + \vec{S}$\\
+    取值范围：$|L - S| \leq J \leq L + S$，共 $2\min(L,S)+1$ 个 $J$ 值
+\end{itemize}
+
+\textbf{例}：两个 $p$ 电子（$l_1 = l_2 = 1$）$\to$ $L = 0, 1, 2$（对应 S, P, D 项）
+
+\begin{keypoint}
+\textbf{$L$ 的字母对应}：
+\begin{center}
+\begin{tabular}{ccccccccc}
+$L$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & ... \\
+符号 & S & P & D & F & G & H & I & ... \\
+\end{tabular}
+\end{center}
+\textbf{示例}：$^3P_2$（$S=1$, $L=1$, $J=2$），$^1S_0$（$S=0$, $L=0$, $J=0$）
+\end{keypoint}
+
+\subsection{双原子分子光谱项}
+
+\textbf{分子光谱项符号}：
+\begin{equation}
+^{2S+1}\Lambda_{\Omega}^{(+/-)} \quad \text{或} \quad ^{2S+1}\Lambda_{g/u}^{(+/-)}
+\end{equation}
+\begin{itemize}
+    \item $2S+1$：自旋多重度
+    \item $\Lambda$：轨道角动量在分子轴上的投影，用希腊字母表示
+    \item $\Omega$：总角动量投影
+    \item $+/-$：仅$\Sigma$态，对镜面的对称性
+    \item $g/u$：仅同核分子，对反演中心的对称性
+\end{itemize}
+
+\begin{examplebox}
+$^3\Sigma_g^-$（O$_2$基态），$^2\Pi_{1/2}$（NO基态分量），$^1\Sigma^+$（CO基态）
+\end{examplebox}
+
+\textbf{常见分子基态}：
+\begin{itemize}
+    \item H$_2$：$^1\Sigma_g^+$；N$_2$：$^1\Sigma_g^+$；O$_2$：$^3\Sigma_g^-$（顺磁！）
+    \item NO：$^2\Pi$；CO：$^1\Sigma^+$；OH：$^2\Pi$
+\end{itemize}
+
+\section{电子光谱 (Electronic Spectroscopy)}
+
+\subsection{Frank-Condon 原理}
+
+\textbf{核心思想}：电子跃迁远快于核运动（$\sim 10^{-15}$ s vs $10^{-13}$ s）。
+
+\begin{keypoint}
+\textbf{Frank-Condon 因子}：
+\begin{equation}
+|S_{v'v''}|^2 = \left|\int \chi_{v'}^* \chi_{v''} d\tau\right|^2
+\end{equation}
+决定振动谱带强度。
+\textbf{物理意义}：
+\begin{itemize}
+    \item 跃迁"垂直"发生（$R$ 不变）
+    \item 最强跃迁：$v'$ 和 $v''$ 波函数最大重叠处
+    \item 平衡核间距变化大 $\to$ 跃迁到高振动态
+\end{itemize}
+\end{keypoint}
+
+\textbf{振动进程 (Progression)}：
+\begin{itemize}
+    \item $R_e' \approx R_e''$ $\to$ $0 \to 0$ 最强
+    \item $R_e' \gg R_e''$ $\to$ $0 \to v'$ ($v'$ 较大) 最强
+\end{itemize}
+
+\subsection{电子跃迁与HOMO/LUMO分析技巧}
+
+\textbf{判断准则}：
+\begin{itemize}
+    \item HOMO $\to$ LUMO：第一激发态（S$_0 \to$ S$_1$）
+    \item $\sigma$ 成键 $\to$ $\sigma^*$ 反键：键长显著增大
+    \item $\pi$ 成键 $\to$ $\pi^*$ 反键：键长略增
+    \item $n$ 非键 $\to$ $\pi^*$：键长变化小
+    \item C=O键伸缩频率变化：成键电子移除$\to$频率降低
+\end{itemize}
+
+\textbf{FC因子应用技巧}：
+\begin{itemize}
+    \item $R_e' \approx R_e''$ $\to$ $0 \to 0$ 跃迁最强（键长变化小）
+    \item $R_e' \gg R_e''$ $\to$ $0 \to v'$ (高$v'$) 最强（键长显著增大）
+    \item FC包络宽窄反映几何结构变化程度
+    \item 不是跃迁概率，是振动态重叠积分平方
+\end{itemize}
+
+\subsection{电子-振动-转动耦合}
+
+\textbf{总能量}：
+\begin{equation}
+E = E_{elec} + G(v) + F(J)
+\end{equation}
+
+\textbf{选律}：
+\begin{itemize}
+    \item \textbf{电子}：$\Delta\Lambda = 0, \pm 1$（$\Lambda$ 为电子轨道角动量投影）
+    \item \textbf{振动}：$\Delta v = 0, \pm 1, \pm 2, \cdots$（无限制，但 FC 因子决定强度）
+    \item \textbf{转动}：$\Delta J = 0, \pm 1$（禁止 $J' = 0 \leftrightarrow J'' = 0$）
+\end{itemize}
+
+\textbf{谱带结构}：P、Q、R 支
+\begin{itemize}
+    \item P 支：$\Delta J = -1$，$\tilde{\nu}_P = \tilde{\nu}_0 - (\tilde{B}' + \tilde{B}'')J + (\tilde{B}' - \tilde{B}'')J^2$
+    \item Q 支：$\Delta J = 0$（仅当 $\Delta\Lambda \neq 0$），$\tilde{\nu}_Q = \tilde{\nu}_0 + (\tilde{B}' - \tilde{B}'')J(J+1)$
+    \item R 支：$\Delta J = +1$，$\tilde{\nu}_R = \tilde{\nu}_0 + 2\tilde{B}' + (3\tilde{B}' - \tilde{B}'')J + (\tilde{B}' - \tilde{B}'')J^2$
+\end{itemize}
+
+\textbf{带原点 (Band Origin)}：
+\begin{equation}
+\tilde{\nu}_0 = \tilde{\omega}_e - 2\tilde{\omega}_ex_e \quad (\text{对 } v=0\to1)
+\end{equation}
+
+\textbf{Q支展宽}：若 $\tilde{B}' \neq \tilde{B}''$，Q支不重合而展宽。
+\textbf{双原子 IR}：通常只有 P、R 支（$\Delta\Lambda = 0$，无 Q 支）。
+
+\subsection{预解离与辐射寿命}
+
+\textbf{预解离 (Predissociation)}：
+\begin{itemize}
+    \item 电子激发态 $\to$ 与排斥态交叉 $\to$ 解离
+    \item 光谱特征：谱线突然变宽或消失
+\end{itemize}
+
+\textbf{辐射寿命 $\tau$}：
+\begin{equation}
+\tau = \frac{1}{A_{21}} \approx 10^{-8} \text{ s}
+\end{equation}
+$A_{21}$ 为 Einstein 自发辐射系数。
+
+\textbf{谱线宽度}：
+\begin{equation}
+\Delta\tilde{\nu} \approx \frac{1}{2\pi c\tau}
+\end{equation}
+寿命短 $\to$ 谱线宽。
+
+\section{拉曼光谱 (Raman Spectroscopy)}
+
+\subsection{拉曼散射原理}
+
+\textbf{散射类型}：
+\begin{itemize}
+    \item \textbf{Rayleigh 散射}：$\nu_{scattered} = \nu_0$（弹性）
+    \item \textbf{Stokes 拉曼}：$\nu_{scattered} = \nu_0 - \nu_{vib}$（分子吸收能量）
+    \item \textbf{Anti-Stokes 拉曼}：$\nu_{scattered} = \nu_0 + \nu_{vib}$（分子失去能量）
+\end{itemize}
+
+\textbf{强度比}：
+\begin{equation}
+\frac{I_{AS}}{I_S} \propto e^{-h\nu_{vib}/kT}
+\end{equation}
+Anti-Stokes 通常很弱（需要分子已在激发态）。低温时 Stokes 线更强，高温时两者趋近。
+
+\subsection{转动拉曼光谱}
+
+\textbf{选律}：$\Delta J = 0, \pm 2$（线性分子）
+
+\textbf{能级差}：$\varepsilon_J = \tilde{B}J(J+1)$，$\Delta\varepsilon = \tilde{B}(4J+6)$
+
+\textbf{Stokes线}（$\Delta J = +2$）：
+\begin{equation}
+\tilde{\nu}_S = \tilde{\nu}_{laser} - \tilde{B}(4J+6), \quad J = 0,1,2,\cdots
+\end{equation}
+
+\textbf{Anti-Stokes线}（$\Delta J = -2$）：
+\begin{equation}
+\tilde{\nu}_{AS} = \tilde{\nu}_{laser} + \tilde{B}(4J-2), \quad J = 2,3,4,\cdots
+\end{equation}
+
+\textbf{谱线间距}：$\Delta\tilde{\nu} = 4\tilde{B}$（等间距，可精确测定 $\tilde{B}$）
+
+\begin{keypoint}
+\textbf{拉曼活性判据}：
+\begin{equation}
+\left(\frac{\partial\alpha_{ij}}{\partial Q}\right)_0 \neq 0
+\end{equation}
+极化率张量分量随简正坐标变化。
+\textbf{物理本质}：分子极化率 $\alpha$ 随振动发生变化。
+\begin{itemize}
+    \item 诱导偶极矩：$\mu_{ind} = \alpha E$
+    \item $\alpha$ 与键强度/键长相关：键伸缩使 $\alpha$ 变化 $\to$ Raman活性
+    \item 引入平均极化率：$\bar{\alpha} = (\alpha_{xx} + \alpha_{yy} + \alpha_{zz})/3$
+\end{itemize}
+\textbf{优势}：
+\begin{itemize}
+    \item 可见光激发（不需 UV-IR 光源）
+    \item 水溶液测量（水的拉曼信号弱）
+    \item 低频振动（$< 400$ cm$^{-1}$）
+    \item 与 IR 互补（互斥规则）
+\end{itemize}
+\end{keypoint}
+
+\subsection{共振拉曼与表面增强拉曼}
+
+\textbf{共振拉曼 (RR)}：
+\begin{itemize}
+    \item 激发光频率接近电子吸收带
+    \item 强度增强 $10^3 - 10^6$ 倍
+    \item 选择性激发特定发色团振动
+\end{itemize}
+
+\textbf{表面增强拉曼 (SERS)}：
+\begin{itemize}
+    \item 分子吸附在金属纳米结构表面
+    \item 局域表面等离激元共振
+    \item 增强因子 $10^{6} - 10^{14}$
+    \item 单分子检测可能
+\end{itemize}
+
+\section{光电子能谱 (Photoelectron Spectroscopy, PES)}
+
+\subsection{基本原理}
+
+\textbf{光电效应}：
+\begin{equation}
+h\nu = IE + KE_{electron}
+\end{equation}
+
+\subsection{PES成键性判断技巧}
+	\textbf{核心逻辑}：
+\begin{itemize}
+    \item 谱带精细结构间距 = 离子态振动频率 $\omega_e^+$
+    \item $\omega_e^+ < \omega_e$：移除成键电子（键变弱，频率降低）
+    \item $\omega_e^+ > \omega_e$：移除反键电子（键变强，频率升高）
+    \item $\omega_e^+ \approx \omega_e$：移除非键电子（键长几乎不变）
+    \item FC包络宽窄：反映中性分子与离子几何差异
+\end{itemize}
+
+\textbf{PES与电子光谱结合分析}：
+\begin{itemize}
+    \item \textbf{轨道能级对应}：PES给出IE，电子光谱给出HOMO-LUMO间隙
+    \item \textbf{精细结构}：第一激发态和离子态的振动间距可判断轨道性质
+    \item \textbf{FC因子一致性}：两种光谱的强度分布都受FC原理支配
+    \item \textbf{典型例题（ClO 等双原子）}：用 PES 第一电离带的振动间距得到 $\omega_e^+$，再与电子光谱振动进程间距（激发态 $\omega_e'$）对比，判断涉及轨道的成键/反键/非键性质
+\end{itemize}
+
+$IE$ = 电离能（分子轨道能量），$KE$ = 光电子动能。
+
+\textbf{Koopmans 定理}：
+\begin{equation}
+IE_i \approx -\epsilon_i
+\end{equation}
+电离能近似等于分子轨道能量的负值（忽略轨道弛豫）。
+
+\begin{keypoint}
+\textbf{振动精细结构}：
+\begin{itemize}
+    \item PES 谱带显示离子振动能级（不是中性分子）
+    \item 间距 = 离子基态振动频率 $\tilde{\nu}_e^+$
+    \item \textbf{成键判据}：
+    \begin{itemize}
+        \item $\tilde{\nu}_e^+ < \tilde{\nu}_e$ $\to$ 移除成键电子（键变弱）
+        \item $\tilde{\nu}_e^+ > \tilde{\nu}_e$ $\to$ 移除反键电子（键变强）
+        \item $\tilde{\nu}_e^+ \approx \tilde{\nu}_e$ $\to$ 移除非键电子
+    \end{itemize}
+    \item \textbf{FC 包络}：反映中性分子与离子几何差异
+\end{itemize}
+\end{keypoint}
+
+\begin{examplebox}
+\textbf{$N_2$ 的 PES}：\\
+最高占据 MO：$3\sigma_g$ (成键)\\
+$\tilde{\nu}_e(N_2) = 2359$ cm$^{-1}$\\
+$\tilde{\nu}_e^+(N_2^+) = 2207$ cm$^{-1}$ $< \tilde{\nu}_e$\\
+结论：$3\sigma_g$ 为强成键轨道，移除后键长增大、振动频率降低。
+\end{examplebox}
+
+\subsection{光谱常数计算实例}
+
+\begin{examplebox}
+\textbf{$CN$ 分子电子光谱与 PES 分析}：\\
+\textbf{振动能级公式}（非谐振子）：
+\begin{equation}
+G(v) = \omega_e(v+1/2) - \omega_e x_e(v+1/2)^2
+\end{equation}
+\textbf{光谱常数求解}：\\
+已知基频 ($v=0 \to 1$) 和第一泛频 ($v=0 \to 2$) 或热带 ($v=1 \to 2$)：
+\begin{itemize}
+    \item $\Delta G_{1/2} = G(1)-G(0) = \omega_e - 2\omega_e x_e$
+    \item $\Delta G_{3/2} = G(2)-G(1) = \omega_e - 4\omega_e x_e$
+    \item 联立求解 $\omega_e$ (谐振频率) 和 $\omega_e x_e$ (非谐性常数)
+\end{itemize}
+\textbf{解离能}：$D_e = \frac{\omega_e^2}{4\omega_e x_e}$，$D_0 = D_e - \frac{\omega_e}{2}$ (零点能修正)\\
+\textbf{PES 振动精细结构}：\\
+电离过程 $CN \xrightarrow{h\nu} CN^+ + e^-$
+\begin{itemize}
+    \item 谱带精细结构间距 = 离子态振动频率 $\omega_e^+$（不是中性分子）
+    \item \textbf{成键性判据}：
+    \begin{itemize}
+        \item $\omega_e^+ < \omega_e$ $\to$ 移除成键电子
+        \item $\omega_e^+ > \omega_e$ $\to$ 移除反键电子
+        \item $\omega_e^+ \approx \omega_e$ $\to$ 移除非键电子
+    \end{itemize}
+\end{itemize}
+\end{examplebox}
+
+\subsection{He(I) 与 He(II) 光源}
+
+\textbf{常用光源}：
+\begin{itemize}
+    \item \textbf{He(I)}：21.22 eV (584 Å)，研究价电子
+    \item \textbf{He(II)}：40.81 eV (304 Å)，探测内层电子
+    \item \textbf{X-射线}：XPS (ESCA)，测定核心电子结合能
+\end{itemize}
+
+\textbf{化学位移}：
+\begin{itemize}
+    \item 核心电子 IE 受化学环境影响
+    \item 氧化态增加 $\to$ IE 增大
+    \item 元素鉴定与化学态分析
+\end{itemize}
+
+
+\end{multicols}
+
+\clearpage
+
+\vspace{1em}
+\noindent\textbf{\Large 附录：关键常数与数据}
+
+\begin{multicols}{2}
+\scriptsize
+
+\textbf{电磁波谱区域}（按能量递减）：
+\begin{itemize}
+    \item \textbf{射频 (RF)}：$10^3 - 10^{11}$ Hz，核磁共振 (NMR)
+    \item \textbf{微波}：$10^{11} - 10^{13}$ Hz，分子转动
+    \item \textbf{红外 (IR)}：$10^{13} - 10^{14}$ Hz，分子振动
+    \item \textbf{可见-紫外 (UV-Vis)}：$10^{14} - 10^{16}$ Hz，电子跃迁
+\end{itemize}
+
+\textbf{常用换算关系}：
+\begin{center}
+\scalebox{0.8}{
+    \scriptsize
+    \begin{tabular}{lcccc}
+    \hline
+    & J$\cdot$mol$^{-1}$ & cal$\cdot$mol$^{-1}$ & eV & cm$^{-1}$ \\
+    \hline
+    1 J$\cdot$mol$^{-1}$ & 1 & 0.2390 & $1.036\times10^{-5}$ & $8.359\times10^{-2}$ \\
+    1 cal$\cdot$mol$^{-1}$ & 4.184 & 1 & $4.336\times10^{-5}$ & 0.3497 \\
+    1 eV & $9.649\times10^4$ & $2.306\times10^4$ & 1 & $8.065\times10^3$ \\
+    1 cm$^{-1}$ & $1.196\times10^{-2}$ & 2.859 & $1.240\times10^{-4}$ & 1 \\
+    \hline
+    \end{tabular}
+}
+\end{center}
+
+\begin{itemize}
+    \item $kT$ (300 K) = 208.5 cm$^{-1}$ = 2.48 kJ/mol
+    \item 1 Hartree (Eh) = 27.211 eV = 4.360 $\times$ 10$^{-18}$ J
+    \item 1 Eh = 219474.6 cm$^{-1}$ = 627.51 kcal/mol
+    \item 1 Bohr (a$_0$) = 0.5292 Å = 52.92 pm
+    \item 1 a.u. 偶极矩 = 2.542 Debye
+    \item 1 cm$^{-1}$ = 4.556 $\times$ 10$^{-6}$ Eh
+    \item 1 amu = 1.6605 $\times$ 10$^{-27}$ kg
+\end{itemize}
+
+\textbf{典型光谱范围}：
+\begin{itemize}
+    \item NMR：$10^{-3} - 1$ cm$^{-1}$
+    \item 微波/转动：$0.1 - 100$ cm$^{-1}$
+    \item 远红外：$10 - 400$ cm$^{-1}$
+    \item 中红外：$400 - 4000$ cm$^{-1}$
+    \item 近红外：$4000 - 12500$ cm$^{-1}$
+    \item 可见光：$12500 - 25000$ cm$^{-1}$
+    \item 紫外：$25000 - 50000$ cm$^{-1}$
+\end{itemize}
+
+\textbf{特征振动频率 (cm$^{-1}$)}：
+\begin{itemize}
+    \item C–H 伸缩：2850–3300
+    \item O–H 伸缩：3200–3650
+    \item N–H 伸缩：3300–3500
+    \item C=O 伸缩：1650–1850
+    \item C=C 伸缩：1620–1680
+    \item \ce{C#C} 伸缩：2100–2260
+    \item \ce{C#N} 伸缩：2210–2280
+\end{itemize}
+
+\textbf{双原子分子数据示例}：
+\begin{center}
+\begin{tabular}{lccc}
+\hline
+分子 & $\tilde{\omega}_e$/cm$^{-1}$ & $\tilde{B}_e$/cm$^{-1}$ & $R_e$/pm \\
+\hline
+H$_2$ & 4401 & 60.85 & 74.1 \\
+HCl & 2991 & 10.59 & 127.5 \\
+CO & 2170 & 1.93 & 112.8 \\
+N$_2$ & 2359 & 2.01 & 109.8 \\
+O$_2$ & 1580 & 1.45 & 120.7 \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{选律总结}：
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+跃迁类型 & $\Delta v$ & $\Delta J$ \\
+\hline
+纯转动 & 0 & $\pm 1$ \\
+振-转（红外） & $\pm 1$ & $\pm 1$ \\
+电子光谱 & 任意 & $0, \pm 1$ \\
+拉曼散射 & $\pm 1$ & $0, \pm 2$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{multicols}
+
+\footnotetext[1]{这份材料的章节顺序主要参考《物理化学-一种分子途径》,使用了AI辅助创建}
+\footnotetext[2]{[Repository]https://github.com/alkali210/XMU-ChemLearning}
+
+\end{document}

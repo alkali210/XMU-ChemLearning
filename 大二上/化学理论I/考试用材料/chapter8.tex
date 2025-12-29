@@ -1,0 +1,547 @@
+% 编译提示：使用 XeLaTeX 编译
+% 需要 ctex 宏包支持中文
+
+\documentclass[a4paper,9pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{ctex}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{amsthm}
+
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1.8cm}
+
+\setlength{\columnsep}{0.8cm}
+\setlength{\columnseprule}{0.4pt}
+\renewcommand{\columnseprulecolor}{\color{gray!50}}
+
+% 定义颜色方案
+\definecolor{sectioncolor}{RGB}{0,102,204}
+\definecolor{subsectioncolor}{RGB}{0,153,153}
+\definecolor{keycolor}{RGB}{204,102,0}
+\definecolor{derivcolor}{RGB}{100,149,237}
+\definecolor{boxbg}{RGB}{240,248,255}
+\definecolor{keybg}{RGB}{255,248,240}
+
+% 自定义章节标题格式
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{sectioncolor}}
+  {\thesection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{subsectioncolor}}
+  {\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{0.8ex plus 0.3ex minus 0.1ex}{0.5ex plus 0.1ex}
+
+% 自定义定理环境
+\newtheorem{theorem}{原理}
+
+% 自定义关键点环境
+\newenvironment{keypoint}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=keybg,
+  colframe=keycolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{keycolor}{\textbf{关键点：}}}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义推导环境
+\newenvironment{derivation}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{derivcolor}{\textbf{推导：}}\par\linespread{1.1}\selectfont}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义例题环境
+\newenvironment{exampleblock}[1]
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{derivcolor}{\textbf{#1}}\par\linespread{1.1}\selectfont}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 页眉页脚设置
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\scriptsize8-\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{gray!50}\leaders\hrule height \footrulewidth\hfill}}
+
+% 紧凑标题
+\title{\vspace{-2em}\Large\bfseries\color{sectioncolor} Chapter 8 Collections - 多电子原子\vspace{-1em}}
+\author{}
+\date{2025 年 11 月 1 日}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{multicols}{2}
+
+\section{多电子原子的哈密顿算符}
+
+\subsection{完整哈密顿算符}
+
+$N$ 电子原子的哈密顿算符（SI 单位）：
+\begin{equation}
+\hat{H} = -\sum_{i=1}^{N}\frac{\hbar^2}{2m_e}\nabla_i^2 - \sum_{i=1}^{N}\frac{Ze^2}{4\pi\varepsilon_0 r_i} + \sum_{i<j}\frac{e^2}{4\pi\varepsilon_0 r_{ij}}
+\end{equation}
+
+三项分别为：电子动能、核-电子吸引、电子-电子排斥。
+
+原子单位制下（$\hbar = m_e = e = 4\pi\varepsilon_0 = 1$）：
+\begin{equation}
+\hat{H} = -\frac{1}{2}\sum_{i=1}^{N}\nabla_i^2 - \sum_{i=1}^{N}\frac{Z}{r_i} + \sum_{i<j}\frac{1}{r_{ij}}
+\end{equation}
+
+\begin{keypoint}
+由于电子-电子排斥项 $\sum_{i<j} \frac{1}{r_{ij}}$ 的存在，薛定谔方程无法精确求解，必须采用近似方法。
+\end{keypoint}
+
+\subsection{原子单位制}
+
+原子单位的定义和换算关系：
+
+\begin{align}
+\text{长度：} a_0 &= \frac{4\pi\varepsilon_0\hbar^2}{m_e e^2} = 0.529 \text{ \AA} \\
+\text{能量：} E_h &= \frac{m_e e^4}{16\pi^2\varepsilon_0^2\hbar^2} = 27.211 \text{ eV} \\
+\text{电荷：} e &= 1.602 \times 10^{-19} \text{ C}
+\end{align}
+
+\begin{exampleblock}{例题8-1：单位换算}
+将 $1E_h$ 换算为 J、eV、cm$^{-1}$。
+
+\textbf{解：}$1E_h = 27.211$ eV $= 4.3597 \times 10^{-18}$ J
+
+利用 $E = h\nu = hc\tilde{\nu}$：
+\begin{equation*}
+\tilde{\nu} = \frac{E}{hc} = \frac{4.3597 \times 10^{-18}}{(6.626 \times 10^{-34})(2.998 \times 10^{10})} = 2.1947 \times 10^5 \text{ cm}^{-1}
+\end{equation*}
+\end{exampleblock}
+
+\section{中心力场近似}
+
+\subsection{基本假设}
+
+将电子-电子排斥用一个球对称的平均势能 $U_i(r_i)$ 代替：
+\begin{equation}
+\hat{H} \approx \sum_{i=1}^{N} \hat{h}(i), \quad \hat{h}(i) = -\frac{1}{2}\nabla_i^2 - \frac{Z_{\text{eff}}(r_i)}{r_i}
+\end{equation}
+
+其中有效核电荷 $Z_{\text{eff}}$ 考虑了其他电子的屏蔽效应。
+
+\subsection{单电子波函数}
+
+在中心力场近似下，总波函数可分离为单电子轨道的乘积：
+\begin{equation}
+\Psi(1,2,\ldots,N) = \psi_1(1)\psi_2(2)\cdots\psi_N(N)
+\end{equation}
+
+每个单电子波函数形式类似氢原子：
+\begin{equation}
+\psi_{nlm}(r,\theta,\phi) = R_{nl}(r)Y_l^m(\theta,\phi)
+\end{equation}
+
+但径向函数 $R_{nl}(r)$ 由有效势 $V_{\text{eff}}(r) = -\frac{Z_{\text{eff}}(r)}{r}$ 决定，需自洽求解。
+
+\subsection{屏蔽效应与Slater规则}
+
+\textbf{Slater 规则}用于估算有效核电荷：
+\begin{equation}
+Z_{\text{eff}} = Z - \sigma
+\end{equation}
+
+屏蔽常数 $\sigma$ 的计算规则：
+\begin{enumerate}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item 将电子按 $(1s)(2s,2p)(3s,3p)(3d)(4s,4p)(4d)(4f)\ldots$ 分组
+\item 对于 $ns$ 或 $np$ 电子：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item 同组其他电子贡献 0.35（1s 为 0.30）
+\item $n-1$ 壳层电子贡献 0.85
+\item 更内层电子贡献 1.00
+\end{itemize}
+\item 对于 $nd$ 或 $nf$ 电子：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item 同组其他电子贡献 0.35
+\item 所有内层电子贡献 1.00
+\end{itemize}
+\end{enumerate}
+
+\begin{exampleblock}{例题8-2：计算氮原子的有效核电荷}
+氮原子电子组态：$1s^2 2s^2 2p^3$，$Z = 7$。
+
+对 2p 电子：
+\begin{align*}
+\sigma &= 2 \times 0.85 \quad (\text{1s 电子}) \\
+&\quad + 2 \times 0.35 \quad (\text{2s 电子}) \\
+&\quad + 2 \times 0.35 \quad (\text{其他 2p 电子}) \\
+&= 1.70 + 0.70 + 0.70 = 3.10
+\end{align*}
+
+$Z_{\text{eff}} = 7 - 3.10 = 3.90$
+\end{exampleblock}
+
+\section{自旋与Pauli原理}
+
+\subsection{电子自旋}
+
+电子具有内禀角动量——自旋：
+\begin{align}
+\hat{S}^2 |s,m_s\rangle &= s(s+1)\hbar^2 |s,m_s\rangle \\
+\hat{S}_z |s,m_s\rangle &= m_s\hbar |s,m_s\rangle
+\end{align}
+
+对电子：$s = 1/2$，$m_s = \pm 1/2$（常记为 $\alpha, \beta$ 或 $\uparrow, \downarrow$）
+
+完整的单电子态需包含自旋：$\psi_{nlm}(r,\theta,\phi) \times \chi_{m_s}$
+
+\subsection{Pauli不相容原理}
+
+\begin{theorem}[Pauli 原理]
+两个全同费米子（如电子）不能占据完全相同的量子态。
+\end{theorem}
+
+推论：
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item 每个轨道 $(n,l,m_l)$ 最多容纳 2 个电子（自旋相反）
+\item 多电子波函数必须对交换任意两个电子反对称
+\end{itemize}
+
+\subsection{量子力学第六假设}
+
+\begin{keypoint}
+\textbf{全同粒子假设}：全同粒子体系的波函数必须满足交换对称性要求。
+
+对于费米子（如电子，自旋为半整数）：波函数对交换任意两个粒子必须\textbf{反对称}
+\begin{equation}
+\Psi(\ldots,i,\ldots,j,\ldots) = -\Psi(\ldots,j,\ldots,i,\ldots)
+\end{equation}
+
+对于玻色子（自旋为整数）：波函数必须对称。
+\end{keypoint}
+
+这个假设直接导出Pauli不相容原理：若两个费米子处于相同态，则波函数为零。
+
+\subsection{Slater行列式}
+
+满足反对称性的 $N$ 电子波函数：
+\begin{equation}
+\Psi = \frac{1}{\sqrt{N!}}\begin{vmatrix}
+\psi_1(1) & \psi_2(1) & \cdots & \psi_N(1) \\
+\psi_1(2) & \psi_2(2) & \cdots & \psi_N(2) \\
+\vdots & \vdots & \ddots & \vdots \\
+\psi_1(N) & \psi_2(N) & \cdots & \psi_N(N)
+\end{vmatrix}
+\end{equation}
+
+性质：
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item 交换任意两个电子（行交换）改变符号
+\item 两个电子占据同一轨道时行列式为零
+\item 自动满足归一化（若单电子轨道归一化）
+\end{itemize}
+
+\section{原子光谱项}
+
+\subsection{角动量耦合}
+
+多电子原子的总角动量：
+\begin{align}
+\vec{L} &= \sum_i \vec{l}_i, \quad L = |l_1+l_2|, \ldots, |l_1 - l_2| \\
+\vec{S} &= \sum_i \vec{s}_i, \quad S = s_1 + s_2, \ldots, |s_1 - s_2|
+\end{align}
+
+\textbf{LS 耦合}（Russell-Saunders 耦合）：先耦合轨道角动量和自旋角动量，再耦合得总角动量：
+\begin{equation}
+\vec{J} = \vec{L} + \vec{S}, \quad J = L+S, L+S-1, \ldots, |L-S|
+\end{equation}
+
+\subsection{光谱项符号}
+
+光谱项记为：$^{2S+1}L_J$
+
+其中：
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item $2S+1$：自旋多重度
+\item $L$：用 S, P, D, F, G, H, $\ldots$ 表示 $L = 0, 1, 2, 3, 4, 5, \ldots$
+\item $J$：总角量子数下标
+\end{itemize}
+
+\subsection{写出光谱项的方法}
+
+\textbf{步骤}：
+\begin{enumerate}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item 确定可能的 $L$ 值（轨道角动量耦合）
+\item 确定可能的 $S$ 值（自旋角动量耦合）
+\item 对每组 $(L,S)$，确定 $J$ 值：$J = L+S, \ldots, |L-S|$
+\item 考虑 Pauli 原理排除不可能的组合
+\end{enumerate}
+
+\begin{exampleblock}{例题1：$p^1$ 单电子组态}
+$l = 1, s = 1/2$
+
+$L = 1$ (P)，$S = 1/2$
+
+$J = 1 + 1/2 = 3/2$ 或 $|1 - 1/2| = 1/2$
+
+光谱项：$^2P_{3/2}, ^2P_{1/2}$
+\end{exampleblock}
+
+\begin{exampleblock}{例题2：$p^2$ 等价电子}
+两个 $p$ 电子：$l_1 = l_2 = 1$
+
+\textbf{轨道角动量耦合}：$L = 2, 1, 0$ (D, P, S)
+
+\textbf{自旋角动量耦合}：$S = 1$ (平行) 或 $0$ (反平行)
+
+可能的微观状态组合（考虑Pauli原理）：
+
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $^3P$：$L=1, S=1$，$J=2,1,0$ $\Rightarrow$ $^3P_2, ^3P_1, ^3P_0$
+\item $^1D$：$L=2, S=0$，$J=2$ $\Rightarrow$ $^1D_2$
+\item $^1S$：$L=0, S=0$，$J=0$ $\Rightarrow$ $^1S_0$
+\end{itemize}
+
+基态（Hund规则）：$^3P_0$
+\end{exampleblock}
+
+\begin{exampleblock}{例题3：$d^2$ 等价电子}
+两个 $d$ 电子：$l_1 = l_2 = 2$
+
+\textbf{轨道角动量}：$L = 4, 3, 2, 1, 0$ (G, F, D, P, S)
+
+\textbf{自旋}：$S = 1, 0$
+
+考虑Pauli原理后，实际存在的项（部分）：
+
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $^3F$：$L=3, S=1$，$J=4,3,2$ $\Rightarrow$ $^3F_4, ^3F_3, ^3F_2$
+\item $^3P$：$L=1, S=1$，$J=2,1,0$ $\Rightarrow$ $^3P_2, ^3P_1, ^3P_0$
+\item $^1G$：$L=4, S=0$，$J=4$ $\Rightarrow$ $^1G_4$
+\item $^1D$：$L=2, S=0$，$J=2$ $\Rightarrow$ $^1D_2$
+\item $^1S$：$L=0, S=0$，$J=0$ $\Rightarrow$ $^1S_0$
+\end{itemize}
+
+基态（Hund规则）：$^3F_2$ （$S$最大，$L$最大，未满半壳层取$J=|L-S|$）
+\end{exampleblock}
+
+\begin{exampleblock}{例题4：$p^1d^1$ 非等价电子}
+$p$ 电子：$l_1 = 1$，$d$ 电子：$l_2 = 2$
+
+\textbf{轨道角动量}：
+\begin{equation*}
+L = |l_1 + l_2|, \ldots, |l_1 - l_2| = 3, 2, 1 \quad \text{(F, D, P)}
+\end{equation*}
+
+\textbf{自旋}：两个电子，$S = 1$ 或 $0$
+
+\textbf{所有可能的光谱项}：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $L=3, S=1$：$^3F_{4,3,2}$
+\item $L=3, S=0$：$^1F_3$
+\item $L=2, S=1$：$^3D_{3,2,1}$
+\item $L=2, S=0$：$^1D_2$
+\item $L=1, S=1$：$^3P_{2,1,0}$
+\item $L=1, S=0$：$^1P_1$
+\end{itemize}
+
+非等价电子无Pauli限制，所有组合都存在。
+
+基态（Hund规则）：$^3F_2$ （$S=1$最大，$L=3$最大，未满半壳层$J=|3-1|=2$）
+\end{exampleblock}
+
+\begin{exampleblock}{例题5：$d^5$ 半满壳层}
+五个 $d$ 电子占据五个不同的 $m_l$ 轨道，自旋全部平行。
+
+电子组态：$(m_l = 2,1,0,-1,-2$，全部$\uparrow)$
+
+\textbf{轨道角动量}：$\sum m_l = 0$，故 $M_L = 0$，且只能是 $L = 0$ (S)
+
+\textbf{自旋}：五个电子全平行，$M_S = 5/2$，$S = 5/2$
+
+$2S+1 = 6$ （六重态）
+
+光谱项：$^6S$，$J = S = 5/2$
+
+基态：$^6S_{5/2}$
+
+这是球对称态，非常稳定（如Mn²⁺, Fe³⁺）。
+\end{exampleblock}
+
+\subsection{Hund规则}
+
+确定基态光谱项：
+\begin{enumerate}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item \textbf{最大自旋多重度}：$2S+1$ 最大的项能量最低
+\item \textbf{最大总轨道角动量}：$S$ 相同时，$L$ 最大的项能量最低
+\item \textbf{总角量子数}：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item 未满半壳层：$J = |L - S|$ 最低
+\item 超过半壳层：$J = L + S$ 最低
+\end{itemize}
+\end{enumerate}
+
+\begin{exampleblock}{应用 Hund 规则}
+碳原子 $2p^2$ 的基态项：
+
+按 Hund 规则：
+\begin{enumerate}\setlength{\itemsep}{0pt}
+\item $S = 1$ 的 $^3P$ 最低
+\item $L = 1$ 已是最大
+\item 未满半壳层（$p^2 < p^3$），$J = |1-1| = 0$
+\end{enumerate}
+
+基态光谱项：$^3P_0$
+\end{exampleblock}
+
+\section{精细结构与自旋-轨道耦合}
+
+\subsection{自旋-轨道相互作用}
+
+电子自旋磁矩与轨道磁矩相互作用：
+\begin{equation}
+\hat{H}_{SO} = \zeta(r) \vec{L} \cdot \vec{S}
+\end{equation}
+
+其中 $\zeta(r) \propto Z^4$，重原子效应更显著。
+
+导致能级分裂：
+\begin{equation}
+\Delta E_{SO} = \frac{1}{2}\zeta [J(J+1) - L(L+1) - S(S+1)]
+\end{equation}
+
+\begin{exampleblock}{钠 D 双线}
+钠原子 $3p$ 态由于自旋-轨道耦合分裂：
+
+$^2P \to ^2P_{3/2}$ 和 $^2P_{1/2}$
+
+$3s \, ^2S_{1/2} \to 3p \, ^2P_{1/2}$：589.6 nm（D$_2$）
+
+$3s \, ^2S_{1/2} \to 3p \, ^2P_{3/2}$：589.0 nm（D$_1$）
+
+分裂间隔：$\Delta\tilde{\nu} \approx 17$ cm$^{-1}$
+\end{exampleblock}
+
+\section{Hartree-Fock 自洽场方法}
+
+\subsection{基本思想}
+
+每个电子在原子核和其他电子平均场中运动：
+\begin{equation}
+\hat{h}(i)\psi_i(i) = \varepsilon_i\psi_i(i)
+\end{equation}
+
+有效哈密顿算符：
+\begin{equation}
+\hat{h}(i) = -\frac{1}{2}\nabla_i^2 - \frac{Z}{r_i} + V_{\text{eff}}(i)
+\end{equation}
+
+其中有效势 $V_{\text{eff}}$ 由其他电子密度决定。
+
+\subsection{自洽迭代过程}
+
+\begin{enumerate}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item 假设初始轨道 $\{\psi_i^{(0)}\}$
+\item 计算有效势 $V_{\text{eff}}^{(1)}$
+\item 解单电子方程得新轨道 $\{\psi_i^{(1)}\}$
+\item 检查收敛性：$|\psi_i^{(n)} - \psi_i^{(n-1)}| < \epsilon$
+\item 若未收敛，返回步骤 2
+\end{enumerate}
+
+\subsection{Koopmans 定理}
+
+\begin{theorem}[Koopmans 定理]
+原子的第一电离能近似等于最高占据轨道能量的负值：
+\begin{equation}
+IE \approx -\varepsilon_{\text{HOMO}}
+\end{equation}
+\end{theorem}
+
+\begin{exampleblock}{例题：估算电离能}
+氖原子 HF 计算：$\varepsilon_{2p} = -0.85$ a.u.
+
+$IE \approx 0.85 \times 27.211 = 23.1$ eV
+
+实验值：21.6 eV（误差约 7\%）
+\end{exampleblock}
+
+\section{周期表与原子性质}
+
+\subsection{原子半径趋势}
+
+\textbf{同周期}：从左到右，$Z_{\text{eff}}$ 增大，半径减小
+
+\textbf{同族}：从上到下，$n$ 增大，半径增大
+
+例外：镧系收缩（4f 电子屏蔽效应弱）
+
+\subsection{电离能}
+
+第一电离能 $IE_1$：移除一个电子所需能量
+
+\textbf{趋势}：
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item 同周期：总体增大（惰性气体最大）
+\item 同族：向下减小
+\item 半满或全满壳层电离能较高
+\end{itemize}
+
+\subsection{电子亲和能}
+
+电子亲和能 $EA$：原子获得一个电子释放的能量
+
+\textbf{趋势}：
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item 卤素最大
+\item 惰性气体为负（不稳定）
+\item 半满壳层（如 N）较小
+\end{itemize}
+
+\section{常用公式速查}
+
+\begin{scriptsize}
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item 原子单位能量：$1 E_h = 27.211$ eV $= 2.1947 \times 10^5$ cm$^{-1}$
+\item 有效核电荷：$Z_{\text{eff}} = Z - \sigma$
+\item 轨道能量：$E_{nl} \approx -\frac{Z_{\text{eff}}^2}{n^2} \times 13.6$ eV
+\item 自旋多重度：$2S+1$
+\item 角动量耦合：$L = l_1+l_2, \ldots, |l_1-l_2|$；$S = s_1+s_2, \ldots, |s_1-s_2|$
+\item 总角动量：$J = L+S, \ldots, |L-S|$
+\item 精细结构分裂：$\Delta E_{SO} = \frac{\zeta}{2}[J(J+1)-L(L+1)-S(S+1)]$
+\item 光谱项：$^{2S+1}L_J$（L用SPDFGH表示）
+\item Slater 行列式：$\Psi = \frac{1}{\sqrt{N!}}\det[\psi_i(j)]$
+\item Hund规则：(1)最大$S$ (2)最大$L$ (3)半满前$J=|L-S|$，半满后$J=L+S$
+\end{itemize}
+\end{scriptsize}
+
+\end{multicols}
+
+\end{document}

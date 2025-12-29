@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{tabularx}
+\usepackage{amsmath}
+
+\geometry{a4paper, margin=1in}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\begin{document}
+
+\begin{table}[h!]
+    \renewcommand{\arraystretch}{2}
+    \centering
+    \begin{tabularx}{\textwidth}{|c|C|C|C|C|C|C|}
+    \hline
+    测量次数($\Delta$m=50) & 1 & 2 & 3 & 4 & 5 & 6 \\
+    \hline
+    d$_1$位置(mm) & 59.70038 & 59.66900 & 59.65277 & 59.61223 & 59.62818 & 59.64398 \\
+    \hline
+    d$_2$位置(mm) & 59.68445 & 59.65277 & 59.63691 & 59.62818 & 59.64398 & 59.65973 \\
+    \hline
+    现象描述 & 陷入 & 陷入 & 陷入 & 冒出 & 冒出 & 冒出 \\
+    \hline
+    $\Delta$d (mm) & 0.01593 & 0.01623 & 0.01586 & 0.01595 & 0.01580 & 0.01575 \\
+    \hline
+    $\lambda_n$ (nm) & 637.2 & 649.2 & 634.4 & 638.0 & 632.0 & 630.0 \\
+    \hline
+    平均值$\lambda$ (nm) & \multicolumn{6}{c|}{636.8} \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\section*{计算过程与不确定度分析}
+
+\subsection*{1. 各次测量波长 $\lambda_n$ 的计算}
+根据公式 $\lambda = \frac{2\Delta d}{\Delta m}$，其中 $\Delta m = 50$。
+\begin{align*}
+    \lambda_1 &= \frac{2 \times 0.01593\,\text{mm}}{50} = 0.0006372\,\text{mm} = 637.2\,\text{nm} \\
+    \lambda_2 &= \frac{2 \times 0.01623\,\text{mm}}{50} = 0.0006492\,\text{mm} = 649.2\,\text{nm} \\
+    \lambda_3 &= \frac{2 \times 0.01586\,\text{mm}}{50} = 0.0006344\,\text{mm} = 634.4\,\text{nm} \\
+    \lambda_4 &= \frac{2 \times 0.01595\,\text{mm}}{50} = 0.0006380\,\text{mm} = 638.0\,\text{nm} \\
+    \lambda_5 &= \frac{2 \times 0.01580\,\text{mm}}{50} = 0.0006320\,\text{mm} = 632.0\,\text{nm} \\
+    \lambda_6 &= \frac{2 \times 0.01575\,\text{mm}}{50} = 0.0006300\,\text{mm} = 630.0\,\text{nm}
+\end{align*}
+\textbf{有效位数说明：} $\Delta d$ 的测量值为4位有效数字，$\Delta m=50$ 为精确计数，可视为无限位有效数字。因此计算得到的波长 $\lambda_n$ 也应保留4位有效数字。
+
+\subsection*{2. 平均波长 $\bar{\lambda}$ 的计算}
+\begin{align*}
+    \bar{\lambda} &= \frac{1}{6} \sum_{n=1}^{6} \lambda_n \\
+    &= \frac{637.2 + 649.2 + 634.4 + 638.0 + 632.0 + 630.0}{6} \,\text{nm} \\
+    &= \frac{3820.8}{6} \,\text{nm} \\
+    &= 636.8\,\text{nm}
+\end{align*}
+\textbf{有效位数说明：} 进行加法运算时，结果的末位与所有加数中末位最粗的对齐。此处所有 $\lambda_n$ 值均精确到小数点后一位，因此和 $3820.8$ 也精确到小数点后一位。除以整数6时，根据有效数字修约规则以及物理实验数据处理习惯，平均值的最后一位应与测量值对齐，故保留到小数点后一位，为 $636.8$。
+
+\subsection*{3. A类不确定度 $u_A(\lambda)$ 的计算}
+A类不确定度由贝塞尔公式计算：
+\begin{align*}
+    u_A(\lambda) &= \sqrt{\frac{\sum_{n=1}^{6} (\lambda_n - \bar{\lambda})^2}{6(6-1)}} \\
+    &= \sqrt{\frac{(0.4)^2 + (12.4)^2 + (-2.4)^2 + (1.2)^2 + (-4.8)^2 + (-6.8)^2}{30}} \,\text{nm} \\
+    &= \sqrt{\frac{0.16 + 153.76 + 5.76 + 1.44 + 23.04 + 46.24}{30}} \,\text{nm} \\
+    &= \sqrt{\frac{230.4}{30}} \,\text{nm} \\
+    &= \sqrt{7.68} \,\text{nm} \approx 2.77\,\text{nm}
+\end{align*}
+\textbf{有效位数说明：} 不确定度的计算结果通常取一到两位有效数字。此处修约后取两位有效数字，故 $u_A(\lambda) \approx 2.8\,\text{nm}$。
+
+\subsection*{4. 相对误差 $E_r$ 的计算}
+取标准波长 $\lambda_0 = 632.8\,\text{nm}$，计算相对误差：
+\begin{align*}
+    E_r &= \left| \frac{\bar{\lambda} - \lambda_0}{\lambda_0} \right| \times 100\% \\
+    &= \left| \frac{636.8 - 632.8}{632.8} \right| \times 100\% \\
+    &= \left| \frac{4.0}{632.8} \right| \times 100\% \\
+    &\approx 0.006321 \times 100\% \\
+    &\approx 0.63\%
+\end{align*}
+\textbf{有效位数说明：} 减法运算 $636.8 - 632.8 = 4.0$，根据加减法规则，结果保留到小数点后一位，所以 $4.0$ 是两位有效数字。除法运算中，分母 $632.8$ 有四位有效数字，分子 $4.0$ 有两位有效数字，故结果应保留两位有效数字，为 $0.63\%$。
+
+\end{document}

@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{ctex}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage[a4paper, margin=1cm]{geometry}
+\usepackage{adjustbox}
+
+\begin{document}
+
+
+\begin{longtable}{
+    S[table-format=3.0]
+    S[table-format=1.1]
+    S[table-format=-1.1]
+    S[table-format=1.1]
+    S[table-format=-1.1]
+    S[table-format=1.3]
+    S[table-format=1.4]
+}
+\caption{测量电磁铁的 B-I\textsubscript{m} 励磁特性曲线数据} \\
+\toprule
+{励磁电流 $I_m$} & \multicolumn{4}{c}{电压 (\si{mV})} & {$U_H = \frac{(U_1 - U_2 + U_3 - U_4)}{4}$} & {磁场 (\si{T})} \\
+\cmidrule(r){2-5}
+{(\si{mA})} & {$U_1 (+I_m, +I_s)$} & {$U_2 (+I_m, -I_s)$} & {$U_3 (-I_m, -I_s)$} & {$U_4 (-I_m, +I_s)$} & {(\si{mV})} & {$B = \frac{U_H}{K_H I_s}$} \\
+\midrule
+\endfirsthead
+\endhead
+0   & 0.1 & -0.1 & 0.0 & 0.1 & 0.025 & 0.0004 \\
+100 & 1.8 & -1.8 & 1.5 & -1.5 & 1.650 & 0.0239 \\
+200 & 3.3 & -3.3 & 3.2 & -3.1 & 3.225 & 0.0467 \\
+300 & 5.0 & -5.0 & 4.8 & -4.8 & 4.900 & 0.0710 \\
+400 & 6.6 & -6.6 & 6.4 & -6.4 & 6.500 & 0.0942 \\
+500 & 8.2 & -8.2 & 8.0 & -8.0 & 8.100 & 0.1174 \\
+600 & 9.7 & -9.7 & 9.5 & -9.5 & 9.600 & 0.1391 \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}{
+    S[table-format=1.2]
+    S[table-format=1.1]
+    S[table-format=-1.1]
+    S[table-format=1.1]
+    S[table-format=-1.1]
+    S[table-format=1.2]
+    S[table-format=1.4]
+}
+\caption{测量霍尔片的 U\textsubscript{H}-I\textsubscript{s} 特性曲线数据} \\
+\toprule
+{控制电流 $I_s$} & \multicolumn{4}{c}{电压 (\si{mV})} & {$U_H = \frac{(U_1 - U_2 + U_3 - U_4)}{4}$} & {磁场 (\si{T})} \\
+\cmidrule(r){2-5}
+{(\si{mA})} & {$U_1 (+I_m, +I_s)$} & {$U_2 (+I_m, -I_s)$} & {$U_3 (-I_m, -I_s)$} & {$U_4 (-I_m, +I_s)$} & {(\si{mV})} & {$B = \frac{U_H}{K_H I_s}$} \\
+\midrule
+\endfirsthead
+\endhead
+0.00 & 0.0 & 0.0 & 0.0 & 0.0 & 0.00 & {---} \\
+0.50 & 1.6 & -1.6 & 1.6 & -1.6 & 1.60 & 0.1391 \\
+1.00 & 3.2 & -3.2 & 3.2 & -3.2 & 3.20 & 0.1391 \\
+1.50 & 4.9 & -4.9 & 4.8 & -4.8 & 4.85 & 0.1406 \\
+2.00 & 6.5 & -6.5 & 6.3 & -6.3 & 6.40 & 0.1391 \\
+2.50 & 8.1 & -8.1 & 7.9 & -7.9 & 8.00 & 0.1391 \\
+3.00 & 9.7 & -9.7 & 9.5 & -9.5 & 9.60 & 0.1391 \\
+\bottomrule
+\end{longtable}
+
+\end{document}

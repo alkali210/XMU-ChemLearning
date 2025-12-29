@@ -1,0 +1,733 @@
+% 编译提示：使用 XeLaTeX 编译
+% 需要 ctex 宏包支持中文
+
+\documentclass[a4paper,9pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{ctex}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{amsthm}
+
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1.8cm}
+
+\setlength{\columnsep}{0.8cm}
+\setlength{\columnseprule}{0.4pt}
+\renewcommand{\columnseprulecolor}{\color{gray!50}}
+
+% 定义颜色方案
+\definecolor{sectioncolor}{RGB}{0,102,204}
+\definecolor{subsectioncolor}{RGB}{0,153,153}
+\definecolor{keycolor}{RGB}{204,102,0}
+\definecolor{derivcolor}{RGB}{100,149,237}
+\definecolor{boxbg}{RGB}{240,248,255}
+\definecolor{keybg}{RGB}{255,248,240}
+
+% 自定义章节标题格式
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{sectioncolor}}
+  {\thesection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{subsectioncolor}}
+  {\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{0.8ex plus 0.3ex minus 0.1ex}{0.5ex plus 0.1ex}
+
+% 自定义定理环境
+\newtheorem{theorem}{原理}
+
+% 自定义关键点环境
+\newenvironment{keypoint}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=keybg,
+  colframe=keycolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{keycolor}{\textbf{关键点：}}}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义推导环境
+\newenvironment{derivation}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{derivcolor}{\textbf{推导：}}\par\linespread{1.1}\selectfont}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义例题环境
+\newenvironment{exampleblock}[1]
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{derivcolor}{\textbf{#1}}\par\linespread{1.1}\selectfont}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 页眉页脚设置
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\scriptsize3-\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{gray!50}\leaders\hrule height \footrulewidth\hfill}}
+
+% 紧凑标题
+\title{\vspace{-2em}\Large\bfseries\color{sectioncolor} Chapter 3 Collections - 薛定谔方程与箱中粒子\vspace{-1em}}
+\author{}
+\date{2025 年 11 月 1 日}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{multicols}{2}
+
+\section{薛定谔方程}
+
+\subsection{含时薛定谔方程}
+
+描述量子态随时间演化的基本方程：
+\begin{equation}
+i\hbar\frac{\partial\psi}{\partial t} = \hat{H}\psi
+\end{equation}
+
+其中哈密顿算符：
+\begin{equation}
+\hat{H} = -\frac{\hbar^2}{2m}\nabla^2 + V(\vec{r},t)
+\end{equation}
+
+\subsection{定态薛定谔方程}
+
+当势能不显含时间 $V = V(\vec{r})$ 时,可分离变量:
+\begin{equation}
+\psi(\vec{r},t) = \psi(\vec{r})e^{-iEt/\hbar}
+\end{equation}
+
+得到定态薛定谔方程:
+\begin{equation}
+\hat{H}\psi = E\psi
+\end{equation}
+
+或展开形式:
+\begin{equation}
+-\frac{\hbar^2}{2m}\nabla^2\psi + V\psi = E\psi
+\end{equation}
+
+\begin{keypoint}
+定态意味着所有可观测量的期望值不随时间变化。概率密度 $|\psi(\vec{r})|^2$ 与时间无关。
+\end{keypoint}
+
+\subsection{波函数的物理意义}
+
+\textbf{Born概率诠释}：
+\begin{equation}
+P = \int_{V} |\psi(\vec{r})|^2 d\tau
+\end{equation}
+
+表示在体积 $V$ 内发现粒子的概率。
+
+\textbf{归一化条件}：
+\begin{equation}
+\int_{-\infty}^{\infty} |\psi|^2 d\tau = 1
+\end{equation}
+
+\textbf{概率流密度}：
+\begin{equation}
+\vec{j} = \frac{\hbar}{2mi}\left(\psi^*\nabla\psi - \psi\nabla\psi^*\right) = \frac{\hbar}{m}\text{Im}(\psi^*\nabla\psi)
+\end{equation}
+
+概率守恒方程（连续性方程）：
+\begin{equation}
+\frac{\partial|\psi|^2}{\partial t} + \nabla\cdot\vec{j} = 0
+\end{equation}
+
+\section{算符理论基础}
+
+\subsection{算符的定义}
+
+\textbf{线性算符}：满足 $\hat{A}(c_1f_1 + c_2f_2) = c_1\hat{A}f_1 + c_2\hat{A}f_2$
+
+\textbf{厄米算符}：满足 $\int f^*\hat{A}g\,d\tau = \int g(\hat{A}f)^*\,d\tau$
+
+\begin{keypoint}
+量子力学中,可观测量对应厄米算符。厄米算符的本征值必为实数。
+\end{keypoint}
+
+\subsection{基本算符}
+
+\textbf{位置算符}：$\hat{x} = x$（乘法算符）
+
+\textbf{动量算符}：$\hat{p}_x = -i\hbar\frac{\partial}{\partial x}$
+
+\textbf{能量算符}：$\hat{E} = i\hbar\frac{\partial}{\partial t}$
+
+\textbf{哈密顿算符}：$\hat{H} = \frac{\hat{p}^2}{2m} + V = -\frac{\hbar^2}{2m}\nabla^2 + V$
+
+\subsection{对易关系}
+
+对易子定义：$[\hat{A},\hat{B}] = \hat{A}\hat{B} - \hat{B}\hat{A}$
+
+\textbf{正则对易关系}：
+\begin{equation}
+[\hat{x},\hat{p}_x] = i\hbar
+\end{equation}
+
+\begin{derivation}
+证明 $[\hat{x},\hat{p}_x] = i\hbar$：
+
+作用于任意波函数 $\psi(x)$：
+\begin{align*}
+[\hat{x},\hat{p}_x]\psi &= \hat{x}\hat{p}_x\psi - \hat{p}_x\hat{x}\psi \\
+&= x\left(-i\hbar\frac{\partial\psi}{\partial x}\right) - \left(-i\hbar\frac{\partial(x\psi)}{\partial x}\right) \\
+&= -i\hbar x\frac{\partial\psi}{\partial x} + i\hbar\left(\psi + x\frac{\partial\psi}{\partial x}\right) \\
+&= i\hbar\psi
+\end{align*}
+
+因此 $[\hat{x},\hat{p}_x] = i\hbar$（恒等算符）
+\end{derivation}
+
+\begin{keypoint}
+不对易的物理量不能同时有确定值（不确定性原理的根源）。
+\end{keypoint}
+
+\subsection{本征值问题}
+
+本征方程：$\hat{A}\psi = a\psi$
+
+其中 $a$ 为本征值（可观测量的可能测量值），$\psi$ 为本征函数（对应的态）。
+
+\textbf{厄米算符性质}：
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item 本征值为实数
+\item 不同本征值对应的本征函数正交
+\item 本征函数系完备
+\end{itemize}
+
+\section{一维无限深势阱}
+
+\subsection{问题描述}
+
+势能函数：
+\begin{equation}
+V(x) = \begin{cases}
+0 & 0 \le x \le a \\
+\infty & x < 0 \text{ 或 } x > a
+\end{cases}
+\end{equation}
+
+边界条件：$\psi(0) = \psi(a) = 0$
+
+\subsection{求解过程}
+
+在势阱内 $(0 < x < a)$，薛定谔方程：
+\begin{equation}
+-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} = E\psi
+\end{equation}
+
+引入 $k^2 = \frac{2mE}{\hbar^2}$，通解：
+\begin{equation}
+\psi(x) = A\sin(kx) + B\cos(kx)
+\end{equation}
+
+应用边界条件 $\psi(0) = 0 \Rightarrow B = 0$
+
+$\psi(a) = 0 \Rightarrow \sin(ka) = 0 \Rightarrow ka = n\pi$
+
+\subsection{本征值与本征函数}
+
+\textbf{能量本征值}（量子化）：
+\begin{equation}
+E_n = \frac{n^2\pi^2\hbar^2}{2ma^2} = \frac{n^2h^2}{8ma^2}, \quad n = 1,2,3,\ldots
+\end{equation}
+
+\textbf{归一化波函数}：
+\begin{equation}
+\psi_n(x) = \sqrt{\frac{2}{a}}\sin\left(\frac{n\pi x}{a}\right)
+\end{equation}
+
+\begin{keypoint}
+\textbf{零点能}：基态能量 $E_1 = \frac{\pi^2\hbar^2}{2ma^2} \neq 0$，这是量子效应的体现，不能用经典力学解释。
+\end{keypoint}
+
+\begin{exampleblock}{例题：能级间隔}
+计算一维势阱中相邻能级的间隔。
+
+能级差：
+\begin{align*}
+\Delta E_{n+1,n} &= E_{n+1} - E_n \\
+&= \frac{(n+1)^2 - n^2}{2ma^2}\pi^2\hbar^2 \\
+&= \frac{2n+1}{2ma^2}\pi^2\hbar^2
+\end{align*}
+
+可见能级间隔随 $n$ 增大而增大（与经典不同）。
+
+对于宏观粒子（如质量 $m = 1$ g，$a = 1$ cm），
+\begin{equation*}
+E_1 \sim 10^{-63} \text{ J}
+\end{equation*}
+能级间隔极小，可视为连续（对应原理）。
+\end{exampleblock}
+
+\subsection{波函数性质}
+
+\textbf{正交归一性}：
+\begin{equation}
+\int_0^a \psi_n^*\psi_m\,dx = \delta_{nm}
+\end{equation}
+
+\textbf{宇称}：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $n$ 为奇数：偶宇称（关于 $x = a/2$ 对称）
+\item $n$ 为偶数：奇宇称（关于 $x = a/2$ 反对称）
+\end{itemize}
+
+\textbf{节点数}：第 $n$ 个态有 $n-1$ 个节点（零点）
+
+\section{概率密度与期望值}
+
+\subsection{概率分布}
+
+概率密度：
+\begin{equation}
+\rho_n(x) = |\psi_n(x)|^2 = \frac{2}{a}\sin^2\left(\frac{n\pi x}{a}\right)
+\end{equation}
+
+\begin{exampleblock}{基态概率分布特点}
+$n=1$ 时：
+\begin{equation*}
+\rho_1(x) = \frac{2}{a}\sin^2\left(\frac{\pi x}{a}\right)
+\end{equation*}
+
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item 在 $x = a/2$ 处最大（最可能位置）
+\item 在边界处为零
+\item 与经典均匀分布完全不同
+\end{itemize}
+
+高能级时，概率分布趋于均匀（对应原理）。
+\end{exampleblock}
+
+\subsection{物理量期望值}
+
+\textbf{位置平均值}：
+\begin{equation}
+\langle x \rangle_n = \int_0^a \psi_n^* x \psi_n\,dx = \frac{a}{2}
+\end{equation}
+
+（对所有 $n$ 均成立，由对称性）
+
+\textbf{动量平均值}：
+\begin{equation}
+\langle p \rangle_n = \int_0^a \psi_n^* \left(-i\hbar\frac{d}{dx}\right) \psi_n\,dx = 0
+\end{equation}
+
+\begin{derivation}
+计算 $\langle x^2 \rangle$ 和 $\langle p^2 \rangle$：
+
+\textbf{位置平方}：
+\begin{align*}
+\langle x^2 \rangle &= \frac{2}{a}\int_0^a x^2\sin^2\left(\frac{n\pi x}{a}\right)dx \\
+&= \frac{a^2}{3} - \frac{a^2}{2n^2\pi^2}
+\end{align*}
+
+\textbf{动量平方}：
+\begin{align*}
+\langle p^2 \rangle &= \int_0^a \psi_n^*\left(-\hbar^2\frac{d^2}{dx^2}\right)\psi_n\,dx \\
+&= \frac{n^2\pi^2\hbar^2}{a^2}
+\end{align*}
+
+验证能量关系：
+\begin{equation*}
+\langle E \rangle = \frac{\langle p^2 \rangle}{2m} = \frac{n^2\pi^2\hbar^2}{2ma^2} = E_n
+\end{equation*}
+\end{derivation}
+
+\subsection{不确定性关系验证}
+
+位置标准偏差：
+\begin{equation}
+\Delta x = \sqrt{\langle x^2 \rangle - \langle x \rangle^2} = a\sqrt{\frac{1}{12} - \frac{1}{2n^2\pi^2}}
+\end{equation}
+
+动量标准偏差：
+\begin{equation}
+\Delta p = \sqrt{\langle p^2 \rangle - \langle p \rangle^2} = \frac{n\pi\hbar}{a}
+\end{equation}
+
+不确定性乘积：
+\begin{equation}
+\Delta x \cdot \Delta p = n\pi\hbar\sqrt{\frac{1}{12} - \frac{1}{2n^2\pi^2}} > \frac{\hbar}{2}
+\end{equation}
+
+基态 $(n=1)$ 时：$\Delta x \cdot \Delta p \approx 0.568\hbar > \frac{\hbar}{2}$ ✓
+
+\section{三维势箱}
+
+\subsection{势能与边界条件}
+
+三维直角势箱：
+\begin{equation}
+V(x,y,z) = \begin{cases}
+0 & 0 \le x \le a, 0 \le y \le b, 0 \le z \le c \\
+\infty & \text{其他}
+\end{cases}
+\end{equation}
+
+边界条件：在六个面上 $\psi = 0$
+
+\subsection{分离变量求解}
+
+设 $\psi(x,y,z) = X(x)Y(y)Z(z)$，代入薛定谔方程可得三个独立的一维方程：
+\begin{align}
+-\frac{\hbar^2}{2m}\frac{d^2X}{dx^2} &= E_x X \\
+-\frac{\hbar^2}{2m}\frac{d^2Y}{dy^2} &= E_y Y \\
+-\frac{\hbar^2}{2m}\frac{d^2Z}{dz^2} &= E_z Z
+\end{align}
+
+其中 $E = E_x + E_y + E_z$
+
+\subsection{能级与简并}
+
+\textbf{波函数}：
+\begin{equation}
+\psi_{n_xn_yn_z} = \sqrt{\frac{8}{abc}}\sin\left(\frac{n_x\pi x}{a}\right)\sin\left(\frac{n_y\pi y}{b}\right)\sin\left(\frac{n_z\pi z}{c}\right)
+\end{equation}
+
+\textbf{能量本征值}：
+\begin{equation}
+E_{n_xn_yn_z} = \frac{\pi^2\hbar^2}{2m}\left(\frac{n_x^2}{a^2} + \frac{n_y^2}{b^2} + \frac{n_z^2}{c^2}\right)
+\end{equation}
+
+其中 $n_x, n_y, n_z = 1,2,3,\ldots$
+
+\begin{exampleblock}{例题：立方势箱的简并}
+对于立方势箱 $(a=b=c)$：
+\begin{equation*}
+E_{n_xn_yn_z} = \frac{\pi^2\hbar^2}{2ma^2}(n_x^2 + n_y^2 + n_z^2)
+\end{equation*}
+
+\textbf{基态}：$(1,1,1)$，$E_{111} = \frac{3\pi^2\hbar^2}{2ma^2}$，非简并
+
+\textbf{第一激发态}：$(2,1,1), (1,2,1), (1,1,2)$
+\begin{equation*}
+E = \frac{6\pi^2\hbar^2}{2ma^2}
+\end{equation*}
+三重简并
+
+\textbf{第二激发态}：$(2,2,1)$ 及其排列
+\begin{equation*}
+E = \frac{9\pi^2\hbar^2}{2ma^2}
+\end{equation*}
+三重简并
+\end{exampleblock}
+
+\begin{keypoint}
+简并度与对称性密切相关。对称性越高，简并度越大。
+\end{keypoint}
+
+\section{一维环形势箱}
+
+\subsection{问题描述}
+
+粒子限制在半径为 $r_0$ 的圆环上运动（二维平面内的一维运动）。
+
+势能函数：
+\begin{equation}
+V(\phi) = \begin{cases}
+0 & r = r_0 \\
+\infty & r \neq r_0
+\end{cases}
+\end{equation}
+
+其中 $\phi$ 为方位角，$0 \le \phi < 2\pi$。
+
+\subsection{薛定谔方程求解}
+
+在环上（$r = r_0$），薛定谔方程简化为：
+\begin{equation}
+-\frac{\hbar^2}{2I}\frac{d^2\psi}{d\phi^2} = E\psi
+\end{equation}
+
+其中转动惯量 $I = mr_0^2$。
+
+引入 $k^2 = \frac{2IE}{\hbar^2}$，通解为：
+\begin{equation}
+\psi(\phi) = Ae^{ik\phi} + Be^{-ik\phi}
+\end{equation}
+
+\subsection{周期性边界条件}
+
+\textbf{单值性条件}：$\psi(\phi + 2\pi) = \psi(\phi)$
+
+这要求：
+\begin{equation}
+e^{ik \cdot 2\pi} = 1 \implies k = m_l
+\end{equation}
+
+其中 $m_l = 0, \pm 1, \pm 2, \pm 3, \ldots$（整数）
+
+\begin{keypoint}
+环形势箱的量子数可以取零和负值，这与直线势箱（$n \ge 1$）不同。
+\end{keypoint}
+
+\subsection{能量本征值与本征函数}
+
+\textbf{能量本征值}：
+\begin{equation}
+E_{m_l} = \frac{m_l^2\hbar^2}{2I} = \frac{m_l^2\hbar^2}{2mr_0^2}
+\end{equation}
+
+特点：
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item 基态（$m_l = 0$）能量为零（无零点能）
+\item $E_{m_l} = E_{-m_l}$，除基态外所有能级二重简并
+\item 能级间隔 $\Delta E = \frac{(2|m_l|+1)\hbar^2}{2I}$
+\end{itemize}
+
+\textbf{归一化波函数}：
+\begin{equation}
+\psi_{m_l}(\phi) = \frac{1}{\sqrt{2\pi}}e^{im_l\phi}
+\end{equation}
+
+归一化条件：
+\begin{equation}
+\int_0^{2\pi} \psi_{m_l}^*\psi_{m_l'}\,d\phi = \delta_{m_l m_l'}
+\end{equation}
+
+\subsection{角动量与物理意义}
+
+环形势箱中粒子的角动量算符：
+\begin{equation}
+\hat{L}_z = -i\hbar\frac{\partial}{\partial\phi}
+\end{equation}
+
+作用于本征函数：
+\begin{equation}
+\hat{L}_z\psi_{m_l} = m_l\hbar\psi_{m_l}
+\end{equation}
+
+\textbf{物理意义}：
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item $m_l > 0$：逆时针旋转
+\item $m_l < 0$：顺时针旋转
+\item $m_l = 0$：静止（无角动量）
+\end{itemize}
+
+能量与角动量关系：
+\begin{equation}
+E = \frac{L_z^2}{2I} = \frac{(m_l\hbar)^2}{2I}
+\end{equation}
+
+这与经典转子能量 $E = \frac{L^2}{2I}$ 一致。
+
+\begin{exampleblock}{例题：环形势箱的概率分布}
+对于任意本征态 $\psi_{m_l} = \frac{1}{\sqrt{2\pi}}e^{im_l\phi}$：
+
+概率密度：
+\begin{equation*}
+|\psi_{m_l}|^2 = \frac{1}{2\pi}
+\end{equation*}
+
+结论：\textbf{所有能量本征态的概率密度均匀分布}，与量子数 $m_l$ 无关。
+
+但动量（角动量）却是确定的：$L_z = m_l\hbar$。
+
+这说明粒子位置完全不确定，但角动量完全确定，符合不确定性关系：
+\begin{equation*}
+\Delta\phi \cdot \Delta L_z \ge \frac{\hbar}{2}
+\end{equation*}
+\end{exampleblock}
+
+\subsection{与氢原子的联系}
+
+环形势箱模型与氢原子方位角部分完全相同：
+
+氢原子波函数：$\psi_{nlm} = R_{nl}(r)Y_l^m(\theta,\phi)$
+
+其中 $Y_l^m(\theta,\phi) \propto P_l^m(\cos\theta)e^{im\phi}$
+
+方位角部分：
+\begin{equation}
+\Phi_m(\phi) = \frac{1}{\sqrt{2\pi}}e^{im\phi}
+\end{equation}
+
+与环形势箱波函数形式相同！
+
+\begin{keypoint}
+环形势箱是理解原子轨道角动量量子化的简化模型。
+\end{keypoint}
+
+\begin{exampleblock}{应用：苯分子的 $\pi$ 电子}
+苯分子（$\text{C}_6\text{H}_6$）有 6 个 $\pi$ 电子在环形共轭体系中运动。
+
+近似为环形势箱，环周长 $L = 6 \times 1.40 = 8.4$ \AA
+
+半径：$r_0 = \frac{L}{2\pi} = 1.34$ \AA
+
+能级：$E_{m_l} = \frac{m_l^2\hbar^2}{2mr_0^2}$
+
+电子填充：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $m_l = 0$：2 个电子（基态）
+\item $m_l = \pm 1$：4 个电子（第一激发态，简并）
+\end{itemize}
+
+HOMO $\to$ LUMO 跃迁：$m_l = 1 \to m_l = 2$
+
+\begin{align*}
+\Delta E &= \frac{(2^2 - 1^2)\hbar^2}{2m(4.20 \times 10^{-10})^2} = \frac{3\hbar^2}{2m(4.20 \times 10^{-10})^2} \\
+&\approx 5.4 \text{ eV}
+\end{align*}
+
+对应波长：$\lambda \approx 230$ nm（紫外区）
+
+实验值约 $260$ nm，模型定性正确。
+\end{exampleblock}
+
+\section{共轭体系的自由电子模型}
+
+\subsection{模型假设}
+
+对于共轭分子（如丁二烯 $\text{C}_4\text{H}_6$），$\pi$ 电子近似为在一维势箱中运动。
+
+势箱长度：$a \approx (N_C - 1) \times 1.40$ \AA
+
+其中 $N_C$ 为碳原子数，$1.40$ \AA 为 C-C 键长。
+
+\subsection{能级填充}
+
+每个能级可容纳 2 个电子（自旋相反）。
+
+\textbf{基态}：$N_{\pi}$ 个 $\pi$ 电子从最低能级依次填充。
+
+HOMO（最高占据轨道）：$n = N_{\pi}/2$
+
+LUMO（最低空轨道）：$n = N_{\pi}/2 + 1$
+
+\subsection{光学跃迁}
+
+最低能量跃迁（HOMO $\to$ LUMO）：
+\begin{equation}
+\Delta E = E_{n+1} - E_n = \frac{(2n+1)\pi^2\hbar^2}{2ma^2}
+\end{equation}
+
+对应吸收波长：
+\begin{equation}
+\lambda = \frac{hc}{\Delta E} = \frac{2ma^2hc}{(2n+1)\pi^2\hbar^2}
+\end{equation}
+
+\begin{exampleblock}{例题：丁二烯的紫外吸收}
+丁二烯 $\text{C}_4\text{H}_6$：4 个 $\pi$ 电子
+
+势箱长度：$a = 3 \times 1.40 = 4.20$ \AA
+
+HOMO：$n=2$，LUMO：$n=3$
+
+\begin{align*}
+\Delta E &= \frac{(2 \times 2 + 1)\pi^2\hbar^2}{2m(4.20 \times 10^{-10})^2} \\
+&\approx 5.0 \text{ eV}
+\end{align*}
+
+对应波长：
+\begin{equation*}
+\lambda = \frac{1240 \text{ eV·nm}}{5.0 \text{ eV}} \approx 248 \text{ nm}
+\end{equation*}
+
+实验值约 $217$ nm，模型较粗糙但定性正确。
+\end{exampleblock}
+
+\section{隧穿效应}
+
+\subsection{势垒穿透}
+
+考虑矩形势垒：
+\begin{equation}
+V(x) = \begin{cases}
+0 & x < 0 \\
+V_0 & 0 \le x \le a \\
+0 & x > a
+\end{cases}
+\end{equation}
+
+当粒子能量 $E < V_0$ 时，经典粒子被完全反射，但量子粒子有概率穿透势垒。
+
+\subsection{透射系数}
+
+对于 $E < V_0$，透射系数：
+\begin{equation}
+T \approx \frac{16E(V_0-E)}{V_0^2}e^{-2\kappa a}
+\end{equation}
+
+其中 $\kappa = \frac{\sqrt{2m(V_0-E)}}{\hbar}$
+
+\begin{keypoint}
+隧穿概率随势垒宽度 $a$ 和高度 $(V_0-E)$ 的增加而指数衰减。
+\end{keypoint}
+
+\subsection{应用实例}
+
+\textbf{$\alpha$ 衰变}：原子核中 $\alpha$ 粒子穿透库仑势垒
+
+\textbf{扫描隧道显微镜（STM）}：电子在针尖与样品间隧穿
+
+\textbf{氨分子反演}：氮原子穿透势垒导致能级分裂
+
+\begin{exampleblock}{例题：隧穿概率估算}
+电子穿透势垒：$V_0 = 5$ eV，$a = 1$ nm，$E = 3$ eV
+
+\begin{equation*}
+\kappa = \frac{\sqrt{2 \times 9.109 \times 10^{-31} \times 2 \times 1.602 \times 10^{-19}}}{\hbar} \approx 7.26 \times 10^9 \text{ m}^{-1}
+\end{equation*}
+
+\begin{equation*}
+T \approx \frac{16 \times 3 \times 2}{25}e^{-2 \times 7.26 \times 10^9 \times 10^{-9}} \approx 0.038e^{-14.5} \approx 2 \times 10^{-8}
+\end{equation*}
+
+虽然概率很小，但对微观粒子这是可观测的量子效应。
+\end{exampleblock}
+
+\section{常用公式速查}
+
+\begin{scriptsize}
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item 普朗克常数：$h = 6.626 \times 10^{-34}$ J·s，$\hbar = \frac{h}{2\pi} = 1.055 \times 10^{-34}$ J·s
+\item 电子质量：$m_e = 9.109 \times 10^{-31}$ kg
+\item 一维势阱能级：$E_n = \frac{n^2h^2}{8ma^2}$
+\item 三维立方势箱：$E = \frac{h^2}{8ma^2}(n_x^2 + n_y^2 + n_z^2)$
+\item 一维环形势箱：$E_{m_l} = \frac{m_l^2\hbar^2}{2I}$，$m_l = 0, \pm 1, \pm 2, \ldots$
+\item 零点能：$E_0 = \frac{h^2}{8ma^2}$ （一维直线），$E_0 = 0$ （环形）
+\item 对易子：$[\hat{x},\hat{p}_x] = i\hbar$
+\item 不确定关系：$\Delta x \cdot \Delta p \ge \frac{\hbar}{2}$
+\item de Broglie 波长：$\lambda = \frac{h}{p}$
+\item 能量-波长关系：$E(\text{eV}) = \frac{1240}{\lambda(\text{nm})}$
+\item 隧穿因子：$e^{-2\kappa a}$，$\kappa = \frac{\sqrt{2m(V_0-E)}}{\hbar}$
+\end{itemize}
+\end{scriptsize}
+
+\end{multicols}
+
+\end{document}

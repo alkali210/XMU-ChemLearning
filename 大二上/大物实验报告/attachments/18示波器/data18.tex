@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{graphicx}
+\usepackage{float} % 添加 float 包以使用 [H] 选项
+
+\geometry{a4paper, margin=2cm}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\begin{document}
+
+\section*{数据处理}
+
+\vspace{0.3cm}
+
+\noindent 1. 测量方波参数(表 3-18-1)(原始数据见原始数据表格)
+
+\vspace{0.3cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|M{1.5cm}|M{1.5cm}|M{2.5cm}|M{2.5cm}|M{2.5cm}|M{2.5cm}|M{1.5cm}|}
+\hline
+信号频率 & 占空比 & $V_H$ (V) & $V_L$ (V) & $T_{U+}$ (ms) & $T_{U-}$ (ms) & $T$ (ms) \\
+\hline
+\multirow{3}{*}{2 kHz} & $30.0\%$ & 2.0 & -1.0 & 0.15 & 0.34 & 0.50 \\
+\cline{2-7}
+ & $50.0\%$ & 1.5 & -1.5 & 0.25 & 0.25 & 0.50 \\
+\cline{2-7}
+ & $70.0\%$ & 0.9 & -2.1 & 0.34 & 0.16 & 0.50 \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent 2. 测量正弦波的周期与频率(表 3-18-2)(原始数据见原始数据表格)
+
+\vspace{0.3cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|M{4cm}|M{2.5cm}|M{2.5cm}|M{2.5cm}|M{2.5cm}|}
+\hline
+频率示值 (Hz) & 1 k & 20 k & 50 k & 100 k \\
+\hline
+测量周期 $T$ & 0.98 ms & 50.0 $\mathrm{\mu}$s & 20.0 $\mathrm{\mu}$s & 10.0 $\mathrm{\mu}$s \\
+\hline
+计算频率 $f$ & 1.02 k & 20.0 k & 50.0 k & 100.0 k \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent 3. 用图形表示三种情况下的李萨如图形,并用割线法计算未知频率。
+
+\vspace{0.3cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|M{3cm}|M{2.5cm}|M{2.5cm}|M{2.5cm}|M{2.5cm}|M{2.5cm}|}
+\hline
+ 李萨如图形 & $f_Y$(Hz) & $n_X$ & $n_Y$ & $f_X$测量值(Hz) & \multicolumn{1}{c|}{$\displaystyle f_X=f_Y\frac{n_Y}{n_X}$} \\
+\hline
+\rule{0pt}{0.25cm}
+\includegraphics[width=3cm, height=4cm, keepaspectratio]{Figure_1.png} \rule{0pt}{0.25cm} & 1.0000 k & 2 & 2 & 999.98 & 1.0000 k \\
+\hline
+\rule{0pt}{0.25cm}
+\includegraphics[width=3cm, height=4cm, keepaspectratio]{Figure_2.png} \rule{0pt}{0.25cm} & 1.0000 k & 2 & 4 & 1.9999 k & 2.0000 k \\
+\hline
+\rule{0pt}{0.25cm}
+\includegraphics[width=3cm, height=4cm, keepaspectratio]{Figure_3.png} \rule{0pt}{0.25cm} & 2.0000 k & 4 & 6 & 2.9999 k & 3.0000 k \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}

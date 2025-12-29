@@ -1,0 +1,510 @@
+% 编译提示：使用 XeLaTeX 编译
+% 需要 ctex 宏包支持中文
+
+\documentclass[a4paper,9pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{ctex}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{amsthm}
+
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1.8cm}
+
+\setlength{\columnsep}{0.8cm}
+\setlength{\columnseprule}{0.4pt}
+\renewcommand{\columnseprulecolor}{\color{gray!50}}
+
+% 定义颜色方案
+\definecolor{sectioncolor}{RGB}{0,102,204}
+\definecolor{subsectioncolor}{RGB}{0,153,153}
+\definecolor{keycolor}{RGB}{204,102,0}
+\definecolor{derivcolor}{RGB}{100,149,237}
+\definecolor{boxbg}{RGB}{240,248,255}
+\definecolor{keybg}{RGB}{255,248,240}
+
+% 自定义章节标题格式
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{sectioncolor}}
+  {\thesection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{subsectioncolor}}
+  {\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{0.8ex plus 0.3ex minus 0.1ex}{0.5ex plus 0.1ex}
+
+% 自定义定理环境
+\newtheorem{theorem}{假设}
+
+% 自定义关键点环境
+\newenvironment{keypoint}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=keybg,
+  colframe=keycolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{keycolor}{\textbf{关键点：}}}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义推导环境
+\newenvironment{derivation}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{derivcolor}{\textbf{推导：}}\par\linespread{1.1}\selectfont}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义例题环境
+\newenvironment{exampleblock}[1]
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{derivcolor}{\textbf{#1}}\par\linespread{1.1}\selectfont}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 页眉页脚设置
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\scriptsize4-\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{gray!50}\leaders\hrule height \footrulewidth\hfill}}
+
+% 紧凑标题
+\title{\vspace{-2em}\Large\bfseries\color{sectioncolor} Chapter 4 Collections - 量子力学基本假设\vspace{-1em}}
+\author{}
+\date{2025 年 11 月 1 日}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{multicols}{2}
+
+\section{量子力学基本假设}
+
+\subsection{假设1：波函数}
+
+\begin{theorem}[波函数]
+一个量子力学体系的状态由一个称为波函数的函数 $\Psi(\vec{r}_1, \vec{r}_2, \ldots, t)$ 完全描述。
+\end{theorem}
+
+\textbf{波函数的性质}（良好行为）：
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item \textbf{单值性}：在任意点，$\Psi$ 只有一个值。
+\item \textbf{连续性}：$\Psi$ 及其一阶导数连续。
+\item \textbf{平方可积}：$\int |\Psi|^2 d\tau$ 必须有限。
+\end{itemize}
+
+\textbf{Born概率诠释}：
+\begin{equation}
+P(V) = \int_V |\Psi|^2 d\tau
+\end{equation}
+表示在体积元 $V$ 内发现粒子的概率。
+
+\textbf{归一化条件}：
+\begin{equation}
+\int_{\text{全空间}} |\Psi|^2 d\tau = 1
+\end{equation}
+
+\subsection{假设2：算符}
+
+\begin{theorem}[算符]
+每一个经典力学中的可观测量都对应量子力学中的一个线性、厄米算符。
+\end{theorem}
+
+\textbf{线性算符}：$\hat{A}(c_1f_1 + c_2f_2) = c_1\hat{A}f_1 + c_2\hat{A}f_2$
+
+\textbf{厄米算符}：$\int f^* (\hat{A}g) d\tau = \int (\hat{A}f)^* g d\tau$
+
+\begin{keypoint}
+厄米算符的本征值必为实数，这保证了物理量的测量结果是实数。
+\end{keypoint}
+
+\begin{exampleblock}{常用算符}
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+可观测量 & 经典量 & 量子算符 \\
+\hline
+位置 & $x$ & $\hat{x} = x$ \\
+动量 & $p_x$ & $\hat{p}_x = -i\hbar\frac{\partial}{\partial x}$ \\
+动能 & $T = \frac{p^2}{2m}$ & $\hat{T} = -\frac{\hbar^2}{2m}\nabla^2$ \\
+势能 & $V(\vec{r})$ & $\hat{V}(\vec{r}) = V(\vec{r})$ \\
+总能量 & $H = T+V$ & $\hat{H} = -\frac{\hbar^2}{2m}\nabla^2 + V$ \\
+角动量 & $L_z = xp_y - yp_x$ & $\hat{L}_z = -i\hbar\frac{\partial}{\partial\phi}$ \\
+\hline
+\end{tabular}
+\end{center}
+\end{exampleblock}
+
+\subsection{假设3：本征值}
+
+\begin{theorem}[本征值]
+对一个物理量进行测量，唯一可能得到的结果是其对应算符的本征值。
+\end{theorem}
+
+本征方程：
+\begin{equation}
+\hat{A}\psi_n = a_n\psi_n
+\end{equation}
+
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item $a_n$：本征值（测量结果）
+\item $\psi_n$：本征函数（测量后体系所处的态）
+\end{itemize}
+
+\textbf{厄米算符本征函数性质}：
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item 不同本征值对应的本征函数相互正交。
+\item 本征函数系构成一个完备集。
+\end{itemize}
+
+\subsection{假设4：期望值}
+
+\begin{theorem}[期望值]
+对于处于归一化态 $\Psi$ 的体系，物理量 $A$ 的多次测量平均值（期望值）为：
+\begin{equation}
+\langle A \rangle = \int \Psi^* \hat{A} \Psi \, d\tau
+\end{equation}
+\end{theorem}
+
+如果 $\Psi$ 是 $\hat{A}$ 的本征函数，$\hat{A}\Psi = a\Psi$，则：
+\begin{equation}
+\langle A \rangle = a \int \Psi^* \Psi \, d\tau = a
+\end{equation}
+此时测量结果是确定的。
+
+\begin{exampleblock}{例题：一维势箱中的动量期望值}
+对于一维势箱中的态 $\psi_n = \sqrt{\frac{2}{a}}\sin(\frac{n\pi x}{a})$：
+
+\textbf{动量期望值}：
+\begin{align*}
+\langle p_x \rangle &= \int_0^a \psi_n^* \left(-i\hbar\frac{d}{dx}\right) \psi_n dx \\
+&= -\frac{2i\hbar}{a}\frac{n\pi}{a} \int_0^a \sin\left(\frac{n\pi x}{a}\right)\cos\left(\frac{n\pi x}{a}\right) dx \\
+&= 0
+\end{align*}
+
+\textbf{动量平方期望值}：
+\begin{align*}
+\langle p_x^2 \rangle &= \int_0^a \psi_n^* \left(-\hbar^2\frac{d^2}{dx^2}\right) \psi_n dx \\
+&= \frac{n^2\pi^2\hbar^2}{a^2} \int_0^a \psi_n^* \psi_n dx = \frac{n^2\pi^2\hbar^2}{a^2}
+\end{align*}
+\end{exampleblock}
+
+\subsection{假设5：时间演化}
+
+\begin{theorem}[时间演化]
+体系的波函数 $\Psi$ 随时间的演化由含时薛定谔方程决定：
+\begin{equation}
+i\hbar\frac{\partial\Psi}{\partial t} = \hat{H}\Psi
+\end{equation}
+\end{theorem}
+
+对于定态问题（$\hat{H}$ 不含时），解的形式为：
+\begin{equation}
+\Psi(\vec{r},t) = \psi(\vec{r})e^{-iEt/\hbar}
+\end{equation}
+其中 $\psi(\vec{r})$ 满足定态薛定谔方程 $\hat{H}\psi = E\psi$。
+
+\subsection{假设6：全同粒子}
+
+\begin{theorem}[全同粒子]
+由全同粒子组成的体系，其总波函数在交换任意两个粒子坐标时必须满足对称性要求。
+\end{theorem}
+
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item \textbf{费米子}（半整数自旋，如电子）：波函数是\textbf{反对称}的。
+\begin{equation}
+\Psi(\ldots,i,\ldots,j,\ldots) = -\Psi(\ldots,j,\ldots,i,\ldots)
+\end{equation}
+\item \textbf{玻色子}（整数自旋，如光子）：波函数是\textbf{对称}的。
+\end{itemize}
+
+\begin{keypoint}
+Pauli不相容原理是反对称性假设的直接推论：如果两个电子处于完全相同的状态，则交换它们后波函数不变，但反对称性要求符号相反，唯一可能是波函数为零，即这种状态不存在。
+\end{keypoint}
+
+\section{算符的对易关系}
+
+\subsection{对易子与不确定性}
+
+\textbf{对易子}定义：
+\begin{equation}
+[\hat{A},\hat{B}] = \hat{A}\hat{B} - \hat{B}\hat{A}
+\end{equation}
+
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item 若 $[\hat{A},\hat{B}] = 0$，则 $\hat{A}$ 和 $\hat{B}$ 对应的物理量可以同时有确定值，称它们是\textbf{相容的}。
+\item 若 $[\hat{A},\hat{B}] \neq 0$，则它们是\textbf{不相容的}，其测量值遵循不确定性原理。
+\end{itemize}
+
+\textbf{广义不确定性原理}：
+\begin{equation}
+\Delta A \cdot \Delta B \ge \frac{1}{2} \left| \langle[\hat{A},\hat{B}]\rangle \right|
+\end{equation}
+
+\subsection{基本对易关系}
+
+\textbf{正则对易关系}：
+\begin{equation}
+[\hat{x}_i, \hat{p}_j] = i\hbar\delta_{ij}
+\end{equation}
+
+\textbf{角动量对易关系}：
+\begin{align}
+[\hat{L}_x, \hat{L}_y] &= i\hbar\hat{L}_z \quad (\text{及循环置换}) \\
+[\hat{L}^2, \hat{L}_i] &= 0
+\end{align}
+
+\begin{derivation}
+证明 $[\hat{x}, \hat{p}_x^2] = 2i\hbar\hat{p}_x$：
+
+利用对易子恒等式 $[\hat{A},\hat{B}\hat{C}] = [\hat{A},\hat{B}]\hat{C} + \hat{B}[\hat{A},\hat{C}]$：
+\begin{align*}
+[\hat{x}, \hat{p}_x^2] &= [\hat{x}, \hat{p}_x]\hat{p}_x + \hat{p}_x[\hat{x}, \hat{p}_x] \\
+&= (i\hbar)\hat{p}_x + \hat{p}_x(i\hbar) \\
+&= 2i\hbar\hat{p}_x
+\end{align*}
+\end{derivation}
+
+\begin{exampleblock}{例题：常用对易子计算}
+\textbf{示例1}：计算 $[\hat{x}, \hat{H}]$，其中 $\hat{H} = \frac{\hat{p}_x^2}{2m} + V(\hat{x})$
+
+\begin{align*}
+[\hat{x}, \hat{H}] &= [\hat{x}, \frac{\hat{p}_x^2}{2m}] + [\hat{x}, V(\hat{x})] \\
+&= \frac{1}{2m}[\hat{x}, \hat{p}_x^2] + 0 \\
+&= \frac{1}{2m} \cdot 2i\hbar\hat{p}_x = \frac{i\hbar\hat{p}_x}{m}
+\end{align*}
+
+\textbf{示例2}：计算 $[\hat{p}_x, \hat{x}^2]$
+
+\begin{align*}
+[\hat{p}_x, \hat{x}^2] &= [\hat{p}_x, \hat{x}]\hat{x} + \hat{x}[\hat{p}_x, \hat{x}] \\
+&= (-i\hbar)\hat{x} + \hat{x}(-i\hbar) \\
+&= -2i\hbar\hat{x}
+\end{align*}
+
+\textbf{规律}：$[\hat{x}, \hat{p}_x^n] = ni\hbar\hat{p}_x^{n-1}$，$[\hat{p}_x, \hat{x}^n] = -ni\hbar\hat{x}^{n-1}$
+\end{exampleblock}
+
+\subsection{对易子的重要恒等式}
+
+\begin{keypoint}
+\textbf{雅可比恒等式}：
+\begin{equation}
+[\hat{A},[\hat{B},\hat{C}]] + [\hat{B},[\hat{C},\hat{A}]] + [\hat{C},[\hat{A},\hat{B}]] = 0
+\end{equation}
+
+\textbf{乘积对易式}：
+\begin{align}
+[\hat{A},\hat{B}\hat{C}] &= [\hat{A},\hat{B}]\hat{C} + \hat{B}[\hat{A},\hat{C}] \\
+[\hat{A}\hat{B},\hat{C}] &= \hat{A}[\hat{B},\hat{C}] + [\hat{A},\hat{C}]\hat{B}
+\end{align}
+\end{keypoint}
+
+\section{期望值的时间演化}
+
+\subsection{海森堡运动方程}
+
+任意算符 $\hat{A}$ 的期望值随时间的变化率：
+\begin{equation}
+\frac{d\langle A \rangle}{dt} = \frac{1}{i\hbar}\langle[\hat{A},\hat{H}]\rangle + \left\langle\frac{\partial\hat{A}}{\partial t}\right\rangle
+\end{equation}
+
+\begin{keypoint}
+如果算符 $\hat{A}$ 不显含时间且与哈密顿算符 $\hat{H}$ 对易，则 $\langle A \rangle$ 是守恒量。
+\end{keypoint}
+
+\subsection{埃伦费斯特定理}
+
+\begin{exampleblock}{定理1：位置期望值的演化}
+\begin{equation}
+\frac{d\langle x \rangle}{dt} = \frac{\langle p_x \rangle}{m}
+\end{equation}
+
+\textbf{推导}：
+\begin{align*}
+\frac{d\langle x \rangle}{dt} &= \frac{1}{i\hbar}\langle[\hat{x},\hat{H}]\rangle = \frac{1}{i\hbar}\left\langle\left[\hat{x}, \frac{\hat{p}_x^2}{2m}\right]\right\rangle \\
+&= \frac{1}{2mi\hbar}\langle[\hat{x},\hat{p}_x^2]\rangle = \frac{1}{2mi\hbar}\langle 2i\hbar\hat{p}_x \rangle \\
+&= \frac{\langle p_x \rangle}{m}
+\end{align*}
+\end{exampleblock}
+
+\begin{exampleblock}{定理2：动量期望值的演化}
+\begin{equation}
+\frac{d\langle p_x \rangle}{dt} = \left\langle -\frac{\partial V}{\partial x} \right\rangle
+\end{equation}
+
+\textbf{推导}：
+\begin{align*}
+\frac{d\langle p_x \rangle}{dt} &= \frac{1}{i\hbar}\langle[\hat{p}_x,\hat{H}]\rangle = \frac{1}{i\hbar}\langle[\hat{p}_x, V(x)]\rangle
+\end{align*}
+作用于波函数 $\psi$：
+\begin{align*}
+[\hat{p}_x, V]\psi &= -i\hbar\frac{\partial}{\partial x}(V\psi) - V(-i\hbar\frac{\partial\psi}{\partial x}) \\
+&= -i\hbar\left(\frac{\partial V}{\partial x}\psi + V\frac{\partial\psi}{\partial x}\right) + i\hbar V\frac{\partial\psi}{\partial x} \\
+&= -i\hbar\frac{\partial V}{\partial x}\psi
+\end{align*}
+所以 $[\hat{p}_x, V] = -i\hbar\frac{\partial V}{\partial x}$，代入即得证。
+\end{exampleblock}
+
+\begin{keypoint}
+埃伦费斯特定理表明，量子力学期望值的演化规律与经典力学方程形式上一致，是对应原理的体现。
+\end{keypoint}
+
+\section{态的叠加原理}
+
+\subsection{展开定理}
+
+任何一个任意的、行为良好的函数（态）$\Psi$ 都可以展开为某个厄米算符 $\hat{A}$ 的本征函数系 $\{\psi_n\}$ 的线性组合：
+\begin{equation}
+\Psi = \sum_n c_n \psi_n
+\end{equation}
+
+展开系数的计算：
+\begin{equation}
+c_n = \int \psi_n^* \Psi \, d\tau
+\end{equation}
+
+\subsection{测量的概率}
+
+如果体系处于叠加态 $\Psi = \sum_n c_n \psi_n$，测量物理量 $A$：
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item 测量结果必然是某个本征值 $a_k$。
+\item 测得 $a_k$ 的概率为 $|c_k|^2$。
+\item 测量后，体系的态\textbf{坍缩}到对应的本征态 $\psi_k$。
+\end{itemize}
+
+\begin{keypoint}
+归一化要求：$\sum_n |c_n|^2 = 1$
+\end{keypoint}
+
+\begin{exampleblock}{例题：氢原子2p态的叠加}
+考虑氢原子处于 $2p$ 态的线性叠加：
+\begin{equation*}
+\Psi = \frac{1}{\sqrt{2}}(\psi_{211} + \psi_{210})
+\end{equation*}
+
+测量 $L_z$ 时：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item 得到 $+\hbar$ 的概率：$|\frac{1}{\sqrt{2}}|^2 = \frac{1}{2}$
+\item 得到 $0$ 的概率：$|\frac{1}{\sqrt{2}}|^2 = \frac{1}{2}$
+\end{itemize}
+
+$L_z$ 期望值：
+\begin{equation*}
+\langle L_z \rangle = \frac{1}{2}(+\hbar) + \frac{1}{2}(0) = \frac{\hbar}{2}
+\end{equation*}
+
+能量期望值（$E_{2p}$ 简并）：
+
+\begin{equation*}
+\langle E \rangle = E_{2p}
+\end{equation*}
+是确定的，因为两态能量相同。
+\end{exampleblock}
+
+\section{测量与波函数坍缩}
+
+\subsection{测量过程}
+
+\textbf{测量前}：体系处于叠加态
+\begin{equation}
+\Psi = \sum_n c_n \psi_n
+\end{equation}
+
+\textbf{测量}：得到某个本征值 $a_k$，概率为 $|c_k|^2$
+
+\textbf{测量后}：波函数坍缩到
+\begin{equation}
+\Psi' = \psi_k
+\end{equation}
+
+\begin{keypoint}
+\textbf{量子测量的特点}：
+\begin{enumerate}\setlength{\itemsep}{0pt}
+\item 测量改变体系状态（非定域性）
+\item 重复测量同一物理量立即得到相同结果
+\item 测量不对易的物理量会破坏之前的测量结果
+\end{enumerate}
+\end{keypoint}
+
+\subsection{不确定性关系的推导}
+
+\begin{derivation}
+对于任意两个厄米算符 $\hat{A}$ 和 $\hat{B}$：
+
+定义偏差算符：$\Delta\hat{A} = \hat{A} - \langle A \rangle$，$\Delta\hat{B} = \hat{B} - \langle B \rangle$
+
+利用柯西-施瓦茨不等式：
+\begin{equation*}
+\langle(\Delta\hat{A})^2\rangle \langle(\Delta\hat{B})^2\rangle \ge \left|\langle\Delta\hat{A}\Delta\hat{B}\rangle\right|^2
+\end{equation*}
+
+将 $\langle\Delta\hat{A}\Delta\hat{B}\rangle$ 分解为对称和反对称部分：
+\begin{equation*}
+\langle\Delta\hat{A}\Delta\hat{B}\rangle = \frac{1}{2}\langle\{\Delta\hat{A},\Delta\hat{B}\}\rangle + \frac{1}{2}\langle[\Delta\hat{A},\Delta\hat{B}]\rangle
+\end{equation*}
+
+其中反对称部分：
+\begin{equation*}
+\langle[\Delta\hat{A},\Delta\hat{B}]\rangle = \langle[\hat{A},\hat{B}]\rangle
+\end{equation*}
+
+因此：
+\begin{equation*}
+\Delta A \cdot \Delta B \ge \frac{1}{2}|\langle[\hat{A},\hat{B}]\rangle|
+\end{equation*}
+
+对于位置和动量：$[\hat{x},\hat{p}_x] = i\hbar$，得：
+\begin{equation*}
+\Delta x \cdot \Delta p_x \ge \frac{\hbar}{2}
+\end{equation*}
+\end{derivation}
+
+\section{常用公式速查}
+
+\begin{scriptsize}
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item 基本对易子：$[\hat{x},\hat{p}_x] = i\hbar$，$[\hat{x},\hat{p}_y] = 0$
+\item 不确定关系：$\Delta x \cdot \Delta p_x \ge \frac{\hbar}{2}$
+\item 角动量对易：$[\hat{L}_x,\hat{L}_y] = i\hbar\hat{L}_z$（循环）
+\item 海森堡方程：$\frac{d\langle A \rangle}{dt} = \frac{1}{i\hbar}\langle[\hat{A},\hat{H}]\rangle + \langle\frac{\partial\hat{A}}{\partial t}\rangle$
+\item 埃伦费斯特定理：$\frac{d\langle x \rangle}{dt} = \frac{\langle p \rangle}{m}$，$\frac{d\langle p \rangle}{dt} = -\langle\nabla V\rangle$
+\item 态叠加：$\Psi = \sum_n c_n\psi_n$，$\sum_n|c_n|^2 = 1$
+\item 期望值：$\langle A \rangle = \sum_n |c_n|^2 a_n$
+\item 测量概率：$P(a_n) = |c_n|^2 = |\langle\psi_n|\Psi\rangle|^2$
+\item 对易子恒等式：$[\hat{A},\hat{B}\hat{C}] = [\hat{A},\hat{B}]\hat{C} + \hat{B}[\hat{A},\hat{C}]$
+\item 雅可比恒等式：$[\hat{A},[\hat{B},\hat{C}]] + [\hat{B},[\hat{C},\hat{A}]] + [\hat{C},[\hat{A},\hat{B}]] = 0$
+\end{itemize}
+\end{scriptsize}
+
+\end{multicols}
+
+\end{document}

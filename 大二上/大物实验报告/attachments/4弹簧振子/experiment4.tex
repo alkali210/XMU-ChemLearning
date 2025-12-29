@@ -1,0 +1,122 @@
+\documentclass[a4paper]{article}
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{diagbox}
+\usepackage{geometry}
+\usepackage{graphicx}
+\geometry{a4paper, left=1cm, right=2cm, top=0.5cm, bottom=0.5cm}
+
+\begin{document}
+
+\section*{1. 气垫导轨的水平调节}
+
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}|c|c|c|c|}
+\hline
+& $\Delta t_1$ (ms) & $\Delta t_2$ (ms) & $\displaystyle\frac{|\Delta t_1 - \Delta t_2|}{(\Delta t_1 + \Delta t_2)/2}$ (\%) \\
+\hline
+ 左$\rightarrow$右 & 19.21 & 20.25 & 2.63 \\
+\hline
+ 右$\rightarrow$左 & 17.53 & 17.93 & 1.13 \\
+\hline
+\end{tabular*}
+
+\section*{2. 弹簧振子简谐振动周期与振幅的关系}
+
+周期数\underline{\hspace{1em}3\hspace{1em}}, (振子) $m_1$= \underline{\hspace{1em}220.00\hspace{1em}}g, (两个弹簧) $m_s$= \underline{\hspace{1em}21.18\hspace{1em}}g。
+
+\vspace{1em}
+
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}|c|c|c|c|c|}
+\hline
+\diagbox{时间 $t$ (s)}{次数}{振幅 A (cm)} & 18.00 & 20.00 & 22.00 & 24.00 \\
+\hline
+1 & 4.5676 & 4.5696 & 4.5697 & 4.5680 \\
+\hline
+2 & 4.5674 & 4.5673 & 4.5672 & 4.5668 \\
+\hline
+3 & 4.5668 & 4.5675 & 4.5681 & 4.5671 \\
+\hline
+4 & 4.5673 & 4.5676 & 4.5677 & 4.5681 \\
+\hline
+5 & 4.5673 & 4.5674 & 4.5651 & 4.5680 \\
+\hline
+6 & 4.5653 & 4.5680 & 4.5661 & 4.5669 \\
+\hline
+$\bar{t}$ (s) & 4.5670 & 4.5679 & 4.5673 & 4.5675 \\
+\hline
+周期 $T$ (s) & 1.5223 & 1.5226 & 1.5224 & 1.5225 \\
+\hline
+倔强系数 $k$ (N/m) & 3.867 & 3.865 & 3.866 & 3.865 \\
+\hline
+\end{tabular*}
+
+\vspace{1em}
+弹簧振子简谐振动周期与振幅的关系为：\underline{\hspace{0.5cm}周期与振幅无关\hspace{0.5cm}}。
+
+\section*{3. 弹簧振子简谐振动周期与振子质量的关系}
+(设定的振幅 A=\underline{\hspace{1em}20\hspace{1em}}cm, 周期数\underline{\hspace{1em}3\hspace{1em}})
+
+\vspace{1em}
+
+\renewcommand{\arraystretch}{1.2}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}m{3cm}|C|C|C|C|C|}
+\hline
+& $m\quad$ (g) & \multicolumn{2}{c|}{时间 $t$ (s)} & 周期 $T$ (s) & $T^2$ (s$^2$) \\
+\hline
+\multirow{2}{=}{滑块} & \multirow{2}{=}{220.00} & 4.5676 & 4.5668 & \multirow{2}{=}{1.5229} & \multirow{2}{=}{2.3192} \\
+\cline{3-4}
+ & & 4.5674 & 4.5673 & & \\
+\hline
+\multirow{2}{=}{滑块 +2个骑码} & \multirow{2}{=}{320.05} & 5.4910 & 5.4927 & \multirow{2}{=}{1.8305} & \multirow{2}{=}{3.3507} \\
+\cline{3-4}
+ & & 5.4949 & 5.4933 & & \\
+\hline
+\multirow{2}{=}{滑块 +4个骑码} & \multirow{2}{=}{419.71} & 6.2714 & 6.2724 & \multirow{2}{=}{2.0906} & \multirow{2}{=}{4.3706} \\
+\cline{3-4}
+ & & 6.2718 & 6.2711 & & \\
+\hline
+\multirow{2}{=}{滑块 +6个骑码} & \multirow{2}{=}{520.15} & 6.9721 & 6.9729 & \multirow{2}{=}{2.3240} & \multirow{2}{=}{5.4010} \\
+\cline{3-4}
+ & & 6.9720 & 6.9711 & & \\
+\hline
+\end{tabularx}
+
+\newpage
+
+\section*{数据分析}
+
+线性回归 $T^2-m_1$:
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figure_1.png}
+\end{figure}
+
+\begin{align*}
+    \alpha & = 10.2642\ \text{s}^2/\text{kg} \\
+    \beta & = 0.0629\ \text{s}^2 \\
+    r & = 1.00000
+\end{align*}
+
+计算:\[ T^2 = \frac{4\pi^2}{k}m_1 + \frac{4\pi^2}{k}m_0 \],
+\begin{enumerate}
+    \item \textbf{倔强系数 $k$:}
+    \[ k = \frac{4\pi^2}{\alpha} = \frac{4\pi^2}{10.2642} = 3.848\ \text{N/m} \]
+    
+    \item \textbf{弹簧的有效质量 $m_0$:}
+    \[ m_0 = \frac{\beta}{\alpha} = \frac{0.0629}{10.2642} = 0.00613\ \text{kg} = 6.13\ \text{g} \]
+    
+    \item \textbf{相对误差:}
+    \begin{enumerate}
+        \item 理论值 $m_{0,th} = m_s/3 = 21.18 / 3 = 7.06$ g
+        \[ E_r(m_0) = \frac{|m_0 - m_{0,th}|}{m_{0,th}} = \frac{|6.13 - 7.06|}{7.06} \times 100\% = 13.2\% \]
+        \item  $\bar{k} = (3.867+3.865+3.866+3.865)/4 = 3.866$ N/m 
+        \[ E_r(k) = \frac{|k - \bar{k}|}{\bar{k}} = \frac{|3.848 - 3.866|}{3.866} \times 100\% = 0.47\% \]
+    \end{enumerate}
+\end{enumerate}
+
+\textbf{结论:}
+
+\end{document}

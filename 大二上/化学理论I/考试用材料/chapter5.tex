@@ -1,0 +1,417 @@
+% 编译提示：使用 XeLaTeX 编译
+% 需要 ctex 宏包支持中文
+
+\documentclass[a4paper,9pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{ctex}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{amsthm}
+
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1.8cm}
+
+\setlength{\columnsep}{0.8cm}
+\setlength{\columnseprule}{0.4pt}
+\renewcommand{\columnseprulecolor}{\color{gray!50}}
+
+% 定义颜色方案
+\definecolor{sectioncolor}{RGB}{0,102,204}      % 深蓝色 - 用于章节标题
+\definecolor{subsectioncolor}{RGB}{0,153,153}   % 青色 - 用于小节标题
+\definecolor{keycolor}{RGB}{204,102,0}          % 橙色 - 用于关键点
+\definecolor{derivcolor}{RGB}{100,149,237}      % 浅蓝色 - 用于推导框
+\definecolor{boxbg}{RGB}{240,248,255}           % 淡蓝色背景
+\definecolor{keybg}{RGB}{255,248,240}           % 淡橙色背景
+
+% 自定义章节标题格式
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{sectioncolor}}
+  {\thesection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{subsectioncolor}}
+  {\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{0.8ex plus 0.3ex minus 0.1ex}{0.5ex plus 0.1ex}
+
+% 自定义定理环境
+\newtheorem{theorem}{原理}
+\newtheorem{proofpart}{证明思路}
+\renewcommand{\theproofpart}{}
+
+% 自定义关键点环境
+\newenvironment{keypoint}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox} [
+  colback=keybg,
+  colframe=keycolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{keycolor}{\textbf{关键点：}}}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义推导环境 - 修复字体和行距
+\newenvironment{derivation}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox} [
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{derivcolor}{\textbf{推导：}}\par\linespread{1.1}\selectfont}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义例题环境 - 修复字体和行距
+\newenvironment{exampleblock}[1]
+{\par\vspace{0.3em}\noindent\begin{tcolorbox} [
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{derivcolor}{\textbf{#1}}\par\linespread{1.1}\selectfont}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 页眉页脚设置
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\scriptsize5-\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{gray!50}\leaders\hrule height \footrulewidth\hfill}}
+
+% 紧凑标题
+\title{\vspace{-2em}\Large\bfseries\color{sectioncolor} Chapter 5 Collections - 谐振子与刚性转子\vspace{-1em}}
+\author{}
+\date{2025 年 11 月 1 日}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{multicols}{2}
+
+\section{谐振子}
+
+\subsection{谐振子遵守胡克定律}
+
+如图所示，质量为 $m$ 的小球通过弹簧与壁相连，平衡位置为 $l_0$，弹性系数为 $k$。
+
+胡克定律：$F = -k(l-l_0)$
+
+势能函数（选平衡位置为零点）：
+\begin{equation}
+V(x) = \frac{1}{2}kx^2
+\end{equation}
+
+经典能量：$E = T + V = \frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2$
+
+角频率：$\omega = \sqrt{k/m}$
+
+\subsection{双原子分子的谐振子模型}
+
+\textbf{质心坐标系}：两个质量为 $m_1, m_2$ 的原子，质心位置固定，相对运动用相对坐标 $x = x_1 - x_2$ 描述。
+
+\textbf{约化质量}：$\mu = \frac{m_1m_2}{m_1+m_2}$
+
+薛定谔方程：
+\begin{equation}
+-\frac{\hbar^2}{2\mu}\frac{d^2\psi}{dx^2} + \frac{1}{2}kx^2\psi = E\psi
+\end{equation}
+
+引入无量纲坐标 $\xi = \sqrt{\frac{k}{\mu}}\left(\frac{\mu}{\hbar}\right)^{1/2}x = \alpha x$，其中 $\alpha = \left(\frac{k\mu}{\hbar^2}\right)^{1/4}$
+
+\subsection{谐振子近似源自核间势能在其最小值附近的展开}
+
+双原子分子的势能曲线 $V(r)$ 在平衡位置 $r_e$ 附近泰勒展开：
+\begin{align}
+V(r) &= V(r_e) + \left(\frac{dV}{dr}\right)_{r_e}(r-r_e) + \frac{1}{2!}\left(\frac{d^2V}{dr^2}\right)_{r_e}(r-r_e)^2 + \ldots \\
+&\approx V(r_e) + \frac{1}{2}k(r-r_e)^2
+\end{align}
+
+其中 $k = \left(\frac{d^2V}{dr^2}\right)_{r_e}$ 为力常数，平衡位置满足 $\left(\frac{dV}{dr}\right)_{r_e} = 0$
+
+令 $x = r - r_e$，选零点 $V(r_e) = 0$：
+\begin{equation}
+V(x) = \frac{1}{2}kx^2
+\end{equation}
+
+\subsection{Morse势能函数}
+
+实际分子的势能曲线可用Morse势更精确描述：
+\begin{equation}
+V(r) = D[1 - e^{-\beta(r-r_e)}]^2
+\end{equation}
+
+其中 $D$ 为离解能，$\beta = \sqrt{k/(2D)}$
+
+\textbf{Morse势的能级}：
+\begin{equation}
+E_v = \hbar\omega\left(v+\frac{1}{2}\right) - \hbar\omega x_e\left(v+\frac{1}{2}\right)^2, \quad v=0,1,2,\ldots
+\end{equation}
+
+其中 $x_e = \frac{\hbar\omega}{4D}$ 为非谐性常数。
+
+\begin{keypoint}
+Morse势考虑了非谐性，能级间距随 $v$ 增大而减小，更符合实际分子。
+\end{keypoint}
+
+\subsection{谐振子的能级为 $E_v = \hbar\omega(v+\frac{1}{2})$}
+
+一维谐振子的能量本征值：
+\begin{equation}
+E_v = \hbar\omega\left(v+\frac{1}{2}\right) = h\nu\left(v+\frac{1}{2}\right), \quad v = 0,1,2,\ldots
+\end{equation}
+
+其中 $\omega = \sqrt{k/\mu}$，$\nu = \omega/(2\pi)$
+
+\textbf{零点能}：基态能量 $E_0 = \frac{1}{2}\hbar\omega \neq 0$
+
+由不确定性原理，粒子不能静止在平衡位置。
+
+\textbf{能级间距}：相邻能级间距为常数
+\begin{equation}
+\Delta E = E_{v+1} - E_v = \hbar\omega
+\end{equation}
+
+波函数：
+\begin{equation}
+\psi_v(x) = N_v H_v(\alpha x)e^{-\alpha^2x^2/2}
+\end{equation}
+
+其中 $H_v$ 为厄米多项式，$N_v$ 为归一化常数。
+
+\begin{keypoint}
+量子谐振子具有零点能，能级等间距，这是量子效应的体现。
+\end{keypoint}
+
+\subsection{谐振子可解释双原子分子的红外光谱}
+
+\textbf{选择定则}：
+\begin{equation}
+\Delta v = \pm 1
+\end{equation}
+
+对于吸收光谱，$\Delta v = +1$，则：
+\begin{equation}
+\Delta E = E_{v+1} - E_v = \hbar\omega
+\end{equation}
+
+吸收频率：
+\begin{equation}
+\nu_{abs} = \frac{\Delta E}{h} = \frac{\omega}{2\pi} = \frac{1}{2\pi}\sqrt{\frac{k}{\mu}}
+\end{equation}
+
+波数：
+\begin{equation}
+\tilde{\nu}_{abs} = \frac{\nu}{c} = \frac{1}{2\pi c}\sqrt{\frac{k}{\mu}}
+\end{equation}
+
+\begin{derivation}
+选择定则来源于跃迁偶极矩：
+\begin{equation}
+\mu_{v'v} = \int \psi_{v'}^* \mu(x) \psi_v dx
+\end{equation}
+
+偶极矩展开：$\mu(x) = \mu_0 + \left(\frac{d\mu}{dx}\right)_0 x + \ldots$
+
+只有 $\Delta v = \pm 1$ 时，积分 $\int \psi_{v'}^* x \psi_v dx$ 不为零。
+
+注：只有具有永久偶极矩或其导数不为零的分子才能产生红外吸收光谱。同核双原子分子（如H$_2$, N$_2$）没有红外吸收光谱。
+\end{derivation}
+
+\begin{exampleblock}{例题：$^{79}$Br$^{19}$F的红外光谱}
+$^{79}$Br$^{19}$F在红外光谱中有一条强吸收峰在380 cm$^{-1}$，计算力常数。
+
+\textbf{解}：
+\begin{align*}
+\mu &= \frac{(78.9)(19.0)}{(78.9+19.0)} \times 1.661 \times 10^{-27} \text{ kg} = 2.52 \times 10^{-26} \text{ kg} \\
+k &= [2\pi(2.998 \times 10^{10})(380)]^2 \times (2.52 \times 10^{-26}) \\
+&= 129 \text{ kg·s}^{-2} = 129 \text{ N·m}^{-1}
+\end{align*}
+\end{exampleblock}
+
+\subsection{维里定理}
+
+对于谐振子，动能和势能的期望值相等：
+\begin{equation}
+\langle T \rangle = \langle V \rangle = \frac{1}{2}E_v
+\end{equation}
+
+证明：利用 $\langle \hat{p}^2/(2\mu) \rangle$ 和 $\langle kx^2/2 \rangle$ 的对称性。
+
+\subsection{常见双原子分子的振动光谱数据}
+
+\begin{scriptsize}
+\begin{tabular}{cccc}
+\hline
+分子 & $\tilde{\nu}/\text{cm}^{-1}$ & $k/(\text{N·m}^{-1})$ & $r_e/\text{pm}$ \\
+\hline
+H$_2$ & 4401 & 570 & 74.1 \\
+D$_2$ & 2990 & 527 & 74.1 \\
+H$^{81}$Br & 2630 & 408 & 141.4 \\
+$^{35}$Cl$^{37}$Cl & 554 & 319 & 198.8 \\
+$^{14}$N$^{14}$N & 2330 & 2243 & 109.4 \\
+\hline
+\end{tabular}
+\end{scriptsize}
+
+\section{多维谐振子}
+
+\subsection{二维各向同性谐振子}
+
+哈密顿算符可分离：
+\begin{equation}
+\hat{H} = \hat{H}_x + \hat{H}_y
+\end{equation}
+
+能量本征值：
+\begin{equation}
+E_{v_x,v_y} = \hbar\omega\left(v_x + v_y + 1\right) = \hbar\omega(v+1)
+\end{equation}
+
+其中 $v = v_x + v_y = 0,1,2,\ldots$
+
+\textbf{简并度}：能级 $E_v$ 的简并度为 $g_v = v+1$
+
+\subsection{三维各向同性谐振子}
+
+能量本征值：
+\begin{equation}
+E_{v_x,v_y,v_z} = \hbar\omega\left(v_x+v_y+v_z+\frac{3}{2}\right) = \hbar\omega\left(v+\frac{3}{2}\right)
+\end{equation}
+
+\textbf{简并度}：$g_v = \frac{(v+1)(v+2)}{2}$
+
+\section{刚性转子}
+
+\subsection{模型与哈密顿算符}
+
+两个质量为 $m_1, m_2$ 的质点，通过固定长度 $r_0$ 的刚性杆连接。
+
+转动惯量：$I = \mu r_0^2$，$\mu = \frac{m_1m_2}{m_1+m_2}$
+
+哈密顿算符：
+\begin{equation}
+\hat{H} = \frac{\hat{L}^2}{2I}
+\end{equation}
+
+\subsection{刚性转子的能级是 $E_J = \hbar^2J(J+1)/(2I)$}
+
+能量本征值：
+\begin{equation}
+E_J = \frac{\hbar^2}{2I}J(J+1), \quad J = 0,1,2,\ldots
+\end{equation}
+
+用转动常数表示：
+\begin{equation}
+B = \frac{\hbar}{4\pi cI} \quad (\text{cm}^{-1})
+\end{equation}
+
+\begin{equation}
+E_J = hcBJ(J+1)
+\end{equation}
+
+\textbf{简并度}：$g_J = 2J+1$（对应 $M = -J, \ldots, J$）
+
+\begin{keypoint}
+刚性转子没有零点能，$E_0 = 0$。能级间距随 $J$ 增大而增大。
+\end{keypoint}
+
+\subsection{刚性转子是旋转双原子分子的一个模型}
+
+本征函数为球谐函数 $Y_J^M(\theta,\phi)$
+
+能级间距：
+\begin{align}
+\Delta E &= E_{J+1} - E_J = \frac{\hbar^2}{2I}[(J+1)(J+2) - J(J+1)] \\
+&= \frac{\hbar^2}{I}(J+1) = hcB \cdot 2(J+1)
+\end{align}
+
+\subsection{微波光谱选择定则}
+
+纯转动光谱（微波光谱）的选择定则：
+\begin{equation}
+\Delta J = \pm 1
+\end{equation}
+
+吸收谱线（$\Delta J = +1$）：
+\begin{equation}
+\tilde{\nu}_J = 2B(J+1), \quad J=0,1,2,\ldots
+\end{equation}
+
+\textbf{谱线特征}：等间距谱线，间距为 $2B$
+
+\begin{exampleblock}{例题：H$^{35}$Cl微波光谱}
+根据教材式(5.61)，H$^{35}$Cl微波光谱中的谱线间距为 $2B(Hz)$ 或 $2\tilde{B}(cm^{-1})$。
+
+若 $\tilde{\nu} = 2886$ cm$^{-1}$，则 $\tilde{B} = \tilde{\nu}/(4\pi) \approx 10.4$ cm$^{-1}$
+
+转动惯量：
+\begin{equation*}
+I = \frac{h}{8\pi^2c\tilde{B}} = \frac{6.626 \times 10^{-34}}{8\pi^2(2.998 \times 10^{10})(10.4)} \approx 2.7 \times 10^{-47} \text{ kg·m}^2
+\end{equation*}
+
+利用 $I = \mu r_0^2$ 可求键长 $r_0$。
+\end{exampleblock}
+
+\subsection{离心畸变}
+
+高速转动时，离心力使键长增大，修正能量：
+\begin{equation}
+E_J = hc[BJ(J+1) - D_JJ^2(J+1)^2]
+\end{equation}
+
+$D_J$ 为离心畸变常数（很小的正数）。
+
+\section{常用公式速查}
+
+\begin{scriptsize}
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item \textbf{谐振子}
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item 能量：$E_v = (v+\frac{1}{2})\hbar\omega$，$\omega = \sqrt{k/\mu}$
+\item 零点能：$E_0 = \frac{1}{2}\hbar\omega$
+\item 选择定则：$\Delta v = \pm 1$
+\item 维里定理：$\langle T \rangle = \langle V \rangle = E_v/2$
+\item 吸收频率：$\tilde{\nu} = \frac{1}{2\pi c}\sqrt{k/\mu}$
+\item Morse势：$E_v = \hbar\omega(v+\frac{1}{2}) - \hbar\omega x_e(v+\frac{1}{2})^2$
+\item 力常数：$k = \left(\frac{d^2V}{dr^2}\right)_{r_e}$
+\end{itemize}
+\item \textbf{刚性转子}
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item 能量：$E_J = \frac{\hbar^2}{2I}J(J+1) = hcBJ(J+1)$
+\item 转动常数：$B = \frac{\hbar}{4\pi cI}$ (cm$^{-1}$)
+\item 简并度：$g_J = 2J+1$
+\item 选择定则：$\Delta J = \pm 1$
+\item 谱线波数：$\tilde{\nu} = 2B(J+1)$，间距 $2B$
+\item 转动惯量：$I = \mu r_0^2$，$\mu = m_1m_2/(m_1+m_2)$
+\end{itemize}
+\item \textbf{多维谐振子简并度}
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item 2D：$g_v = v+1$
+\item 3D：$g_v = (v+1)(v+2)/2$
+\end{itemize}
+\end{itemize}
+\end{scriptsize}
+
+\end{multicols}
+
+\end{document}

@@ -1,0 +1,76 @@
+\documentclass[UTF8,a4paper]{ctexart}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{diagbox}
+
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\begin{document}
+
+\noindent \textbf{表 3-8-1 \quad 质量与比热数据表}
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\centering\arraybackslash}m{4cm}|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{3cm}|}
+\hline
+\diagbox{名称}{物理量} & 质量 $m$ (克) & 比热 $C$ (卡/克·度) & $mC$ (卡/度) \\
+\hline
+量热器的内筒 & 275.80 & 0.092 & 25.374 \\
+\hline
+搅拌器和胶木的铜支架 & 59.00 & 0.092 & 5.428 \\
+\hline
+水的质量 $\left(\dfrac{\text{实验前}+\text{实验后}}{2}\right)$ & 148.12 & 1.00 & 148.12 \\
+\hline
+\multicolumn{2}{|l|}{数字温度计插入水中的体积 $V=0.5$ cm$^3$} & \multicolumn{2}{c|}{0.38} \\
+\hline
+\multicolumn{2}{|c|}{$\sum mC$} & \multicolumn{2}{c|}{179.302} \\
+\hline
+\end{tabular}
+\end{table}
+
+\vspace{1cm}
+
+\noindent \textbf{表 3-8-2 \quad 温度、电流、电压与时间关系表}
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{3cm}|}
+\hline
+时间 $t$ (分) & 温度 $T$ ($^\circ$C) & 电流 $I$ (A) & 电压 $U$ (V) \\
+\hline
+0.00 & 24.5 & 1.940 & 10.730 \\
+\hline
+1.00 & 26.0 & 1.930 & 10.700 \\
+\hline
+2.00 & 27.5 & 1.935 & 10.738 \\
+\hline
+3.00 & 28.9 & 1.923 & 10.742 \\
+\hline
+4.00 & 30.5 & 1.935 & 10.740 \\
+\hline
+5.00 & 31.7 & 1.933 & 10.730 \\
+\hline
+\multicolumn{2}{|l|}{$t_1=6.28$ 分，$T_2=31.9$ $^\circ$C} & \multicolumn{2}{c|}{$\bar{I}=1.935$ A, $\bar{U}=10.730$ V} \\
+\hline
+7.00 & 31.8 & \multicolumn{2}{c|}{\multirow{7}{*}{自然冷却}} \\
+\cline{1-2}
+9.00 & 31.4 & \multicolumn{2}{c|}{} \\
+\cline{1-2}
+11.00 & 31.0 & \multicolumn{2}{c|}{} \\
+\cline{1-2}
+13.00 & 30.7 & \multicolumn{2}{c|}{} \\
+\cline{1-2}
+15.00 & 30.5 & \multicolumn{2}{c|}{} \\
+\cline{1-2}
+17.00 & 30.2 & \multicolumn{2}{c|}{} \\
+\cline{1-2}
+ & & \multicolumn{2}{c|}{} \\
+\hline
+\end{tabular}
+\end{table}
+
+\end{document}

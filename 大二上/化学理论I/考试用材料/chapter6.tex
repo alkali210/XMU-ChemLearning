@@ -1,0 +1,641 @@
+% 编译提示：使用 XeLaTeX 编译
+% 需要 ctex 宏包支持中文
+
+\documentclass[a4paper,9pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{ctex}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1.8cm}
+
+\setlength{\columnsep}{0.8cm}
+\setlength{\columnseprule}{0.4pt}
+\renewcommand{\columnseprulecolor}{\color{gray!50}}
+
+% 定义颜色方案
+\definecolor{sectioncolor}{RGB}{0,102,204}      % 深蓝色 - 用于章节标题
+\definecolor{subsectioncolor}{RGB}{0,153,153}   % 青色 - 用于小节标题
+\definecolor{keycolor}{RGB}{204,102,0}          % 橙色 - 用于关键点
+\definecolor{derivcolor}{RGB}{100,149,237}      % 浅蓝色 - 用于推导框
+\definecolor{boxbg}{RGB}{240,248,255}           % 淡蓝色背景
+\definecolor{keybg}{RGB}{255,248,240}           % 淡橙色背景
+
+% 自定义章节标题格式
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{sectioncolor}}
+  {\thesection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{subsectioncolor}}
+  {\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{0.8ex plus 0.3ex minus 0.1ex}{0.5ex plus 0.1ex}
+
+% 自定义关键点环境
+\newenvironment{keypoint}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=keybg,
+  colframe=keycolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{keycolor}{\textbf{关键点：}}}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义推导环境
+\newenvironment{derivation}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\scriptsize\noindent\textcolor{derivcolor}{\textbf{推导：}}\par}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 页眉页脚设置
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\scriptsize6-\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{gray!50}\leaders\hrule height \footrulewidth\hfill}}
+
+% 紧凑标题
+\title{\vspace{-2em}\Large\bfseries\color{sectioncolor} Chapter 6 Collections - 氢原子\vspace{-1em}}
+\author{}
+\date{2025 年 11 月 1 日}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{multicols}{2}
+
+\section{氢原子的薛定谔方程}
+
+\subsection{基本方程}
+
+氢原子是唯一可精确求解的多粒子体系。在质心坐标系下，问题简化为单粒子问题。
+
+哈密顿算符：
+\begin{equation}
+\hat{H} = -\frac{\hbar^2}{2\mu}\nabla^2 - \frac{Ze^2}{4\pi\varepsilon_0 r}
+\end{equation}
+
+其中 $\mu = \frac{m_e M}{m_e + M}$ 为约化质量，对氢原子 $\mu \approx m_e$。
+
+球坐标下的拉普拉斯算符：
+\begin{equation}
+\nabla^2 = \frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial}{\partial r}\right) + \frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial}{\partial\theta}\right) + \frac{1}{r^2\sin^2\theta}\frac{\partial^2}{\partial\phi^2}
+\end{equation}
+
+\subsection{分离变量法}
+
+由于势能仅依赖于 $r$，具有球对称性，可分离变量：
+\begin{equation}
+\psi(r,\theta,\phi) = R(r)Y(\theta,\phi)
+\end{equation}
+
+代入薛定谔方程，可得三个独立的常微分方程，引出三个量子数：
+\begin{itemize}
+\item $n = 1,2,3,\ldots$（主量子数）
+\item $l = 0,1,2,\ldots,n-1$（角量子数）
+\item $m = 0,\pm 1,\pm 2,\ldots,\pm l$（磁量子数）
+\end{itemize}
+
+\subsection{能量本征值}
+
+\begin{equation}
+E_n = -\frac{\mu e^4 Z^2}{32\pi^2\varepsilon_0^2\hbar^2 n^2} = -\frac{Z^2}{n^2}\times 13.6\text{ eV}
+\end{equation}
+
+\textbf{重要特征}：能量仅与 $n$ 有关，与 $l, m$ 无关（简并）。
+
+玻尔半径：$a_0 = \frac{4\pi\varepsilon_0\hbar^2}{m_e e^2} = 0.529$ \AA
+
+\section{角度部分 - 球谐函数}
+
+\subsection{方位角方程}
+
+方程 $\frac{d^2\Phi}{d\phi^2} = -m^2\Phi$ 的解为：
+\begin{equation}
+\Phi_m(\phi) = \frac{1}{\sqrt{2\pi}}e^{im\phi}
+\end{equation}
+
+单值性要求 $\Phi(\phi+2\pi) = \Phi(\phi)$，故 $m$ 必须为整数。
+
+\subsection{连带勒让德函数}
+
+极角方程的解为连带勒让德函数 $P_l^m(\cos\theta)$。
+
+\begin{keypoint}
+勒让德多项式的罗德里格斯公式：
+\begin{equation}
+P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2-1)^l
+\end{equation}
+\end{keypoint}
+
+连带勒让德函数定义：
+\begin{equation}
+P_l^m(x) = (1-x^2)^{|m|/2}\frac{d^{|m|}}{dx^{|m|}}P_l(x)
+\end{equation}
+
+重要递推关系：
+\begin{align}
+(l+1)P_{l+1}(x) &= (2l+1)xP_l(x) \\
+&\quad - lP_{l-1}(x) \\
+(2l+1)xP_l^m(x) &= (l-m+1)P_{l+1}^m(x) \\
+&\quad + (l+m)P_{l-1}^m(x)
+\end{align}
+
+示例：$P_0(x) = 1$，$P_1(x) = x$，\\
+$P_2(x) = \frac{1}{2}(3x^2-1)$
+
+\subsection{球谐函数}
+
+完整形式：
+\begin{equation}
+Y_l^m(\theta,\phi) = (-1)^m\left[\frac{(2l+1)}{4\pi}\frac{(l-|m|)!}{(l+|m|)!}\right]^{1/2}P_l^{|m|}(\cos\theta)e^{im\phi}
+\end{equation}
+
+\begin{keypoint}
+球谐函数是 $\hat{L}^2$ 和 $\hat{L}_z$ 的共同本征函数，构成完备正交归一系。
+\end{keypoint}
+
+正交归一性：
+\begin{equation}
+\int_0^{\pi}\int_0^{2\pi}Y_l^{m*}Y_{l'}^{m'}\sin\theta\,d\theta\,d\phi = \delta_{ll'}\delta_{mm'}
+\end{equation}
+
+常用示例（归一化）：
+\begin{align*}
+Y_0^0 &= \frac{1}{2\sqrt{\pi}}, \quad Y_1^0 = \sqrt{\frac{3}{4\pi}}\cos\theta \\
+Y_1^{\pm 1} &= \mp\sqrt{\frac{3}{8\pi}}\sin\theta e^{\pm i\phi}, \quad Y_2^0 = \sqrt{\frac{5}{16\pi}}(3\cos^2\theta-1)
+\end{align*}
+
+\section{径向波函数}
+
+\subsection{径向方程求解}
+
+径向方程：
+\begin{equation}
+-\frac{\hbar^2}{2\mu}\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{dR}{dr}\right) + \left[\frac{l(l+1)\hbar^2}{2\mu r^2} - \frac{Ze^2}{4\pi\varepsilon_0 r}\right]R = ER
+\end{equation}
+
+引入 $u(r) = rR(r)$ 和无量纲变量 $\rho = \frac{2Zr}{na_0}$，方程化为：
+\begin{equation}
+\frac{d^2u}{d\rho^2} = \left[\frac{l(l+1)}{\rho^2} - \frac{n}{Z\rho} + \frac{1}{4}\right]u
+\end{equation}
+
+渐近行为分析：$\rho \to \infty$ 时 $u \sim e^{-\rho/2}$；$\rho \to 0$ 时 $u \sim \rho^{l+1}$。
+
+设 $u(\rho) = \rho^{l+1}e^{-\rho/2}F(\rho)$，代入后得到连带拉盖尔方程。
+
+\subsection{连带拉盖尔多项式}
+
+拉盖尔多项式：
+\begin{equation}
+L_n(x) = e^x\frac{d^n}{dx^n}(x^n e^{-x})
+\end{equation}
+
+连带拉盖尔多项式：
+\begin{equation}
+L_n^k(x) = \frac{d^k}{dx^k}L_{n+k}(x)
+\end{equation}
+
+正交性（权函数 $e^{-x}x^k$）：
+\begin{equation}
+\int_0^{\infty}e^{-x}x^k L_n^k(x)L_m^k(x)\,dx = \frac{(n+k)!}{n!}\delta_{nm}
+\end{equation}
+
+\subsection{归一化径向波函数}
+
+通解：
+\begin{equation}
+\begin{split}
+R_{nl}(r) &= -\left[\frac{(n-l-1)!}{2n[(n+l)!]^3}\right]^{1/2}\left(\frac{2Z}{na_0}\right)^{3/2}\left(\frac{2Zr}{na_0}\right)^l e^{-Zr/na_0} \\
+&\quad \times L_{n-l-1}^{2l+1}\left(\frac{2Zr}{na_0}\right)
+\end{split}
+\end{equation}
+
+示例（$Z=1$）：
+\begin{align*}
+R_{10} &= 2a_0^{-3/2}e^{-r/a_0} \\
+R_{20} &= (2a_0)^{-3/2}\frac{1}{\sqrt{2}}\left(2-\frac{r}{a_0}\right)e^{-r/2a_0} \\
+R_{21} &= (2a_0)^{-3/2}\frac{1}{\sqrt{24}}\frac{r}{a_0}e^{-r/2a_0}
+\end{align*}
+
+径向分布函数：$D(r) = r^2|R_{nl}(r)|^2$（球壳内概率密度）
+
+\section{角动量算符理论}
+
+\subsection{算符定义与对易关系}
+
+经典角动量：$\vec{L} = \vec{r} \times \vec{p}$
+
+量子算符（直角坐标）：
+\begin{equation}
+\hat{L}_x = -i\hbar\left(y\frac{\partial}{\partial z}-z\frac{\partial}{\partial y}\right)
+\end{equation}
+（循环）
+
+球坐标形式：
+\begin{align}
+\hat{L}_z &= -i\hbar\frac{\partial}{\partial\phi} \\
+\hat{L}^2 &= -\hbar^2\left[\frac{1}{\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial}{\partial\theta}\right)+\frac{1}{\sin^2\theta}\frac{\partial^2}{\partial\phi^2}\right]
+\end{align}
+
+\begin{keypoint}
+对易关系是角动量理论的核心：
+\begin{align}
+[\hat{L}_i,\hat{L}_j] &= i\hbar\varepsilon_{ijk}\hat{L}_k \\
+[\hat{L}^2,\hat{L}_i] &= 0
+\end{align}
+\end{keypoint}
+
+\begin{derivation}
+证明 $[\hat{L}_x,\hat{L}_y] = i\hbar\hat{L}_z$：
+
+利用 $[\hat{x}_i,\hat{p}_j] = i\hbar\delta_{ij}$，
+\begin{align*}
+[\hat{L}_x,\hat{L}_y] &= [\hat{y}\hat{p}_z-\hat{z}\hat{p}_y, \hat{z}\hat{p}_x-\hat{x}\hat{p}_z] \\
+&= \hat{y}[\hat{p}_z,\hat{z}]\hat{p}_x + \hat{x}[\hat{z},\hat{p}_z]\hat{p}_y \\
+&= \hat{y}(-i\hbar)\hat{p}_x + \hat{x}(i\hbar)\hat{p}_y \\
+&= i\hbar(\hat{x}\hat{p}_y-\hat{y}\hat{p}_x) = i\hbar\hat{L}_z
+\end{align*}
+\end{derivation}
+
+\subsection{本征值问题}
+
+由于 $[\hat{L}^2,\hat{L}_z] = 0$，可选择共同本征函数：
+\begin{align}
+\hat{L}^2Y_l^m &= l(l+1)\hbar^2Y_l^m \\
+\hat{L}_zY_l^m &= m\hbar Y_l^m
+\end{align}
+
+物理意义：
+\begin{itemize}
+\item 角动量大小：$|\vec{L}| = \hbar\sqrt{l(l+1)}$（量子化）
+\item $z$ 分量：$L_z = m\hbar$（空间量子化）
+\item 不确定关系：$\Delta L_x \cdot \Delta L_y \geq \frac{\hbar}{2}|L_z|$（$L_x, L_y$ 不能同时确定）
+\end{itemize}
+
+\subsection{升降算符方法}
+
+定义阶梯算符：
+\begin{equation}
+\hat{L}_\pm = \hat{L}_x \pm i\hat{L}_y
+\end{equation}
+
+对易关系：
+\begin{align}
+[\hat{L}_z,\hat{L}_\pm] &= \pm\hbar\hat{L}_\pm \\
+[\hat{L}^2,\hat{L}_\pm] &= 0
+\end{align}
+
+\begin{derivation}
+证明 $\hat{L}_+$ 的作用效果：
+
+设 $\hat{L}_z f = m\hbar f$，作用 $\hat{L}_z$ 于 $\hat{L}_+ f$：
+\begin{align*}
+\hat{L}_z(\hat{L}_+ f) &= (\hat{L}_+\hat{L}_z + [\hat{L}_z,\hat{L}_+])f \\
+&= (\hat{L}_+\hat{L}_z + \hbar\hat{L}_+)f \\
+&= (m+1)\hbar(\hat{L}_+ f)
+\end{align*}
+即 $\hat{L}_+ f$ 是本征值为 $(m+1)\hbar$ 的本征函数。
+\end{derivation}
+
+作用规律（含归一化系数）：
+\begin{align}
+\hat{L}_+Y_l^m &= \hbar\sqrt{l(l+1)-m(m+1)}\\
+&\quad \times Y_l^{m+1} \\
+\hat{L}_-Y_l^m &= \hbar\sqrt{l(l+1)-m(m-1)}\\
+&\quad \times Y_l^{m-1}
+\end{align}
+
+重要恒等式：
+\begin{align}
+\hat{L}^2 &= \hat{L}_-\hat{L}_+ + \hat{L}_z^2 + \hbar\hat{L}_z \\
+&= \hat{L}_+\hat{L}_- + \hat{L}_z^2 - \hbar\hat{L}_z
+\end{align}
+
+\section{算符平均值与不确定性}
+
+\subsection{物理量平均值计算}
+
+对于归一化波函数 $\psi$，物理量 $\hat{A}$ 的平均值：
+\begin{equation}
+\langle A \rangle = \int \psi^* \hat{A} \psi \, d\tau
+\end{equation}
+
+对于氢原子波函数 $\psi_{nlm} = R_{nl}(r)Y_l^m(\theta,\phi)$：
+\begin{equation}
+\langle A \rangle = \int_0^{\infty}\int_0^{\pi}\int_0^{2\pi} R_{nl}^* Y_l^{m*} \hat{A} (R_{nl}Y_l^m) r^2\sin\theta\,dr\,d\theta\,d\phi
+\end{equation}
+
+\begin{derivation}
+\textbf{示例}：计算氢原子基态的 $\langle r \rangle$ 和 $\langle r^2 \rangle$。
+
+基态波函数：$\psi_{100} = \frac{1}{\sqrt{\pi a_0^3}}e^{-r/a_0}$
+
+\begin{align*}
+\langle r \rangle &= \int_0^{\infty} R_{10}^2 \cdot r \cdot r^2\,dr \\
+&= \frac{4}{a_0^3}\int_0^{\infty} r^3 e^{-2r/a_0}\,dr \\
+&= \frac{4}{a_0^3} \cdot \frac{3!}{(2/a_0)^4} = \frac{3a_0}{2}
+\end{align*}
+
+\begin{align*}
+\langle r^2 \rangle &= \frac{4}{a_0^3}\int_0^{\infty} r^4 e^{-2r/a_0}\,dr \\
+&= \frac{4}{a_0^3} \cdot \frac{4!}{(2/a_0)^5} = 3a_0^2
+\end{align*}
+
+标准偏差：
+\begin{equation*}
+\Delta r = \sqrt{\langle r^2 \rangle - \langle r \rangle^2} = \frac{\sqrt{3}}{2}a_0
+\end{equation*}
+\end{derivation}
+
+\subsection{常见算符运算关系}
+
+量子力学中，算符之间存在重要的运算关系。
+
+\begin{keypoint}
+海森堡运动方程：
+\begin{equation}
+\frac{d\hat{A}}{dt} = \frac{1}{i\hbar}[\hat{A},\hat{H}] + \frac{\partial\hat{A}}{\partial t}
+\end{equation}
+\end{keypoint}
+
+\begin{derivation}
+\textbf{示例1}：证明 $\frac{d\langle\vec{r}\rangle}{dt} = \frac{\langle\vec{p}\rangle}{m}$
+
+对位置算符，$\hat{H} = \frac{\hat{p}^2}{2m} + V(\hat{r})$：
+\begin{align*}
+\frac{d\hat{x}}{dt} &= \frac{1}{i\hbar}[\hat{x},\frac{\hat{p}_x^2}{2m}]
+\end{align*}
+
+利用 $[\hat{x},\hat{p}_x] = i\hbar$，可得：
+\begin{equation*}
+[\hat{x},\hat{p}_x^2] = 2i\hbar\hat{p}_x
+\end{equation*}
+
+因此：$\frac{d\hat{x}}{dt} = \frac{\hat{p}_x}{m}$
+\end{derivation}
+
+\begin{derivation}
+\textbf{示例2}：埃伦费斯特定理 $\frac{d\langle\vec{p}\rangle}{dt} = -\left\langle\nabla V\right\rangle$
+
+对动量算符：
+\begin{equation*}
+\frac{d\hat{p}_x}{dt} = \frac{1}{i\hbar}[\hat{p}_x,V(\hat{x})]
+\end{equation*}
+
+作用于波函数：
+\begin{align*}
+[\hat{p}_x,V]\psi &= -i\hbar\frac{\partial V}{\partial x}\psi
+\end{align*}
+
+故 $\frac{d\hat{p}_x}{dt} = -\frac{\partial V}{\partial x}$
+\end{derivation}
+
+\textbf{常用算符对易关系}：
+\begin{align}
+[\hat{x}_i,\hat{p}_j] &= i\hbar\delta_{ij} \\
+[\hat{x},\hat{p}^2] &= 2i\hbar\hat{p} \\
+[\hat{r}^2,\hat{p}_r] &= 2i\hbar\hat{r} \\
+[\hat{L}_i,\hat{x}_j] &= i\hbar\varepsilon_{ijk}\hat{x}_k \\
+[\hat{L}_i,\hat{p}_j] &= i\hbar\varepsilon_{ijk}\hat{p}_k \\
+[\hat{L}^2,\hat{r}] &= [\hat{L}^2,\hat{p}] = 0
+\end{align}
+
+\subsection{角动量不确定性关系}
+
+\begin{keypoint}
+对于不对易算符 $[\hat{A},\hat{B}] = i\hat{C}$，广义不确定关系：
+\begin{equation}
+\Delta A \cdot \Delta B \geq \frac{1}{2}|\langle C \rangle|
+\end{equation}
+\end{keypoint}
+
+\begin{derivation}
+证明 $\Delta L_x \cdot \Delta L_y \geq \frac{\hbar}{2}|L_z|$：
+
+由 $[\hat{L}_x,\hat{L}_y] = i\hbar\hat{L}_z$：
+\begin{equation*}
+\Delta L_x \cdot \Delta L_y \geq \frac{\hbar}{2}|\langle L_z \rangle|
+\end{equation*}
+
+对于本征态 $Y_l^m$，$\langle L_z \rangle = m\hbar$，故：
+\begin{equation*}
+\Delta L_x \cdot \Delta L_y \geq \frac{\hbar^2|m|}{2}
+\end{equation*}
+
+物理意义：当 $L_z$ 确定时，$L_x$ 和 $L_y$ 完全不确定。
+\end{derivation}
+
+\begin{derivation}
+\textbf{进一步}：计算角动量分量的涨落。
+
+对于态 $Y_l^m$：
+\begin{align*}
+\langle L_z \rangle &= m\hbar, \quad \langle L_z^2 \rangle = m^2\hbar^2 \\
+\langle L^2 \rangle &= l(l+1)\hbar^2
+\end{align*}
+
+由于对称性，$\langle L_x \rangle = \langle L_y \rangle = 0$，且 $\langle L_x^2 \rangle = \langle L_y^2 \rangle$。
+
+从 $\langle L^2 \rangle = \langle L_x^2 \rangle + \langle L_y^2 \rangle + \langle L_z^2 \rangle$：
+\begin{equation*}
+\langle L_x^2 \rangle = \langle L_y^2 \rangle = \frac{l(l+1)\hbar^2 - m^2\hbar^2}{2}
+\end{equation*}
+
+因此：
+\begin{equation*}
+\Delta L_x = \Delta L_y = \frac{\hbar}{\sqrt{2}}\sqrt{l(l+1)-m^2}
+\end{equation*}
+\end{derivation}
+
+\section{实轨道与杂化}
+
+对于 $m \neq 0$ 的复数球谐函数，可构造实数线性组合。
+
+\textbf{p 轨道}：
+\begin{align}
+p_z &= Y_1^0 \propto z/r \\
+p_x &= \frac{1}{\sqrt{2}}(Y_1^{-1}-Y_1^1) \propto x/r \\
+p_y &= \frac{i}{\sqrt{2}}(Y_1^{-1}+Y_1^1) \propto y/r
+\end{align}
+
+\textbf{d 轨道示例}：
+\begin{align}
+d_{z^2} &= Y_2^0 \propto 2z^2-x^2-y^2 \\
+d_{xy} &= \frac{i}{\sqrt{2}}(Y_2^{-2}-Y_2^2) \propto xy
+\end{align}
+
+\section{多电子原子}
+
+\subsection{哈密顿算符与近似}
+
+$N$ 电子原子：
+\begin{equation}
+\hat{H} = \sum_i\left(-\frac{\hbar^2}{2m_e}\nabla_i^2 - \frac{Ze^2}{4\pi\varepsilon_0 r_i}\right) + \sum_{i<j}\frac{e^2}{4\pi\varepsilon_0 r_{ij}}
+\end{equation}
+
+\textbf{中心力场近似}：每个电子在原子核和其他电子平均场中运动，
+\begin{equation}
+\hat{H} \approx \sum_i \hat{h}(i), \quad \psi \approx \prod_i \psi_i
+\end{equation}
+
+有效核电荷：$Z_{\text{eff}} = Z - \sigma$
+
+\subsection{泡利原理与电子组态}
+
+\textbf{泡利不相容原理}：两个电子不能占据完全相同的量子态（包括自旋）。
+
+推论：每个轨道 $(n,l,m)$ 最多容纳 2 个自旋相反的电子。
+
+\subsection{LS 耦合与光谱项}
+
+多电子角动量耦合：
+\begin{align}
+\vec{L} &= \sum_i \vec{l}_i \\
+\vec{S} &= \sum_i \vec{s}_i \\
+\vec{J} &= \vec{L} + \vec{S}
+\end{align}
+
+光谱项符号：$^{2S+1}L_J$
+
+\begin{keypoint}
+洪特规则（确定基态）：
+\begin{enumerate}
+\item 最大自旋多重度 $2S+1$ 最低
+\item 相同 $S$ 时，$L$ 最大最低
+\item 未满壳层：$J = |L-S|$ 最低；超半满：$J = L+S$ 最低
+\end{enumerate}
+\end{keypoint}
+
+\subsection{选择定则}
+
+电偶极辐射跃迁：
+\begin{align}
+\Delta l &= \pm 1 \\
+\Delta L &= 0, \pm 1 \quad (0 \not\leftrightarrow 0) \\
+\Delta J &= 0, \pm 1 \quad (J=0 \not\leftrightarrow J=0) \\
+\Delta S &= 0
+\end{align}
+
+\section{重要公式速查}
+
+\begin{scriptsize}
+\begin{itemize}
+\item 玻尔半径：$a_0 = 0.529$ \AA
+\item 基态能量：$E_1 = -13.6$ eV
+\item 里德伯常数：$R_\infty = 1.097\times 10^7$ m$^{-1}$
+\item 能级：$E_n = -\frac{Z^2}{n^2} \times 13.6$ eV
+\item 跃迁：$\Delta E = hc R_\infty Z^2\left(\frac{1}{n_1^2}-\frac{1}{n_2^2}\right)$
+\item 角动量：$|\vec{L}| = \hbar\sqrt{l(l+1)}$，$L_z = m\hbar$
+\item 积分：$\int_0^{\infty} x^n e^{-ax}\,dx = \frac{n!}{a^{n+1}}$
+\item 对易子：$[\hat{x},\hat{p}_x] = i\hbar$，$[\hat{L}_x,\hat{L}_y] = i\hbar\hat{L}_z$
+\item 不确定关系：$\Delta x \cdot \Delta p_x \geq \frac{\hbar}{2}$
+\end{itemize}
+\end{scriptsize}
+
+\section{附录：常用数学公式}
+
+\subsection{积分公式}
+
+\textbf{含指数函数}：
+\begin{align}
+\int_0^{\infty} x^n e^{-ax}\,dx &= \frac{n!}{a^{n+1}} \\
+\int_0^{\infty} x^{2n+1} e^{-ax^2}\,dx &= \frac{n!}{2a^{n+1}} \\
+\int_0^{\infty} x^{2n} e^{-ax^2}\,dx &= \frac{(2n-1)!!}{2^{n+1}a^n}\sqrt{\frac{\pi}{a}}
+\end{align}
+
+$(2n-1)!! = 1\times 3\times 5\times\cdots\times(2n-1)$
+
+\textbf{球谐函数相关}：
+\begin{align}
+\int_0^{\pi}\int_0^{2\pi} |Y_l^m|^2\sin\theta\,d\theta\,d\phi &= 1 \\
+\int_0^{\pi}\int_0^{2\pi} Y_l^{m*}Y_{l'}^{m'}\sin\theta\,d\theta\,d\phi &= \delta_{ll'}\delta_{mm'}
+\end{align}
+
+\textbf{径向积分示例}：
+\begin{align}
+\int_0^{\infty} R_{nl}^2(r) r^2\,dr &= 1 \\
+\int_0^{\infty} R_{10}^2 r \cdot r^2\,dr &= \frac{3a_0}{2} \\
+\int_0^{\infty} R_{10}^2 \frac{1}{r} \cdot r^2\,dr &= \frac{1}{a_0}
+\end{align}
+
+\subsection{微分方程}
+
+\textbf{勒让德方程}：
+\begin{equation}
+(1-x^2)\frac{d^2y}{dx^2} - 2x\frac{dy}{dx} + l(l+1)y = 0
+\end{equation}
+解为勒让德多项式 $P_l(x)$
+
+\textbf{连带勒让德方程}：
+\begin{equation}
+(1-x^2)\frac{d^2y}{dx^2} - 2x\frac{dy}{dx} + \left[l(l+1) - \frac{m^2}{1-x^2}\right]y = 0
+\end{equation}
+
+\textbf{拉盖尔方程}：
+\begin{equation}
+x\frac{d^2y}{dx^2} + (k+1-x)\frac{dy}{dx} + ny = 0
+\end{equation}
+解为 $L_n^k(x)$
+
+\subsection{常用导数与微分}
+
+\textbf{球坐标梯度}：
+\begin{equation}
+\nabla f = \frac{\partial f}{\partial r}\hat{e}_r + \frac{1}{r}\frac{\partial f}{\partial\theta}\hat{e}_\theta + \frac{1}{r\sin\theta}\frac{\partial f}{\partial\phi}\hat{e}_\phi
+\end{equation}
+
+\textbf{常用函数导数}：
+\begin{align}
+\frac{d}{dx}(x^n e^{-ax}) &= x^{n-1}e^{-ax}(n - ax) \\
+\frac{d}{dx}[e^x f(x)] &= e^x[f(x) + f'(x)]
+\end{align}
+
+\subsection{特殊函数值}
+
+\textbf{阶乘与双阶乘}：
+\begin{align}
+(2n)!! &= 2^n n! \\
+(2n-1)!! &= \frac{(2n)!}{2^n n!}
+\end{align}
+
+\textbf{Γ函数}：
+\begin{align}
+\Gamma(n+1) &= n!, \quad \Gamma(1/2) = \sqrt{\pi} \\
+\Gamma(n+1/2) &= \frac{(2n-1)!!}{2^n}\sqrt{\pi}
+\end{align}
+
+\textbf{三角函数恒等式}：
+\begin{align}
+\sin^2\theta &= \frac{1-\cos 2\theta}{2} \\
+\cos^2\theta &= \frac{1+\cos 2\theta}{2} \\
+e^{i\phi} &= \cos\phi + i\sin\phi
+\end{align}
+
+\end{multicols}
+
+\end{document}
+

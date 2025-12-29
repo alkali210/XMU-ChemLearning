@@ -1,0 +1,448 @@
+% 编译提示：使用 XeLaTeX 编译
+% 需要 ctex 宏包支持中文
+
+\documentclass[a4paper,9pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{ctex}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{amsthm}
+
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1.8cm}
+
+\setlength{\columnsep}{0.8cm}
+\setlength{\columnseprule}{0.4pt}
+\renewcommand{\columnseprulecolor}{\color{gray!50}}
+
+% 定义颜色方案
+\definecolor{sectioncolor}{RGB}{0,102,204}      % 深蓝色 - 用于章节标题
+\definecolor{subsectioncolor}{RGB}{0,153,153}   % 青色 - 用于小节标题
+\definecolor{keycolor}{RGB}{204,102,0}          % 橙色 - 用于关键点
+\definecolor{derivcolor}{RGB}{100,149,237}      % 浅蓝色 - 用于推导框
+\definecolor{boxbg}{RGB}{240,248,255}           % 淡蓝色背景
+\definecolor{keybg}{RGB}{255,248,240}           % 淡橙色背景
+
+% 自定义章节标题格式
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{sectioncolor}}
+  {\thesection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{subsectioncolor}}
+  {\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{0.8ex plus 0.3ex minus 0.1ex}{0.5ex plus 0.1ex}
+
+% 自定义定理环境
+\newtheorem{theorem}{原理}
+\newtheorem{proofpart}{证明思路}
+\renewcommand{\theproofpart}{}
+
+% 自定义关键点环境
+\newenvironment{keypoint}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox} [
+  colback=keybg,
+  colframe=keycolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{keycolor}{\textbf{关键点：}}}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义推导环境 - 修复字体和行距
+\newenvironment{derivation}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox} [
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{derivcolor}{\textbf{推导：}}\par\linespread{1.1}\selectfont}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义例题环境 - 修复字体和行距
+\newenvironment{exampleblock}[1]
+{\par\vspace{0.3em}\noindent\begin{tcolorbox} [
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{derivcolor}{\textbf{#1}}\par\linespread{1.1}\selectfont}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 页眉页脚设置
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\scriptsize7-\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{gray!50}\leaders\hrule height \footrulewidth\hfill}}
+
+% 紧凑标题
+\title{\vspace{-2em}\Large\bfseries\color{sectioncolor} Chapter 7 Collections - 近似方法\vspace{-1em}}
+\author{}
+\date{2025 年 11 月 1 日}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{multicols}{2}
+
+\section{变分法}
+
+\subsection{变分原理}
+
+\begin{theorem}[变分原理]
+对于任意归一化的试探波函数 $\psi$，其能量期望值永远不小于真实基态能量 $E_0$：
+\begin{equation}
+E_\psi = \frac{\int \psi^* \hat{H} \psi \, d\tau}{\int \psi^* \psi \, d\tau} \geq E_0
+\end{equation}
+\end{theorem}
+
+\begin{derivation}
+将试探函数按真实本征函数 $\psi_n$ 完备展开：
+\begin{equation*}
+\psi = \sum_n c_n \psi_n
+\end{equation*}
+
+代入能量表达式：
+\begin{align*}
+\int \psi^* \hat{H} \psi d\tau &= \sum_n |c_n|^2 E_n \\
+\int \psi^* \psi d\tau &= \sum_n |c_n|^2
+\end{align*}
+
+则：
+\begin{equation*}
+E_\psi = \frac{\sum_n |c_n|^2 E_n}{\sum_n |c_n|^2}
+\end{equation*}
+
+因为 $E_n \geq E_0$，所以：
+\begin{equation*}
+E_\psi \geq \frac{\sum_n |c_n|^2 E_0}{\sum_n |c_n|^2} = E_0
+\end{equation*}
+
+当且仅当 $\psi = \psi_0$ 时等号成立。
+\end{derivation}
+
+\subsection{试探波函数选择}
+
+一个好的试探波函数 $\phi$ 应具备：
+
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item \textbf{良好行为}：单值、连续、平方可积
+\item \textbf{满足边界条件}：如 $r \to \infty$ 时 $\phi \to 0$
+\item \textbf{反映体系对称性}：与势场对称性匹配
+\item \textbf{包含变分参数}：可调节参数 $\alpha, \beta, \ldots$
+\end{itemize}
+
+\subsection{变分参数优化}
+
+含参数 $\alpha$ 的试探函数，最佳参数满足：
+\begin{equation}
+\frac{\partial E(\alpha)}{\partial \alpha} = 0
+\end{equation}
+
+\begin{exampleblock}{例题：氦原子基态能量}
+氦原子哈密顿（原子单位）：
+\begin{equation*}
+\hat{H} = -\frac{1}{2}\nabla_1^2 - \frac{1}{2}\nabla_2^2 - \frac{2}{r_1} - \frac{2}{r_2} + \frac{1}{r_{12}}
+\end{equation*}
+
+试探波函数（有效核电荷 $Z'$ 为变分参数）：
+\begin{equation*}
+\psi = \frac{Z'^3}{\pi} e^{-Z'(r_1+r_2)}
+\end{equation*}
+
+能量表达式（积分后）：
+\begin{equation*}
+E(Z') = (Z')^2 - \frac{27}{8}Z'
+\end{equation*}
+
+求导：
+\begin{equation*}
+\frac{dE}{dZ'} = 2Z' - \frac{27}{8} = 0 \implies Z' = \frac{27}{16}
+\end{equation*}
+
+最佳能量：$E_{\min} = -2.8477$ a.u.（实验值: $-2.9037$ a.u.）
+
+结果说明电子屏蔽使有效核电荷减小。
+\end{exampleblock}
+
+\section{线性变分法}
+
+\subsection{基本思想}
+
+试探函数展开为基函数线性组合：
+\begin{equation}
+\psi = \sum_{i=1}^{n} c_i \phi_i
+\end{equation}
+其中 $c_i$ 为待定系数。这种方法将无限维的函数空间优化问题转化为有限维的线性代数问题。
+
+\subsection{久期方程导出}
+
+能量表达式：
+\begin{equation}
+E = \frac{\sum_{i,j} c_i^* c_j H_{ij}}{\sum_{i,j} c_i^* c_j S_{ij}}
+\end{equation}
+其中哈密顿矩阵元和重叠积分：
+\begin{equation}
+H_{ij} = \int \phi_i^* \hat{H} \phi_j d\tau, \quad S_{ij} = \int \phi_i^* \phi_j d\tau
+\end{equation}
+对 $c_k$ 求极值：$\frac{\partial E}{\partial c_k} = 0$，得\textbf{久期方程}：
+\begin{equation}
+\sum_{j=1}^{n} c_j (H_{kj} - E S_{kj}) = 0
+\end{equation}
+
+\subsection{久期行列式}
+
+方程组有非零解的条件：
+\begin{equation}
+\begin{vmatrix}
+H_{11} - ES_{11} & H_{12} - ES_{12} & \cdots \\
+H_{21} - ES_{21} & H_{22} - ES_{22} & \cdots \\
+\vdots & \vdots & \ddots
+\end{vmatrix} = 0
+\end{equation}
+解此 $n$ 阶行列式得 $n$ 个能量本征值。
+
+\begin{exampleblock}{例题7-5：一维势箱中的粒子}
+考虑长度为 $a$ 的一维势箱，选取两个试探函数：
+\begin{equation*}
+\phi_1 = x(a-x), \quad \phi_2 = x^2(a-x)^2
+\end{equation*}
+均满足边界条件。
+
+计算矩阵元（$\hat{H} = -\frac{\hbar^2}{2m}\frac{d^2}{dx^2}$）：
+\begin{align*}
+H_{11} &= \frac{\hbar^2}{m} \cdot \frac{1}{a}, \quad H_{22} = \frac{2\hbar^2}{m} \cdot \frac{1}{a} \\
+H_{12} &= H_{21} = \frac{\hbar^2}{m} \cdot \frac{\sqrt{30}}{6a}
+\end{align*}
+重叠积分：
+\begin{equation*}
+S_{11} = \frac{a^3}{30}, \quad S_{22} = \frac{a^5}{630}, \quad S_{12} = \frac{a^4}{140}
+\end{equation*}
+
+久期方程：
+\begin{equation*}
+\det\begin{vmatrix} H_{11}-ES_{11} & H_{12}-ES_{12} \\ H_{21}-ES_{21} & H_{22}-ES_{22} \end{vmatrix} = 0
+\end{equation*}
+
+解得基态能量 $E_1 \approx 5.00 \frac{\hbar^2}{ma^2}$，与精确值 $E_{\text{exact}} = \frac{\pi^2\hbar^2}{2ma^2} \approx 4.93 \frac{\hbar^2}{ma^2}$ 非常接近（误差约1.4\%）。
+\end{exampleblock}
+
+\section{应用：$\mathbf{H_2^+}$}
+
+\subsection{LCAO-MO 方法}
+
+分子轨道为原子轨道线性组合：
+\begin{equation}
+\psi = c_A \phi_{1s_A} + c_B \phi_{1s_B}
+\end{equation}
+由对称性：$H_{AA} = H_{BB}$，$S_{AA} = S_{BB} = 1$，$S_{AB} = S$。久期行列式：
+\begin{equation}
+\begin{vmatrix}
+H_{AA} - E & H_{AB} - ES \\
+H_{AB} - ES & H_{AA} - E
+\end{vmatrix} = 0
+\end{equation}
+
+\subsection{能量本征值}
+
+解得：
+\begin{align}
+E_g &= \frac{H_{AA} + H_{AB}}{1 + S} \quad (\sigma_g) \\
+E_u &= \frac{H_{AA} - H_{AB}}{1 - S} \quad (\sigma_u^*)
+\end{align}
+成键轨道 $\sigma_g$：$c_A = c_B$，能量较低；反键轨道 $\sigma_u^*$：$c_A = -c_B$，能量较高。
+
+\begin{exampleblock}{附注：矩阵元的物理意义}
+$\text{H}_2^+$ 哈密顿（原子单位）：
+\begin{equation*}
+\hat{H} = -\frac{1}{2}\nabla^2 - \frac{1}{r_A} - \frac{1}{r_B}
+\end{equation*}
+
+\textbf{库仑积分} $H_{AA}$：
+\begin{equation*}
+H_{AA} = E_{1s} + \int \phi_A^* \left(-\frac{1}{r_B}\right) \phi_A d\tau
+\end{equation*}
+$E_{1s} = -0.5$ a.u. 为氢原子基态能量，第二项为 B 核对 A 轨道电子的吸引能。
+
+\textbf{交换积分} $H_{AB}$：
+\begin{equation*}
+H_{AB} = S \cdot E_{1s} + \int \phi_A^* \left(-\frac{1}{r_A}\right) \phi_B d\tau
+\end{equation*}
+无经典对应，是量子效应，对成键至关重要。
+
+\textbf{重叠积分} $S$：度量轨道重叠程度，是核间距 $R$ 的函数。
+\end{exampleblock}
+
+\begin{exampleblock}{例题7-6：$\text{H}_2^+$ 的数值结果}
+当核间距 $R = 2.5a_0$ 时，数值计算得：
+\begin{equation*}
+S = 0.458, \quad H_{AA} = -0.566 \text{ a.u.}, \quad H_{AB} = -0.966 \text{ a.u.}
+\end{equation*}
+
+代入能量公式：
+\begin{align*}
+E_g &= \frac{-0.566 + (-0.966)}{1 + 0.458} = -1.051 \text{ a.u.} \\
+E_u &= \frac{-0.566 - (-0.966)}{1 - 0.458} = -0.738 \text{ a.u.}
+\end{align*}
+
+成键能：
+\begin{equation*}
+D_e = E_g - E_{\text{分离}} = -1.051 - (-1.0) = -0.051 \text{ a.u.} = -1.39 \text{ eV}
+\end{equation*}
+
+通过改变 $R$ 计算能量曲线，可得平衡核间距 $R_e \approx 2.0 a_0$，实验值为 $2.00 a_0$，精确度很高。
+\end{exampleblock}
+
+\section{微扰理论}
+
+\subsection{基本思想}
+
+哈密顿算符分解：
+\begin{equation}
+\hat{H} = \hat{H}^{(0)} + \lambda \hat{H}^{(1)}
+\end{equation}
+其中 $\hat{H}^{(0)}$ 有精确解，$\hat{H}^{(1)}$ 为小的微扰项。能量和波函数展开：
+\begin{align}
+E_n &= E_n^{(0)} + \lambda E_n^{(1)} + \lambda^2 E_n^{(2)} + \cdots \\
+\psi_n &= \psi_n^{(0)} + \lambda \psi_n^{(1)} + \lambda^2 \psi_n^{(2)} + \cdots
+\end{align}
+
+\subsection{能量修正（非简并）}
+
+\textbf{零级能量}：$E_n^{(0)} = $ 未微扰本征值
+
+\textbf{一级修正}：
+\begin{equation}
+E_n^{(1)} = \int \psi_n^{(0)*} \hat{H}^{(1)} \psi_n^{(0)} d\tau = H_{nn}^{(1)}
+\end{equation}
+
+\textbf{二级修正}：
+\begin{equation}
+E_n^{(2)} = \sum_{k \neq n} \frac{|H_{kn}^{(1)}|^2}{E_n^{(0)} - E_k^{(0)}}
+\end{equation}
+其中 $H_{kn}^{(1)} = \int \psi_k^{(0)*} \hat{H}^{(1)} \psi_n^{(0)} d\tau$。总能量：$E_n \approx E_n^{(0)} + E_n^{(1)} + E_n^{(2)}$
+
+\begin{keypoint}
+微扰理论适用条件：$\hat{H}^{(1)}$ 相对 $\hat{H}^{(0)}$ 为小量，使级数收敛。
+\end{keypoint}
+
+\begin{exampleblock}{例题：势阱中的微扰}
+长度 $L$ 的一维势阱，中心有矩形势垒：
+\begin{equation*}
+\hat{H}^{(1)}(x) = \begin{cases} V_0 & L/4 \le x \le 3L/4 \\ 0 & \text{其他} \end{cases}
+\end{equation*}
+
+未微扰波函数和能量：
+\begin{align*}
+\psi_n^{(0)}(x) &= \sqrt{\frac{2}{L}} \sin\left(\frac{n\pi x}{L}\right) \\
+E_n^{(0)} &= \frac{n^2 h^2}{8mL^2}
+\end{align*}
+
+基态 ($n=1$) 一级修正：
+\begin{equation*}
+E_1^{(1)} = \int_{L/4}^{3L/4} |\psi_1^{(0)}|^2 V_0 dx = \frac{2V_0}{L} \int_{L/4}^{3L/4} \sin^2\left(\frac{\pi x}{L}\right) dx
+\end{equation*}
+
+利用 $\sin^2\theta = \frac{1-\cos 2\theta}{2}$：
+\begin{equation*}
+E_1^{(1)} = \frac{2V_0}{L} \left[\frac{x}{2} - \frac{L}{4\pi}\sin\frac{2\pi x}{L}\right]_{L/4}^{3L/4} = V_0\left(\frac{1}{2} + \frac{1}{2\pi}\right)
+\end{equation*}
+
+微扰后能量：
+\begin{equation*}
+E_1 \approx E_1^{(0)} + V_0\left(\frac{1}{2} + \frac{1}{2\pi}\right)
+\end{equation*}
+\end{exampleblock}
+
+\subsection{简并微扰}
+
+当零级能量简并时（多个态有相同能量），需用简并微扰理论。设能级 $E_n^{(0)}$ 有 $g$ 度简并，对应波函数 $\psi_{n1}^{(0)}, \psi_{n2}^{(0)}, \ldots, \psi_{ng}^{(0)}$。
+
+在简并子空间构造 $g \times g$ 微扰矩阵：
+\begin{equation}
+W_{ij} = \int \psi_{ni}^{(0)*} \hat{H}^{(1)} \psi_{nj}^{(0)} d\tau
+\end{equation}
+
+求解久期方程：
+\begin{equation}
+\det(W_{ij} - E^{(1)}\delta_{ij}) = 0
+\end{equation}
+
+得 $g$ 个一级修正能量，简并部分或全部解除。
+
+\section{常用积分公式}
+
+\textbf{指数积分}：
+\begin{equation}
+\int_0^\infty x^n e^{-ax} dx = \frac{n!}{a^{n+1}}
+\end{equation}
+
+\textbf{球坐标径向积分}：
+\begin{equation}
+\int_0^\infty r^n e^{-ar} r^2 dr = \frac{(n+2)!}{a^{n+3}}
+\end{equation}
+
+\textbf{三角函数积分}：
+\begin{align}
+\int_0^L \sin^2\left(\frac{n\pi x}{L}\right) dx &= \frac{L}{2} \\
+\int_0^L \sin\left(\frac{n\pi x}{L}\right)\sin\left(\frac{m\pi x}{L}\right) dx &= \frac{L}{2}\delta_{nm}
+\end{align}
+
+\textbf{高斯积分}：
+\begin{equation}
+\int_{-\infty}^{\infty} e^{-ax^2} dx = \sqrt{\frac{\pi}{a}}
+\end{equation}
+
+\section{重要定理与关系}
+
+\subsection{Hellmann-Feynman 定理}
+
+\begin{keypoint}
+对于含参数 $\lambda$ 的哈密顿 $\hat{H}(\lambda)$，变分能量对 $\lambda$ 的导数等于微扰矩阵元：
+\begin{equation}
+\frac{\partial E}{\partial \lambda} = \int \psi^* \frac{\partial \hat{H}}{\partial \lambda} \psi d\tau
+\end{equation}
+\end{keypoint}
+
+\subsection{Brillouin 定理}
+
+在 Hartree-Fock 理论中，占据轨道与虚轨道间单激发的矩阵元为零：
+\begin{equation}
+\langle \psi_0 | \hat{H} | \psi_i^a \rangle = 0
+\end{equation}
+这意味着一级微扰为零，需计算二级修正。
+
+\subsection{不确定关系}
+
+对于不对易算符 $[\hat{A},\hat{B}] = i\hat{C}$：
+\begin{equation}
+\Delta A \cdot \Delta B \geq \frac{1}{2}|\langle C \rangle|
+\end{equation}
+
+
+\end{multicols}
+
+\end{document}

@@ -1,0 +1,87 @@
+\documentclass[a4paper]{article}
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{diagbox}
+\usepackage{geometry}
+\usepackage{graphicx}
+\geometry{a4paper, left=1cm, right=2cm, top=0.5cm, bottom=0.5cm}
+
+\begin{document}
+
+\section*{1. 气垫导轨的水平调节}
+
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}|c|c|c|c|}
+\hline
+& $\Delta t_1$ (ms) & $\Delta t_2$ (ms) & $\displaystyle\frac{|\Delta t_1 - \Delta t_2|}{(\Delta t_1 + \Delta t_2)/2}$ (\%) \\
+\hline
+ 左$\rightarrow$右 &  &  &  \\
+\hline
+ 右$\rightarrow$左 &  &  &  \\
+\hline
+\end{tabular*}
+
+\section*{2. 弹簧振子简谐振动周期与振幅的关系}
+
+周期数\underline{\hspace{1em}\hspace{1em}}, (振子) $m_1$= \underline{\hspace{1em}\hspace{1em}}g, (两个弹簧) $m_s$= \underline{\hspace{1em}\hspace{1em}}g。
+
+\vspace{1em}
+
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}|c|c|c|c|c|}
+\hline
+\diagbox{时间 $t$ (s)}{次数}{振幅 A (cm)} & 18.00 & 20.00 & 22.00 & 24.00 \\
+\hline
+1 &  &  &  &  \\
+\hline
+2 &  &  &  &  \\
+\hline
+3 &  &  &  &  \\
+\hline
+4 &  &  &  &  \\
+\hline
+5 &  &  &  &  \\
+\hline
+6 &  &  &  &  \\
+\hline
+$\bar{t}$ (s) &  &  &  &  \\
+\hline
+周期 $T$ (s) &  &  &  &  \\
+\hline
+倔强系数 $k$ (N/m) &  &  &  &  \\
+\hline
+\end{tabular*}
+
+\vspace{1em}
+弹簧振子简谐振动周期与振幅的关系为：
+
+\section*{3. 弹簧振子简谐振动周期与振子质量的关系}
+(设定的振幅 A=\underline{\hspace{1em}\hspace{1em}}cm, 周期数\underline{\hspace{1em}\hspace{1em}})
+
+\vspace{1em}
+
+\renewcommand{\arraystretch}{1.2}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}m{3cm}|C|C|C|C|C|}
+\hline
+& $m\quad$ (g) & \multicolumn{2}{c|}{时间 $t$ (s)} & 周期 $T$ (s) & $T^2$ (s$^2$) \\
+\hline
+\multirow{2}{=}{滑块} & \multirow{2}{=}{} &  &  & \multirow{2}{=}{} & \multirow{2}{=}{} \\
+\cline{3-4}
+ & &  &  & & \\
+\hline
+\multirow{2}{=}{滑块 +2个骑码} & \multirow{2}{=}{} &  &  & \multirow{2}{=}{} & \multirow{2}{=}{} \\
+\cline{3-4}
+ & &  &  & & \\
+\hline
+\multirow{2}{=}{滑块 +4个骑码} & \multirow{2}{=}{} &  &  & \multirow{2}{=}{} & \multirow{2}{=}{} \\
+\cline{3-4}
+ & &  &  & & \\
+\hline
+\multirow{2}{=}{滑块 +6个骑码} & \multirow{2}{=}{} &  &  & \multirow{2}{=}{} & \multirow{2}{=}{} \\
+\cline{3-4}
+ & &  &  & & \\
+\hline
+\end{tabularx}
+
+\end{document}

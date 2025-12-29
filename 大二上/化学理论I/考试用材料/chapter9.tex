@@ -1,0 +1,539 @@
+% 编译提示：使用 XeLaTeX 编译
+% 需要 ctex 宏包支持中文
+
+\documentclass[a4paper,9pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{ctex}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{amsthm}
+
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1.8cm}
+
+\setlength{\columnsep}{0.8cm}
+\setlength{\columnseprule}{0.4pt}
+\renewcommand{\columnseprulecolor}{\color{gray!50}}
+
+% 定义颜色方案
+\definecolor{sectioncolor}{RGB}{0,102,204}
+\definecolor{subsectioncolor}{RGB}{0,153,153}
+\definecolor{keycolor}{RGB}{204,102,0}
+\definecolor{derivcolor}{RGB}{100,149,237}
+\definecolor{boxbg}{RGB}{240,248,255}
+\definecolor{keybg}{RGB}{255,248,240}
+
+% 自定义章节标题格式
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{sectioncolor}}
+  {\thesection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{subsectioncolor}}
+  {\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{0.8ex plus 0.3ex minus 0.1ex}{0.5ex plus 0.1ex}
+
+% 自定义定理环境
+\newtheorem{theorem}{原理}
+
+% 自定义关键点环境
+\newenvironment{keypoint}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=keybg,
+  colframe=keycolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{keycolor}{\textbf{关键点：}}}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义推导环境
+\newenvironment{derivation}
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{derivcolor}{\textbf{推导：}}\par\linespread{1.1}\selectfont}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 自定义例题环境
+\newenvironment{exampleblock}[1]
+{\par\vspace{0.3em}\noindent\begin{tcolorbox}[
+  colback=boxbg,
+  colframe=derivcolor,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt,
+  right=2pt,
+  top=2pt,
+  bottom=2pt,
+  boxsep=0pt]
+\small\noindent\textcolor{derivcolor}{\textbf{#1}}\par\linespread{1.1}\selectfont}
+{\end{tcolorbox}\par\vspace{0.3em}}
+
+% 页眉页脚设置
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\scriptsize9-\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{gray!50}\leaders\hrule height \footrulewidth\hfill}}
+
+% 紧凑标题
+\title{\vspace{-2em}\Large\bfseries\color{sectioncolor} Chapter 9 Collections - 双原子分子\vspace{-1em}}
+\author{}
+\date{2025 年 11 月 1 日}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{multicols}{2}
+
+\section{双原子分子的哈密顿算符}
+
+\subsection{玻恩-奥本海默近似}
+
+双原子分子的哈密顿算符（SI单位）：
+\begin{equation}
+\begin{split}
+\hat{H} &= -\frac{\hbar^2}{2m_e}\sum_i\nabla_i^2 - \frac{\hbar^2}{2}\sum_A\frac{1}{M_A}\nabla_A^2 - \sum_{i,A}\frac{Z_Ae^2}{4\pi\varepsilon_0 r_{iA}} \\
+&\quad + \sum_{i<j}\frac{e^2}{4\pi\varepsilon_0 r_{ij}} + \sum_{A<B}\frac{Z_AZ_Be^2}{4\pi\varepsilon_0 R_{AB}}
+\end{split}
+\end{equation}
+
+\begin{keypoint}
+\textbf{Born-Oppenheimer近似}：由于核质量远大于电子质量($M \gg m_e$)，核运动比电子慢得多，可将核坐标视为参数，分离核运动和电子运动。
+\end{keypoint}
+
+电子哈密顿算符（固定核坐标$R$）：
+\begin{equation}
+\hat{H}_{el}(R) = -\frac{\hbar^2}{2m_e}\sum_i\nabla_i^2 - \sum_{i,A}\frac{Z_Ae^2}{4\pi\varepsilon_0 r_{iA}} + \sum_{i<j}\frac{e^2}{4\pi\varepsilon_0 r_{ij}} + \frac{Z_AZ_Be^2}{4\pi\varepsilon_0 R}
+\end{equation}
+
+电子能量$E_{el}(R)$加上核排斥能构成势能曲线$U(R)$。
+
+\subsection{核运动方程}
+
+在势能$U(R)$中，核的薛定谔方程：
+\begin{equation}
+\left[-\frac{\hbar^2}{2\mu}\frac{d^2}{dR^2} + U(R)\right]\chi(R) = E\chi(R)
+\end{equation}
+
+其中$\mu = \frac{M_AM_B}{M_A+M_B}$为约化质量。
+
+进一步分离振动和转动：
+\begin{equation}
+\chi(R) = \frac{\xi(R)}{R}Y_{JM}(\theta,\phi)
+\end{equation}
+
+\section{$\mathbf{H_2^+}$分子离子}
+
+\subsection{精确解的存在性}
+
+$\text{H}_2^+$是最简单的分子，包含2个质子和1个电子，是唯一可精确求解的分子体系。
+
+电子哈密顿算符（原子单位）：
+\begin{equation}
+\hat{H} = -\frac{1}{2}\nabla^2 - \frac{1}{r_A} - \frac{1}{r_B} + \frac{1}{R}
+\end{equation}
+
+采用椭球坐标系$(\lambda, \mu, \phi)$：
+\begin{align}
+\lambda &= \frac{r_A + r_B}{R}, \quad 1 \le \lambda < \infty \\
+\mu &= \frac{r_A - r_B}{R}, \quad -1 \le \mu \le 1
+\end{align}
+
+可分离变量得到精确解。
+
+\subsection{键级与稳定性}
+
+\textbf{键级}定义：
+\begin{equation}
+\text{键级} = \frac{1}{2}(\text{成键电子数} - \text{反键电子数})
+\end{equation}
+
+\begin{exampleblock}{例题：$\text{H}_2^+$的键级}
+$\text{H}_2^+$电子组态：$(\sigma_g 1s)^1$
+
+键级$= \frac{1}{2}(1-0) = 0.5$
+
+实验：$D_e = 2.79$ eV，$R_e = 1.06$ \AA
+
+理论计算与实验符合很好，证明LCAO-MO方法的有效性。
+\end{exampleblock}
+
+\section{LCAO-MO方法}
+
+\subsection{基本假设}
+
+分子轨道表示为原子轨道的线性组合（LCAO-MO）：
+\begin{equation}
+\psi_{MO} = \sum_i c_i \phi_{AO,i}
+\end{equation}
+
+对$\text{H}_2^+$：
+\begin{equation}
+\psi = c_1\phi_{1s_A} + c_2\phi_{1s_B}
+\end{equation}
+
+\subsection{成键与反键轨道}
+
+由线性变分法，解久期方程得两个分子轨道：
+
+\textbf{成键轨道}（$\sigma_g$）：
+\begin{equation}
+\psi_g = \frac{1}{\sqrt{2(1+S)}}(\phi_A + \phi_B)
+\end{equation}
+
+能量：$E_g = \frac{H_{AA} + H_{AB}}{1+S}$（能量降低）
+
+\textbf{反键轨道}（$\sigma_u^*$）：
+\begin{equation}
+\psi_u = \frac{1}{\sqrt{2(1-S)}}(\phi_A - \phi_B)
+\end{equation}
+
+能量：$E_u = \frac{H_{AA} - H_{AB}}{1-S}$（能量升高）
+
+\begin{derivation}
+\textbf{库仑积分与交换积分}：
+
+库仑积分：
+\begin{equation*}
+H_{AA} = \int \phi_A^* \hat{H} \phi_A d\tau = E_{1s} + \int \phi_A^* \left(-\frac{1}{r_B}\right) \phi_A d\tau
+\end{equation*}
+
+交换积分：
+\begin{equation*}
+H_{AB} = \int \phi_A^* \hat{H} \phi_B d\tau = S \cdot E_{1s} + \int \phi_A^* \left(-\frac{1}{r_A}\right) \phi_B d\tau
+\end{equation*}
+
+重叠积分：
+\begin{equation*}
+S = \int \phi_A^* \phi_B d\tau
+\end{equation*}
+
+这些积分都是核间距$R$的函数。
+\end{derivation}
+
+\section{分子轨道对称性}
+
+\subsection{对称性标记}
+
+\textbf{关于对称中心}（仅同核双原子分子） :
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $g$（gerade，偶）：对中心反演不变
+\item $u$（ungerade，奇）：对中心反演改变符号
+\end{itemize}
+
+\textbf{关于分子轴}：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $\sigma$：绕轴旋转对称（$|m_l|=0$）
+\item $\pi$：一个节面通过轴（$|m_l|=1$）
+\item $\delta$：两个节面通过轴（$|m_l|=2$）
+\end{itemize}
+
+\begin{keypoint}
+完整标记示例：$\sigma_g$、$\sigma_u^*$、$\pi_g$、$\pi_u^*$
+\end{keypoint}
+
+键能、键长与键级的关系：
+
+\textbf{键级越大}：键能越大，键长越短，振动频率越高
+
+\begin{exampleblock}{示例：N$_2$、O$_2$、F$_2$的比较}
+\begin{center}
+\begin{tabular}{cccc}
+\hline
+分子 & 键级 & $D_e$/eV & $R_e$/\AA \\
+\hline
+N$_2$ & 3 & 9.90 & 1.10 \\
+O$_2$ & 2 & 5.21 & 1.21 \\
+F$_2$ & 1 & 1.65 & 1.42 \\
+\hline
+\end{tabular}
+\end{center}
+
+键级越大，键能越大，键长越短。
+\end{exampleblock}
+
+\section{分子光谱项}
+
+\subsection{分子的量子数}
+
+\textbf{轨道角动量投影}：
+\begin{equation}
+\Lambda = |M_L| = \left|\sum_i m_{l_i}\right|
+\end{equation}
+
+用希腊字母表示：$\Lambda = 0, 1, 2, 3, \ldots$对应$\Sigma, \Pi, \Delta, \Phi, \ldots$
+
+\textbf{自旋投影}（沿分子轴） :
+\begin{equation}
+\Sigma_s = M_S = \sum_i m_{s_i}
+\end{equation}
+
+注意：$\Sigma_s$是量子数，$\Sigma$是光谱项符号，两者不同。
+
+\textbf{总角动量投影}：
+\begin{equation}
+\Omega = \Lambda + \Sigma_s
+\end{equation}
+
+\subsection{光谱项符号详解}
+
+分子光谱项完整记号：$^{2S+1}\Lambda_{\Omega,g/u}^{\pm}$
+
+\textbf{各符号含义}：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $2S+1$：自旋多重度（左上角）
+\item $\Lambda$：轨道角动量符号（$\Sigma, \Pi, \Delta, \Phi, \ldots$）
+\item $\Omega$：总角动量投影（右下角下标）
+\item $g/u$：反演对称性（仅同核分子，右下角）
+\item $\pm$：反射对称性（仅$\Sigma$态，右上角）
+\end{itemize}
+
+\textbf{$\Sigma$态的额外标记}：
+
+对于$\Lambda = 0$的$\Sigma$态，需标记反射对称性：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $\Sigma^+$：对包含分子轴的平面反射不变
+\item $\Sigma^-$：反射后改变符号
+\end{itemize}
+
+\begin{exampleblock}{例题1：O$_2$的基态}
+O$_2$电子组态：$\ldots(\pi_{2p_x}^*)^1(\pi_{2p_y}^*)^1$
+
+两个$\pi^*$电子占据简并轨道：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $m_{l_1} = +1$，$m_{l_2} = -1$，$\Lambda = |1-1| = 0$ ($\Sigma$态)
+\item 自旋平行（Hund规则）：$S = 1$，$2S+1 = 3$
+\item 同核分子，反演对称：偶宇称 $g$
+\item 反射对称性：$\Sigma^-$
+\end{itemize}
+
+基态光谱项：$^3\Sigma_g^-$
+\end{exampleblock}
+
+\begin{exampleblock}{例题2：NO分子的基态}
+NO电子组态：$\ldots(\pi_{2p})^4(\pi_{2p}^*)^1$
+
+单个$\pi^*$电子：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $|m_l| = 1$，$\Lambda = 1$ ($\Pi$态)
+\item $S = 1/2$，$2S+1 = 2$（双重态）
+\item $\Omega = \Lambda + \Sigma_s = 1 \pm 1/2 = 3/2$ 或 $1/2$
+\item 异核分子，无$g/u$标记
+\end{itemize}
+
+基态光谱项：$^2\Pi_{1/2}$ 或 $^2\Pi_{3/2}$
+
+实际基态为 $^2\Pi_{1/2}$（由自旋-轨道耦合决定）
+\end{exampleblock}
+
+\begin{exampleblock}{例题3：N$_2$的基态}
+N$_2$电子组态：$\ldots(\sigma_{2p})^2$
+
+两个$\sigma$电子，自旋反平行：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $\Lambda = 0$ ($\Sigma$态)
+\item $S = 0$，$2S+1 = 1$（单重态）
+\item 同核分子：$g$（偶宇称）
+\item 反射对称性：$\Sigma^+$
+\end{itemize}
+
+基态光谱项：$^1\Sigma_g^+$
+\end{exampleblock}
+
+\subsection{光谱项简并度}
+
+\textbf{原子光谱项简并度}：
+
+对于原子光谱项 $^{2S+1}L_J$：
+\begin{equation}
+g = 2J + 1
+\end{equation}
+
+不考虑自旋-轨道耦合时（仅$L$和$S$） :
+\begin{equation}
+g = (2L+1)(2S+1)
+\end{equation}
+
+\textbf{分子光谱项简并度}：
+
+对于$\Lambda \neq 0$的分子光谱项 $^{2S+1}\Lambda$：
+\begin{equation}
+g = 2(2S+1) = 4S+2
+\end{equation}
+
+因子2来自$\pm\Lambda$的简并。
+
+对于$\Lambda = 0$的$\Sigma$态 $^{2S+1}\Sigma^{\pm}$：
+\begin{equation}
+g = 2S+1
+\end{equation}
+
+无轨道简并（$\Sigma^+$和$\Sigma^-$不简并）。
+
+考虑$\Omega$时（Hund's case a） :
+\begin{equation}
+g_{\Omega} = 
+\begin{cases}
+2 & \Omega \neq 0 \\
+1 & \Omega = 0
+\end{cases}
+\end{equation}
+
+\begin{exampleblock}{示例：简并度计算}
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $^3\Sigma_g^-$（O$_2$）：$g = 2S+1 = 3$
+\item $^2\Pi$（NO）：$g = 2(2S+1) = 4$
+\item $^1\Sigma_g^+$（N$_2$）：$g = 2S+1 = 1$
+\item $^3\Pi_g$：$g = 2(2S+1) = 6$（不考虑$\Omega$）
+\end{itemize}
+\end{exampleblock}
+
+\section{光电子能谱}
+
+\subsection{基本原理}
+
+光电子能谱（PES）利用光电效应：
+\begin{equation}
+h\nu = IE + KE
+\end{equation}
+
+其中：
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $h\nu$：入射光子能量
+\item $IE$：电离能
+\item $KE$：出射电子动能
+\end{itemize}
+
+测量电子动能分布，得到各分子轨道的电离能。
+
+\begin{theorem}[Koopmans定理]
+分子轨道的电离能近似等于该轨道能量的负值：
+\begin{equation}
+IE_i \approx -\varepsilon_i
+\end{equation}
+\end{theorem}
+
+假设：电离过程中其他轨道不变（冻结轨道近似）。
+
+\begin{exampleblock}{应用：N$_2$的光电子能谱}
+N$_2$的PES显示三组峰：
+
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $\sigma_{2p}$：$IE \approx 18$ eV
+\item $\pi_{2p}$：$IE \approx 17$ eV
+\item $\sigma_{2s}$：$IE \approx 19$ eV
+\end{itemize}
+
+谱线精细结构反映振动能级。
+\end{exampleblock}
+
+\section{分子振动}
+
+\subsection{谐振子近似}
+
+双原子分子的振动，在平衡位置附近可近似为谐振子：
+\begin{equation}
+V(x) = \frac{1}{2}k x^2, \quad x = R - R_e
+\end{equation}
+
+振动能级：
+\begin{equation}
+E_v = \hbar\omega\left(v + \frac{1}{2}\right), \quad v = 0,1,2,\ldots
+\end{equation}
+
+其中$\omega = \sqrt{k/\mu}$，$k$为力常数。
+
+\subsection{非谐振子修正}
+
+实际势能曲线偏离谐振子，采用Morse势：
+\begin{equation}
+V(R) = D_e[1 - e^{-\beta(R-R_e)}]^2
+\end{equation}
+
+能级（含非谐性修正）：
+\begin{equation}
+E_v = \hbar\omega\left(v + \frac{1}{2}\right) - \hbar\omega x_e\left(v + \frac{1}{2}\right)^2
+\end{equation}
+
+$x_e$为非谐性常数，$x_e \ll 1$。
+
+\begin{keypoint}
+振动能级间隔随$v$增大而减小，最终趋于离解极限。
+\end{keypoint}
+
+\section{分子转动}
+
+\subsection{刚性转子模型}
+
+固定核间距$R_e$，分子转动的能级：
+\begin{equation}
+E_J = BJ(J+1), \quad J = 0,1,2,\ldots
+\end{equation}
+
+转动常数：
+\begin{equation}
+B = \frac{\hbar^2}{2I} = \frac{\hbar^2}{2\mu R_e^2}
+\end{equation}
+
+转动能级间隔：
+\begin{equation}
+\Delta E = E_{J+1} - E_J = 2B(J+1)
+\end{equation}
+
+\subsection{振-转耦合}
+
+考虑振动时核间距变化，转动常数依赖于振动量子数：
+\begin{equation}
+B_v = B_e - \alpha_e\left(v + \frac{1}{2}\right)
+\end{equation}
+
+总能量：
+\begin{equation}
+E_{v,J} = \hbar\omega\left(v + \frac{1}{2}\right) + B_vJ(J+1)
+\end{equation}
+
+\section{常用公式速查}
+
+\begin{scriptsize}
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item 键级：$\frac{1}{2}($成键电子$ - $反键电子$)$
+\item 约化质量：$\mu = \frac{M_A M_B}{M_A + M_B}$
+\item 成键轨道能量：$E_g = \frac{H_{AA} + H_{AB}}{1+S}$
+\item 反键轨道能量：$E_u = \frac{H_{AA} - H_{AB}}{1-S}$
+\item 分子轨道角动量：$\Lambda = |\sum_i m_{l_i}|$
+\item 光谱项符号：$^{2S+1}\Lambda_{\Omega,g/u}^{\pm}$
+\item 原子简并度：$g = 2J+1$ 或 $(2L+1)(2S+1)$
+\item 分子简并度：$g = 4S+2$ ($\Lambda \neq 0$) 或 $2S+1$ ($\Sigma$态)
+\item 振动能级：$E_v = h\nu(v + \frac{1}{2})$
+\item 转动能级：$E_J = BJ(J+1)$
+\item 转动常数：$B = \frac{h}{8\pi^2 c I}$ (cm$^{-1}$)
+\item 光电子能谱：$h\nu = IE + KE$
+\item Morse势：$V = D_e[1-e^{-\beta(R-R_e)}]^2$
+\item 波数换算：$1$ eV $= 8065.5$ cm$^{-1}$
+\end{itemize}
+\end{scriptsize}
+
+\end{multicols}
+
+\end{document}
