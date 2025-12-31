@@ -1,6 +1,6 @@
 ```text
 XMU-ChemLearning/
-├─大一下
+├─大一第2学期
 │  ├─中心科学实验II
 │  │  ├─docx_incomplete
 │  │  └─pdf
@@ -12,7 +12,7 @@ XMU-ChemLearning/
 │  └─自然科学中的数学II
 │      ├─往年试卷
 │      └─课件
-└─大二上
+└─大二第1学期
     ├─C程序设计基础
     │  ├─pta
     │  └─试卷
