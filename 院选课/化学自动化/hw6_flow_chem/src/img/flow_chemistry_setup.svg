@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="SimSun, serif">
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="#f8f9fa"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#333">流动化学光催化降解装置示意图</text>
+  
+  <!-- 注射泵1 -->
+  <rect x="50" y="150" width="100" height="60" rx="5" fill="#4CAF50" stroke="#388E3C" stroke-width="2"/>
+  <text x="100" y="175" text-anchor="middle" font-size="12" fill="white">注射泵1</text>
+  <text x="100" y="195" text-anchor="middle" font-size="10" fill="white">(MB溶液)</text>
+  
+  <!-- 注射泵2 -->
+  <rect x="50" y="250" width="100" height="60" rx="5" fill="#2196F3" stroke="#1976D2" stroke-width="2"/>
+  <text x="100" y="275" text-anchor="middle" font-size="12" fill="white">注射泵2</text>
+  <text x="100" y="295" text-anchor="middle" font-size="10" fill="white">(TiO₂悬浮液)</text>
+  
+  <!-- 管路1 -->
+  <line x1="150" y1="180" x2="250" y2="180" stroke="#666" stroke-width="3"/>
+  <polygon points="248,175 258,180 248,185" fill="#666"/>
+  
+  <!-- 管路2 -->
+  <line x1="150" y1="280" x2="250" y2="280" stroke="#666" stroke-width="3"/>
+  <polygon points="248,275 258,280 248,285" fill="#666"/>
+  
+  <!-- T型混合器 -->
+  <rect x="250" y="200" width="80" height="60" rx="5" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+  <text x="290" y="225" text-anchor="middle" font-size="11" fill="white">T型</text>
+  <text x="290" y="245" text-anchor="middle" font-size="11" fill="white">混合器</text>
+  
+  <!-- 连接管路 -->
+  <line x1="290" y1="180" x2="290" y2="200" stroke="#666" stroke-width="3"/>
+  <line x1="290" y1="260" x2="290" y2="280" stroke="#666" stroke-width="3"/>
+  
+  <!-- 混合后管路 -->
+  <line x1="330" y1="230" x2="400" y2="230" stroke="#666" stroke-width="3"/>
+  <polygon points="398,225 408,230 398,235" fill="#666"/>
+  
+  <!-- 微流控反应器 -->
+  <rect x="400" y="150" width="150" height="160" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="3"/>
+  <text x="475" y="175" text-anchor="middle" font-size="12" fill="#1565C0">微流控反应器</text>
+  <text x="475" y="195" text-anchor="middle" font-size="10" fill="#1565C0">(石英玻璃芯片)</text>
+  
+  <!-- 反应通道 -->
+  <rect x="420" y="210" width="110" height="40" rx="3" fill="#BBDEFB" stroke="#1565C0" stroke-width="1"/>
+  <text x="475" y="235" text-anchor="middle" font-size="10" fill="#1565C0">TiO₂涂层通道</text>
+  
+  <!-- UV-LED光源 -->
+  <rect x="420" y="100" width="110" height="40" rx="5" fill="#9C27B0" stroke="#7B1FA2" stroke-width="2"/>
+  <text x="475" y="118" text-anchor="middle" font-size="11" fill="white">UV-LED光源</text>
+  <text x="475" y="133" text-anchor="middle" font-size="10" fill="white">365 nm</text>
+  
+  <!-- 光线 -->
+  <line x1="450" y1="140" x2="450" y2="150" stroke="#FFEB3B" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="475" y1="140" x2="475" y2="150" stroke="#FFEB3B" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="500" y1="140" x2="500" y2="150" stroke="#FFEB3B" stroke-width="2" stroke-dasharray="5,3"/>
+  
+  <!-- UV光线箭头 -->
+  <polygon points="448,148 452,148 450,155" fill="#FFEB3B"/>
+  <polygon points="473,148 477,148 475,155" fill="#FFEB3B"/>
+  <polygon points="498,148 502,148 500,155" fill="#FFEB3B"/>
+  
+  <!-- 光源标注 -->
+  <text x="540" y="125" font-size="10" fill="#666">↓ 紫外光</text>
+  
+  <!-- 出口管路 -->
+  <line x1="550" y1="230" x2="620" y2="230" stroke="#666" stroke-width="3"/>
+  <polygon points="618,225 628,230 618,235" fill="#666"/>
+  
+  <!-- 流通检测池 -->
+  <rect x="620" y="200" width="80" height="60" rx="5" fill="#F44336" stroke="#D32F2F" stroke-width="2"/>
+  <text x="660" y="225" text-anchor="middle" font-size="11" fill="white">紫外检测器</text>
+  <text x="660" y="245" text-anchor="middle" font-size="10" fill="white">664 nm</text>
+  
+  <!-- 检测器标注 -->
+  <text x="660" y="190" text-anchor="middle" font-size="10" fill="#666">检测MB浓度</text>
+  
+  <!-- 出口管路2 -->
+  <line x1="700" y1="230" x2="750" y2="230" stroke="#666" stroke-width="3"/>
+  <polygon points="748,225 758,230 748,235" fill="#666"/>
+  
+  <!-- 废液收集瓶 -->
+  <rect x="740" y="210" width="50" height="80" rx="3" fill="#9E9E9E" stroke="#616161" stroke-width="2"/>
+  <text x="765" y="255" text-anchor="middle" font-size="10" fill="white">废液</text>
+  <text x="765" y="270" text-anchor="middle" font-size="10" fill="white">收集</text>
+  
+  <!-- 图例 -->
+  <rect x="50" y="380" width="700" height="100" rx="5" fill="white" stroke="#ddd" stroke-width="1"/>
+  <text x="60" y="400" font-size="12" font-weight="bold" fill="#333">图例说明：</text>
+  
+  <!-- 图例项1 -->
+  <rect x="60" y="410" width="20" height="15" fill="#4CAF50"/>
+  <text x="90" y="422" font-size="10" fill="#333">MB溶液（亚甲基蓝，10 mg/L）</text>
+  
+  <!-- 图例项2 -->
+  <rect x="280" y="410" width="20" height="15" fill="#2196F3"/>
+  <text x="310" y="422" font-size="10" fill="#333">TiO₂悬浮液（0.1 g/L）</text>
+  
+  <!-- 图例项3 -->
+  <rect x="500" y="410" width="20" height="15" fill="#FF9800"/>
+  <text x="530" y="422" font-size="10" fill="#333">T型混合器</text>
+  
+  <!-- 图例项4 -->
+  <rect x="60" y="440" width="20" height="15" fill="#E3F2FD" stroke="#1565C0" stroke-width="1"/>
+  <text x="90" y="452" font-size="10" fill="#333">石英玻璃微流控芯片（通道：10mm × 1mm）</text>
+  
+  <!-- 图例项5 -->
+  <rect x="380" y="440" width="20" height="15" fill="#9C27B0"/>
+  <text x="410" y="452" font-size="10" fill="#333">UV-LED光源（365 nm，10-50 mW/cm²）</text>
+  
+  <!-- 图例项6 -->
+  <rect x="60" y="460" width="20" height="15" fill="#F44336"/>
+  <text x="90" y="472" font-size="10" fill="#333">紫外-可见分光光度计流通检测器（检测波长：664 nm）</text>
+  
+  <!-- 流向标注 -->
+  <text x="200" y="350" font-size="11" fill="#666">← 流动方向 →</text>
+  <line x1="170" y1="345" x2="230" y2="345" stroke="#666" stroke-width="2"/>
+  <polygon points="228,340 238,345 228,350" fill="#666"/>
+</svg>

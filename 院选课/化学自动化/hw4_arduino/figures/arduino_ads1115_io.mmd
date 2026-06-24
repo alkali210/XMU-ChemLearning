@@ -1,0 +1,8 @@
+flowchart LR
+  PC[PC / Python软件<br/>串口命令；保存数据] -->|USB 串口| UNO[Arduino Uno<br/>USB供电 / 串口<br/>I²C主机]
+  UNO -->|5V → VDD| ADC[ADS1115 16-bit ADC<br/>I²C地址0x48<br/>模拟输入A0-A3]
+  UNO -->|GND 共地| ADC
+  UNO -->|A4/SDA → SDA| ADC
+  UNO -->|A5/SCL → SCL| ADC
+  INST[GC/CE等化学仪器<br/>0-5 V模拟输出] -->|待测电压 → A0/A1| ADC
+  TRIG[外部触发信号（可选）] -->|开始信号 → D2| UNO

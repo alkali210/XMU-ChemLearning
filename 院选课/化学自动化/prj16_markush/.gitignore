@@ -1,0 +1,11 @@
+.agents/
+undefined/
+data/images/
+__pycache__/
+*.pyc
+node_modules/
+dist/
+.env
+*.ckpt
+*.h5
+.worktrees/

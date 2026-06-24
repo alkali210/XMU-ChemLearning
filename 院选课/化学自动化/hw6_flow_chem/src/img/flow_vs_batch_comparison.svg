@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="SimSun, serif">
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="#f8f9fa"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">流动化学 vs 传统间歇式反应对比</text>
+  
+  <!-- 左侧：传统间歇式 -->
+  <rect x="30" y="60" width="350" height="420" rx="10" fill="#FFEBEE" stroke="#F44336" stroke-width="2"/>
+  <text x="205" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#C62828">传统间歇式反应</text>
+  
+  <!-- 传统反应器 -->
+  <rect x="100" y="120" width="180" height="150" rx="5" fill="#FFCDD2" stroke="#E53935" stroke-width="2"/>
+  <text x="190" y="145" text-anchor="middle" font-size="12" fill="#C62828">烧杯反应器</text>
+  
+  <!-- 光照不均匀示意 -->
+  <circle cx="190" cy="200" r="40" fill="none" stroke="#FFEB3B" stroke-width="3" stroke-dasharray="5,5"/>
+  <circle cx="190" cy="200" r="25" fill="none" stroke="#FFEB3B" stroke-width="2"/>
+  <circle cx="190" cy="200" r="10" fill="#FFEB3B"/>
+  <text x="190" y="260" text-anchor="middle" font-size="10" fill="#666">光照不均匀</text>
+  
+  <!-- 问题列表 -->
+  <text x="50" y="300" font-size="11" fill="#C62828">✗ 光照不均匀，光程长</text>
+  <text x="50" y="320" font-size="11" fill="#C62828">✗ 催化剂需离心分离</text>
+  <text x="50" y="340" font-size="11" fill="#C62828">✗ 反应时间控制粗放</text>
+  <text x="50" y="360" font-size="11" fill="#C62828">✗ 放大困难（体积放大）</text>
+  <text x="50" y="380" font-size="11" fill="#C62828">✗ 光利用率低</text>
+  <text x="50" y="400" font-size="11" fill="#C62828">✗ 温度控制不均匀</text>
+  <text x="50" y="420" font-size="11" fill="#C62828">✗ 批次间重现性差</text>
+  
+  <!-- 中间对比箭头 -->
+  <text x="400" y="250" text-anchor="middle" font-size="24" fill="#666">VS</text>
+  
+  <!-- 右侧：流动化学 -->
+  <rect x="420" y="60" width="350" height="420" rx="10" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+  <text x="595" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#2E7D32">流动化学反应</text>
+  
+  <!-- 流动反应器 -->
+  <rect x="480" y="120" width="220" height="80" rx="5" fill="#C8E6C9" stroke="#4CAF50" stroke-width="2"/>
+  <text x="590" y="145" text-anchor="middle" font-size="12" fill="#2E7D32">微流控反应器</text>
+  <text x="590" y="165" text-anchor="middle" font-size="10" fill="#666">通道：10mm × 1mm</text>
+  <text x="590" y="185" text-anchor="middle" font-size="10" fill="#666">薄层流动，光程短</text>
+  
+  <!-- 均匀光照示意 -->
+  <line x1="530" y1="110" x2="530" y2="120" stroke="#FFEB3B" stroke-width="2"/>
+  <line x1="560" y1="110" x2="560" y2="120" stroke="#FFEB3B" stroke-width="2"/>
+  <line x1="590" y1="110" x2="590" y2="120" stroke="#FFEB3B" stroke-width="2"/>
+  <line x1="620" y1="110" x2="620" y2="120" stroke="#FFEB3B" stroke-width="2"/>
+  <line x1="650" y1="110" x2="650" y2="120" stroke="#FFEB3B" stroke-width="2"/>
+  <text x="590" y="105" text-anchor="middle" font-size="10" fill="#F57C00">UV-LED均匀照射</text>
+  
+  <!-- 流动示意 -->
+  <line x1="480" y1="160" x2="520" y2="160" stroke="#2196F3" stroke-width="2"/>
+  <polygon points="518,155 528,160 518,165" fill="#2196F3"/>
+  <text x="460" y="165" font-size="10" fill="#2196F3">→</text>
+  
+  <!-- 优势列表 -->
+  <text x="440" y="230" font-size="11" fill="#2E7D32">✓ 薄层流动，光照均匀</text>
+  <text x="440" y="250" font-size="11" fill="#2E7D32">✓ 催化剂固定化，无需分离</text>
+  <text x="440" y="270" font-size="11" fill="#2E7D32">✓ 精确控制停留时间</text>
+  <text x="440" y="290" font-size="11" fill="#2E7D32">✓ 数量放大（numbering-up）</text>
+  <text x="440" y="310" font-size="11" fill="#2E7D32">✓ 高表面积/体积比</text>
+  <text x="440" y="330" font-size="11" fill="#2E7D32">✓ 微通道散热好，温度稳定</text>
+  <text x="440" y="350" font-size="11" fill="#2E7D32">✓ 在线监测，实时检测</text>
+  <text x="440" y="370" font-size="11" fill="#2E7D32">✓ 重现性好</text>
+  <text x="440" y="390" font-size="11" fill="#2E7D32">✓ 安全性高</text>
+  
+  <!-- 定量对比表 -->
+  <rect x="150" y="430" width="500" height="60" rx="5" fill="white" stroke="#ddd" stroke-width="1"/>
+  <text x="400" y="450" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">定量对比（典型值）</text>
+  <text x="250" y="470" text-anchor="middle" font-size="10" fill="#666">降解效率：40-60%</text>
+  <text x="400" y="470" text-anchor="middle" font-size="10" fill="#666">降解效率：85-95%</text>
+  <text x="550" y="470" text-anchor="middle" font-size="10" fill="#666">处理时间：30-60 min</text>
+  <text x="250" y="485" text-anchor="middle" font-size="10" fill="#666">处理时间：1-5 min</text>
+  <text x="400" y="485" text-anchor="middle" font-size="10" fill="#666">放大方式：体积放大</text>
+  <text x="550" y="485" text-anchor="middle" font-size="10" fill="#666">放大方式：数量放大</text>
+</svg>

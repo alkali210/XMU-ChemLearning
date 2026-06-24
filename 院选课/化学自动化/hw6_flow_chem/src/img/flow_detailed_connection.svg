@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700" font-family="SimSun, serif">
+  <!-- 背景 -->
+  <rect width="800" height="700" fill="#f8f9fa"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">流动化学装置实物连接图</text>
+  
+  <!-- 外框 -->
+  <rect x="30" y="50" width="740" height="600" rx="10" fill="white" stroke="#ddd" stroke-width="2"/>
+  
+  <!-- 注射泵1 -->
+  <rect x="60" y="100" width="140" height="100" rx="8" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+  <!-- 注射器本体 -->
+  <rect x="80" y="120" width="50" height="60" rx="3" fill="#C8E6C9" stroke="#4CAF50" stroke-width="1"/>
+  <rect x="85" y="125" width="40" height="50" rx="2" fill="#E8F5E9"/>
+  <!-- 活塞 -->
+  <rect x="75" y="115" width="60" height="8" rx="2" fill="#4CAF50"/>
+  <!-- 接头 -->
+  <rect x="130" y="145" width="15" height="10" rx="2" fill="#81C784"/>
+  <line x1="145" y1="150" x2="160" y2="150" stroke="#4CAF50" stroke-width="2"/>
+  
+  <text x="130" y="180" text-anchor="middle" font-size="12" fill="#2E7D32">注射泵1</text>
+  <text x="130" y="195" text-anchor="middle" font-size="10" fill="#666">MB溶液</text>
+  
+  <!-- 注射泵2 -->
+  <rect x="60" y="280" width="140" height="100" rx="8" fill="#E3F2FD" stroke="#2196F3" stroke-width="2"/>
+  <!-- 注射器本体 -->
+  <rect x="80" y="300" width="50" height="60" rx="3" fill="#BBDEFB" stroke="#2196F3" stroke-width="1"/>
+  <rect x="85" y="305" width="40" height="50" rx="2" fill="#E3F2FD"/>
+  <!-- 活塞 -->
+  <rect x="75" y="295" width="60" height="8" rx="2" fill="#2196F3"/>
+  <!-- 接头 -->
+  <rect x="130" y="325" width="15" height="10" rx="2" fill="#64B5F6"/>
+  <line x1="145" y1="330" x2="160" y2="330" stroke="#2196F3" stroke-width="2"/>
+  
+  <text x="130" y="360" text-anchor="middle" font-size="12" fill="#1565C0">注射泵2</text>
+  <text x="130" y="375" text-anchor="middle" font-size="10" fill="#666">TiO₂悬浮液</text>
+  
+  <!-- PE管路标注1 -->
+  <line x1="160" y1="150" x2="250" y2="150" stroke="#9E9E9E" stroke-width="4"/>
+  <rect x="180" y="135" width="50" height="15" rx="3" fill="#F5F5F5" stroke="#BDBDBD" stroke-width="1"/>
+  <text x="205" y="146" text-anchor="middle" font-size="8" fill="#616161">PE管</text>
+  <text x="205" y="156" text-anchor="middle" font-size="7" fill="#9E9E9E">φ0.5mm</text>
+  
+  <!-- 箭头 -->
+  <polygon points="248,145 258,150 248,155" fill="#9E9E9E"/>
+  
+  <!-- PE管路标注2 -->
+  <line x1="160" y1="330" x2="250" y2="330" stroke="#9E9E9E" stroke-width="4"/>
+  <rect x="180" y="315" width="50" height="15" rx="3" fill="#F5F5F5" stroke="#BDBDBD" stroke-width="1"/>
+  <text x="205" y="326" text-anchor="middle" font-size="8" fill="#616161">PE管</text>
+  <text x="205" y="336" text-anchor="middle" font-size="7" fill="#9E9E9E">φ0.5mm</text>
+  
+  <!-- 箭头 -->
+  <polygon points="248,325 258,330 248,335" fill="#9E9E9E"/>
+  
+  <!-- T型混合器 -->
+  <rect x="260" y="200" width="100" height="100" rx="12" fill="#FFF3E0" stroke="#FF9800" stroke-width="3"/>
+  <!-- 混合器内部 -->
+  <circle cx="310" cy="250" r="25" fill="none" stroke="#FF9800" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="310" y="245" text-anchor="middle" font-size="11" fill="#E65100">T型</text>
+  <text x="310" y="260" text-anchor="middle" font-size="11" fill="#E65100">混合器</text>
+  <text x="310" y="280" text-anchor="middle" font-size="8" fill="#F57C00">PEEK材质</text>
+  
+  <!-- 连接管线到混合器 -->
+  <line x1="250" y1="150" x2="280" y2="200" stroke="#9E9E9E" stroke-width="3"/>
+  <line x1="250" y1="330" x2="280" y2="300" stroke="#9E9E9E" stroke-width="3"/>
+  
+  <!-- 混合后管路 -->
+  <line x1="360" y1="250" x2="440" y2="250" stroke="#9E9E9E" stroke-width="4"/>
+  <rect x="375" y="235" width="45" height="15" rx="3" fill="#F5F5F5" stroke="#BDBDBD" stroke-width="1"/>
+  <text x="397" y="246" text-anchor="middle" font-size="8" fill="#616161">连接管</text>
+  
+  <!-- 箭头 -->
+  <polygon points="438,245 448,250 438,255" fill="#9E9E9E"/>
+  
+  <!-- 微流控反应器 -->
+  <rect x="440" y="150" width="200" height="200" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="3"/>
+  <text x="540" y="175" text-anchor="middle" font-size="13" fill="#1565C0">微流控反应器</text>
+  
+  <!-- 石英芯片 -->
+  <rect x="460" y="190" width="160" height="90" rx="5" fill="#BBDEFB" stroke="#1565C0" stroke-width="2"/>
+  <text x="540" y="215" text-anchor="middle" font-size="11" fill="#1565C0">石英玻璃芯片</text>
+  <text x="540" y="235" text-anchor="middle" font-size="10" fill="#1565C0">通道: 10mm × 1mm</text>
+  <text x="540" y="255" text-anchor="middle" font-size="10" fill="#1565C0">体积: 约1.0 mL</text>
+  <text x="540" y="275" text-anchor="middle" font-size="9" fill="#1976D2">高透光率石英玻璃</text>
+  
+  <!-- UV-LED光源 -->
+  <rect x="460" y="300" width="160" height="35" rx="5" fill="#9C27B0" stroke="#7B1FA2" stroke-width="2"/>
+  <text x="540" y="318" text-anchor="middle" font-size="11" fill="white">UV-LED光源</text>
+  <text x="540" y="330" text-anchor="middle" font-size="9" fill="#E1BEE7">365 nm, 10-50 mW/cm²</text>
+  
+  <!-- 光线指示 -->
+  <line x1="490" y1="300" x2="490" y2="280" stroke="#FFEB3B" stroke-width="2" stroke-dasharray="3,2"/>
+  <line x1="540" y1="300" x2="540" y2="280" stroke="#FFEB3B" stroke-width="2" stroke-dasharray="3,2"/>
+  <line x1="590" y1="300" x2="590" y2="280" stroke="#FFEB3B" stroke-width="2" stroke-dasharray="3,2"/>
+  
+  <!-- 光源标注 -->
+  <text x="610" y="295" font-size="9" fill="#F57C00">↓ 紫外光照射</text>
+  
+  <!-- 出口管路 -->
+  <line x1="640" y1="250" x2="700" y2="250" stroke="#9E9E9E" stroke-width="4"/>
+  <polygon points="698,245 708,250 698,255" fill="#9E9E9E"/>
+  
+  <!-- 流通检测池 -->
+  <rect x="700" y="210" width="60" height="80" rx="8" fill="#FFEBEE" stroke="#F44336" stroke-width="2"/>
+  <text x="730" y="240" text-anchor="middle" font-size="10" fill="#C62828">紫外</text>
+  <text x="730" y="255" text-anchor="middle" font-size="10" fill="#C62828">检测器</text>
+  <text x="730" y="275" text-anchor="middle" font-size="8" fill="#E53935">664 nm</text>
+  <text x="730" y="285" text-anchor="middle" font-size="7" fill="#EF9A9A">在线检测</text>
+  
+  <!-- 检测器标注 -->
+  <text x="730" y="205" text-anchor="middle" font-size="9" fill="#666">检测MB浓度</text>
+  
+  <!-- 下方连接管路 -->
+  <line x1="730" y1="290" x2="730" y2="450" stroke="#9E9E9E" stroke-width="4"/>
+  <polygon points="725,448 730,458 735,448" fill="#9E9E9E"/>
+  
+  <!-- 废液收集瓶 -->
+  <rect x="690" y="460" width="80" height="100" rx="5" fill="#F5F5F5" stroke="#9E9E9E" stroke-width="2"/>
+  <text x="730" y="490" text-anchor="middle" font-size="12" fill="#616161">废液</text>
+  <text x="730" y="510" text-anchor="middle" font-size="12" fill="#616161">收集瓶</text>
+  <text x="730" y="530" text-anchor="middle" font-size="9" fill="#9E9E9E">100 mL</text>
+  <text x="730" y="545" text-anchor="middle" font-size="8" fill="#BDBDBD">统一处理</text>
+  
+  <!-- 图例 -->
+  <rect x="50" y="570" width="700" height="70" rx="5" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="60" y="590" font-size="11" font-weight="bold" fill="#333">连接说明：</text>
+  <text x="60" y="610" font-size="10" fill="#666">• 所有管路使用PE管（内径0.5mm），接头采用鲁尔接头</text>
+  <text x="60" y="625" font-size="10" fill="#666">• T型混合器为PEEK材质，耐腐蚀</text>
+  <text x="400" y="610" font-size="10" fill="#666">• 石英芯片透光率>90%@365nm</text>
+  <text x="400" y="625" font-size="10" fill="#666">• 检测器连接紫外-可见分光光度计</text>
+</svg>

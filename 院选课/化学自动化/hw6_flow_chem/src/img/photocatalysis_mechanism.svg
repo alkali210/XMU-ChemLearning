@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" font-family="SimSun, serif">
+  <!-- 背景 -->
+  <rect width="600" height="400" fill="#f8f9fa"/>
+  
+  <!-- 标题 -->
+  <text x="300" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">TiO₂光催化降解机理示意图</text>
+  
+  <!-- TiO₂半导体 -->
+  <rect x="200" y="120" width="200" height="160" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="2"/>
+  <text x="300" y="150" text-anchor="middle" font-size="14" font-weight="bold" fill="#1565C0">TiO₂ 半导体</text>
+  
+  <!-- 价带 -->
+  <rect x="220" y="230" width="160" height="30" rx="3" fill="#4CAF50" stroke="#388E3C" stroke-width="1"/>
+  <text x="300" y="250" text-anchor="middle" font-size="12" fill="white">价带 (VB)</text>
+  
+  <!-- 导带 -->
+  <rect x="220" y="160" width="160" height="30" rx="3" fill="#2196F3" stroke="#1976D2" stroke-width="1"/>
+  <text x="300" y="180" text-anchor="middle" font-size="12" fill="white">导带 (CB)</text>
+  
+  <!-- 带隙 -->
+  <text x="300" y="215" text-anchor="middle" font-size="11" fill="#666">带隙 (3.2 eV)</text>
+  
+  <!-- UV光子 -->
+  <line x1="100" y1="100" x2="220" y2="170" stroke="#FFEB3B" stroke-width="3"/>
+  <polygon points="218,165 225,172 216,173" fill="#FFEB3B"/>
+  <text x="130" y="95" font-size="12" fill="#F57C00">hν (UV光)</text>
+  <text x="130" y="110" font-size="10" fill="#666">λ ≤ 387 nm</text>
+  
+  <!-- 电子激发 -->
+  <circle cx="280" cy="240" r="5" fill="#2196F3"/>
+  <text x="275" y="255" font-size="10" fill="#2196F3">e⁻</text>
+  
+  <!-- 电子跃迁箭头 -->
+  <path d="M 280 235 Q 260 200 280 175" fill="none" stroke="#2196F3" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  
+  <!-- 空穴 -->
+  <circle cx="320" cy="240" r="5" fill="white" stroke="#F44336" stroke-width="2"/>
+  <text x="315" y="255" font-size="10" fill="#F44336">h⁺</text>
+  
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2196F3"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#F44336"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4CAF50"/>
+    </marker>
+  </defs>
+  
+  <!-- e⁻与O₂反应 -->
+  <path d="M 285 175 Q 350 150 420 160" fill="none" stroke="#2196F3" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="370" y="145" font-size="11" fill="#2196F3">e⁻ + O₂</text>
+  <text x="420" y="155" font-size="11" fill="#4CAF50">→ ·O₂⁻</text>
+  
+  <!-- h⁺与OH⁻反应 -->
+  <path d="M 325 245 Q 380 260 420 250" fill="none" stroke="#F44336" stroke-width="2" marker-end="url(#arrowRed)"/>
+  <text x="370" y="275" font-size="11" fill="#F44336">h⁺ + OH⁻</text>
+  <text x="420" y="270" font-size="11" fill="#4CAF50">→ ·OH</text>
+  
+  <!-- 活性氧物种 -->
+  <rect x="420" y="140" width="130" height="140" rx="8" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+  <text x="485" y="165" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">活性氧物种</text>
+  
+  <text x="485" y="195" text-anchor="middle" font-size="11" fill="#333">·OH</text>
+  <text x="485" y="215" text-anchor="middle" font-size="11" fill="#333">·O₂⁻</text>
+  <text x="485" y="235" text-anchor="middle" font-size="11" fill="#333">H₂O₂</text>
+  <text x="485" y="255" text-anchor="middle" font-size="11" fill="#333">·OOH</text>
+  
+  <!-- 有机物降解 -->
+  <path d="M 550 210 Q 570 250 550 290" fill="none" stroke="#4CAF50" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  
+  <!-- 有机物 -->
+  <rect x="480" y="290" width="120" height="50" rx="5" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+  <text x="540" y="310" text-anchor="middle" font-size="11" fill="#2E7D32">有机染料 (MB)</text>
+  <text x="540" y="330" text-anchor="middle" font-size="10" fill="#666">+ 活性氧</text>
+  
+  <!-- 降解产物 -->
+  <path d="M 540 340 Q 540 360 480 370" fill="none" stroke="#4CAF50" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  
+  <rect x="380" y="355" width="100" height="35" rx="5" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+  <text x="430" y="370" text-anchor="middle" font-size="11" fill="#2E7D32">CO₂ + H₂O</text>
+  <text x="430" y="385" text-anchor="middle" font-size="10" fill="#666">无害产物</text>
+  
+  <!-- 机理说明 -->
+  <rect x="20" y="300" width="180" height="90" rx="5" fill="white" stroke="#ddd" stroke-width="1"/>
+  <text x="30" y="320" font-size="11" font-weight="bold" fill="#333">反应机理：</text>
+  <text x="30" y="340" font-size="10" fill="#666">1. TiO₂吸收UV光产生e⁻/h⁺</text>
+  <text x="30" y="355" font-size="10" fill="#666">2. e⁻还原O₂生成·O₂⁻</text>
+  <text x="30" y="370" font-size="10" fill="#666">3. h⁺氧化OH⁻生成·OH</text>
+  <text x="30" y="385" font-size="10" fill="#666">4. 活性氧降解有机物</text>
+</svg>

@@ -1,0 +1,4 @@
+DECIMER
+fastapi
+uvicorn[standard]
+python-multipart

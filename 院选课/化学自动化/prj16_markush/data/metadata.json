@@ -1,0 +1,582 @@
+[
+  {
+    "id": "A001",
+    "filename": "images/A001_benzene.png",
+    "category": "A",
+    "molecule_name": "Benzene",
+    "expected_smiles": "c1ccccc1",
+    "generic_symbols": []
+  },
+  {
+    "id": "A002",
+    "filename": "images/A002_aspirin.png",
+    "category": "A",
+    "molecule_name": "Aspirin",
+    "expected_smiles": "CC(=O)Oc1ccccc1C(=O)O",
+    "generic_symbols": []
+  },
+  {
+    "id": "A003",
+    "filename": "images/A003_caffeine.png",
+    "category": "A",
+    "molecule_name": "Caffeine",
+    "expected_smiles": "Cn1cnc2c1c(=O)n(C)c(=O)n2C",
+    "generic_symbols": []
+  },
+  {
+    "id": "A004",
+    "filename": "images/A004_ethanol.png",
+    "category": "A",
+    "molecule_name": "Ethanol",
+    "expected_smiles": "CCO",
+    "generic_symbols": []
+  },
+  {
+    "id": "A005",
+    "filename": "images/A005_glucose.png",
+    "category": "A",
+    "molecule_name": "Glucose",
+    "expected_smiles": "C(C1C(C(C(C(O1)O)O)O)O)O",
+    "generic_symbols": []
+  },
+  {
+    "id": "A006",
+    "filename": "images/A006_paracetamol.png",
+    "category": "A",
+    "molecule_name": "Paracetamol",
+    "expected_smiles": "CC(=O)Nc1ccc(O)cc1",
+    "generic_symbols": []
+  },
+  {
+    "id": "A007",
+    "filename": "images/A007_dopamine.png",
+    "category": "A",
+    "molecule_name": "Dopamine",
+    "expected_smiles": "NCCc1ccc(O)c(O)c1",
+    "generic_symbols": []
+  },
+  {
+    "id": "A008",
+    "filename": "images/A008_ibuprofen.png",
+    "category": "A",
+    "molecule_name": "Ibuprofen",
+    "expected_smiles": "CC(C)Cc1ccc(C(C)C(=O)O)cc1",
+    "generic_symbols": []
+  },
+  {
+    "id": "B001",
+    "filename": "images/B001_phenyl_R.png",
+    "category": "B",
+    "molecule_name": "Phenyl with R group",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ]
+  },
+  {
+    "id": "B002",
+    "filename": "images/B002_phenyl_R1.png",
+    "category": "B",
+    "molecule_name": "Phenyl with R1 group",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R1"
+    ]
+  },
+  {
+    "id": "B003",
+    "filename": "images/B003_phenyl_R2.png",
+    "category": "B",
+    "molecule_name": "Phenyl with R2 group",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R2"
+    ]
+  },
+  {
+    "id": "B004",
+    "filename": "images/B004_disubstituted_phenyl_R_R1.png",
+    "category": "B",
+    "molecule_name": "Disubstituted phenyl with R and R1",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R",
+      "R1"
+    ]
+  },
+  {
+    "id": "B005",
+    "filename": "images/B005_anisole_R.png",
+    "category": "B",
+    "molecule_name": "Anisole with R group",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ]
+  },
+  {
+    "id": "B006",
+    "filename": "images/B006_benzoic_acid_R.png",
+    "category": "B",
+    "molecule_name": "Benzoic acid with R group",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ]
+  },
+  {
+    "id": "B007",
+    "filename": "images/B007_ethyl_R.png",
+    "category": "B",
+    "molecule_name": "Ethyl chain with R group",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ]
+  },
+  {
+    "id": "B008",
+    "filename": "images/B008_amide_R.png",
+    "category": "B",
+    "molecule_name": "Amide with R group",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ]
+  },
+  {
+    "id": "B009",
+    "filename": "images/B009_pyridine_R.png",
+    "category": "B",
+    "molecule_name": "Pyridine with R group",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ]
+  },
+  {
+    "id": "B010",
+    "filename": "images/B010_cyclohexyl_R_R2.png",
+    "category": "B",
+    "molecule_name": "Cyclohexyl with R and R2",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R",
+      "R2"
+    ]
+  },
+  {
+    "id": "C001",
+    "filename": "images/C001_chain_A.png",
+    "category": "C",
+    "molecule_name": "Chain with A substituent",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "A"
+    ]
+  },
+  {
+    "id": "C002",
+    "filename": "images/C002_phenyl_X.png",
+    "category": "C",
+    "molecule_name": "Phenyl with X atom",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "X"
+    ]
+  },
+  {
+    "id": "C003",
+    "filename": "images/C003_phenyl_Z.png",
+    "category": "C",
+    "molecule_name": "Phenyl with Z atom",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "Z"
+    ]
+  },
+  {
+    "id": "C004",
+    "filename": "images/C004_chain_A_X.png",
+    "category": "C",
+    "molecule_name": "Chain with A and X substituents",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "A",
+      "X"
+    ]
+  },
+  {
+    "id": "C005",
+    "filename": "images/C005_heteroaryl_A.png",
+    "category": "C",
+    "molecule_name": "Heteroaryl with A substituent",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "A"
+    ]
+  },
+  {
+    "id": "C006",
+    "filename": "images/C006_generic_A_Z.png",
+    "category": "C",
+    "molecule_name": "Aromatic ring with A and Z",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "A",
+      "Z"
+    ]
+  },
+  {
+    "id": "C007",
+    "filename": "images/C007_variable_chain_n.png",
+    "category": "C",
+    "molecule_name": "Variable-length alkyl chain",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "n=1-4"
+    ]
+  },
+  {
+    "id": "D001",
+    "filename": "images/D001_phenyl_R_alkyl_aryl.png",
+    "category": "D",
+    "molecule_name": "Phenyl R substituent: alkyl or aryl",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "substituent_variation"
+  },
+  {
+    "id": "D002",
+    "filename": "images/D002_anisole_R_halogen.png",
+    "category": "D",
+    "molecule_name": "Anisole R substituent: F, Cl, Br, or I",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "substituent_variation"
+  },
+  {
+    "id": "D003",
+    "filename": "images/D003_anilide_R_heteroaryl.png",
+    "category": "D",
+    "molecule_name": "Anilide R substituent: heteroaryl group",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "substituent_variation"
+  },
+  {
+    "id": "D004",
+    "filename": "images/D004_benzoic_acid_R_acyl.png",
+    "category": "D",
+    "molecule_name": "Benzoic acid R substituent: acyl group",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "substituent_variation"
+  },
+  {
+    "id": "D005",
+    "filename": "images/D005_pyridine_R_alkoxy.png",
+    "category": "D",
+    "molecule_name": "Pyridine R substituent: alkoxy group",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "substituent_variation"
+  },
+  {
+    "id": "D006",
+    "filename": "images/D006_amide_N_R1_R2.png",
+    "category": "D",
+    "molecule_name": "Amide nitrogen substituent variation R1/R2",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R1",
+      "R2"
+    ],
+    "markush_class": "substituent_variation"
+  },
+  {
+    "id": "D007",
+    "filename": "images/D007_urea_R1_R2.png",
+    "category": "D",
+    "molecule_name": "Urea substituent variation R1/R2",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R1",
+      "R2"
+    ],
+    "markush_class": "substituent_variation"
+  },
+  {
+    "id": "D008",
+    "filename": "images/D008_sulfone_R_aryl.png",
+    "category": "D",
+    "molecule_name": "Sulfone R substituent: aryl or heteroaryl",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "substituent_variation"
+  },
+  {
+    "id": "D009",
+    "filename": "images/D009_ortho_chloro_phenyl_R.png",
+    "category": "D",
+    "molecule_name": "Ortho-position R variation on chlorophenyl",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "position_variation"
+  },
+  {
+    "id": "D010",
+    "filename": "images/D010_meta_chloro_phenyl_R.png",
+    "category": "D",
+    "molecule_name": "Meta-position R variation on chlorophenyl",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "position_variation"
+  },
+  {
+    "id": "D011",
+    "filename": "images/D011_para_chloro_phenyl_R.png",
+    "category": "D",
+    "molecule_name": "Para-position R variation on chlorophenyl",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "position_variation"
+  },
+  {
+    "id": "D012",
+    "filename": "images/D012_pyridine_2_R.png",
+    "category": "D",
+    "molecule_name": "Pyridine 2-position R variation",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "position_variation"
+  },
+  {
+    "id": "D013",
+    "filename": "images/D013_pyridine_3_R.png",
+    "category": "D",
+    "molecule_name": "Pyridine 3-position R variation",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "position_variation"
+  },
+  {
+    "id": "D014",
+    "filename": "images/D014_pyridine_4_R.png",
+    "category": "D",
+    "molecule_name": "Pyridine 4-position R variation",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "position_variation"
+  },
+  {
+    "id": "D015",
+    "filename": "images/D015_naphthyl_alpha_R.png",
+    "category": "D",
+    "molecule_name": "Alpha-naphthyl R position variation",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "position_variation"
+  },
+  {
+    "id": "D016",
+    "filename": "images/D016_naphthyl_beta_R.png",
+    "category": "D",
+    "molecule_name": "Beta-naphthyl R position variation",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "position_variation"
+  },
+  {
+    "id": "D017",
+    "filename": "images/D017_phenyl_mono_R.png",
+    "category": "D",
+    "molecule_name": "Phenyl frequency variation mono R",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "frequency_variation"
+  },
+  {
+    "id": "D018",
+    "filename": "images/D018_phenyl_di_R.png",
+    "category": "D",
+    "molecule_name": "Phenyl frequency variation di R",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R",
+      "R"
+    ],
+    "markush_class": "frequency_variation"
+  },
+  {
+    "id": "D019",
+    "filename": "images/D019_phenyl_tri_R.png",
+    "category": "D",
+    "molecule_name": "Phenyl frequency variation tri R",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R",
+      "R",
+      "R"
+    ],
+    "markush_class": "frequency_variation"
+  },
+  {
+    "id": "D020",
+    "filename": "images/D020_cyclohexyl_di_R.png",
+    "category": "D",
+    "molecule_name": "Cyclohexyl frequency variation di R",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R",
+      "R"
+    ],
+    "markush_class": "frequency_variation"
+  },
+  {
+    "id": "D021",
+    "filename": "images/D021_triazine_tri_R.png",
+    "category": "D",
+    "molecule_name": "Triazine frequency variation tri R",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R",
+      "R",
+      "R"
+    ],
+    "markush_class": "frequency_variation"
+  },
+  {
+    "id": "D022",
+    "filename": "images/D022_amide_repeat_m.png",
+    "category": "D",
+    "molecule_name": "Repeating amide frequency variation",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "frequency_variation"
+  },
+  {
+    "id": "D023",
+    "filename": "images/D023_ethylene_repeat_n.png",
+    "category": "D",
+    "molecule_name": "Ethylene homology variation",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R",
+      "X"
+    ],
+    "markush_class": "homology_variation"
+  },
+  {
+    "id": "D024",
+    "filename": "images/D024_alkyl_chain_m.png",
+    "category": "D",
+    "molecule_name": "Alkyl-chain homology variation",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "homology_variation"
+  },
+  {
+    "id": "D025",
+    "filename": "images/D025_oxyethylene_repeat_n.png",
+    "category": "D",
+    "molecule_name": "Oxyethylene homology variation",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R",
+      "R1"
+    ],
+    "markush_class": "homology_variation"
+  },
+  {
+    "id": "D026",
+    "filename": "images/D026_methylene_spacer_p.png",
+    "category": "D",
+    "molecule_name": "Methylene spacer homology variation",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R"
+    ],
+    "markush_class": "homology_variation"
+  },
+  {
+    "id": "D027",
+    "filename": "images/D027_aryl_linker_q.png",
+    "category": "D",
+    "molecule_name": "Aryl-linker homology variation",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R",
+      "X"
+    ],
+    "markush_class": "homology_variation"
+  },
+  {
+    "id": "D028",
+    "filename": "images/D028_heteroatom_family_A.png",
+    "category": "D",
+    "molecule_name": "Same-family homology variation A",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "A"
+    ],
+    "markush_class": "homology_variation"
+  },
+  {
+    "id": "D029",
+    "filename": "images/D029_halogen_family_X.png",
+    "category": "D",
+    "molecule_name": "Halogen-family variation X",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "X"
+    ],
+    "markush_class": "substituent_variation"
+  },
+  {
+    "id": "D030",
+    "filename": "images/D030_combined_R_X_n.png",
+    "category": "D",
+    "molecule_name": "Combined substituent, position, and frequency variation",
+    "expected_smiles": null,
+    "generic_symbols": [
+      "R",
+      "X"
+    ],
+    "markush_class": "frequency_variation"
+  }
+]
