@@ -1,5 +1,10 @@
 # XMU-ChemLearning
 
+![GitHub repo size](https://img.shields.io/github/repo-size/alkali210/XMU-ChemLearning?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Git_LFS-102_MB-green?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/File_count-1,746-violet?style=for-the-badge)
+
+
 整理了在 xmu 化院的学习资料，如果有侵权内容请联系我删除
 
 希望对你有所帮助，也欢迎提交 PR 补充资料
@@ -47,6 +52,12 @@ XMU 2022 级软件工程课程资料整理 [YUK1PEDIA/XMU-SE](https://github.com
 │   │   ├── 基础生物化学
 │   │   ├── 基础电化学
 │   │   └── 谱学
+│   ├── 大学物理
+│   │   ├── 作业
+│   │   ├── 大物
+│   │   ├── 大物试题
+│   │   ├── 期末
+│   │   └── 试卷（期中
 │   ├── 无机化学
 │   └── 概率统计II
 ├── 大一第1学期
@@ -130,8 +141,6 @@ XMU 2022 级软件工程课程资料整理 [YUK1PEDIA/XMU-SE](https://github.com
 │   │   ├── 实验报告
 │   │   └── 课程平台
 │   ├── 习概
-│   ├── 分子材料
-│   │   └── 课件
 │   ├── 化学理论II
 │   │   ├── 作业
 │   │   ├── 往年试卷
@@ -141,13 +150,24 @@ XMU 2022 级软件工程课程资料整理 [YUK1PEDIA/XMU-SE](https://github.com
 │   │   ├── 作业
 │   │   ├── 考试用材料
 │   │   └── 课件
-│   ├── 数据结构
-│   │   ├── 1_线性表
-│   │   └── 课件
 │   ├── 有机化学
 │   ├── 有机化学实验
 │   └── 物理化学实验
 └── 院选课
+    ├── 分子材料
+    │   └── 课件
+    ├── 化学自动化
+    │   ├── hw1_serial_port
+    │   ├── hw2_ui
+    │   ├── hw4_arduino
+    │   ├── hw6_flow_chem
+    │   ├── hw7_recommendation
+    │   └── prj16_markush
+    ├── 振动与光学
+    │   └── 课件
+    ├── 数据结构
+    │   ├── 1_线性表
+    │   └── 课件
     └── 能源材料基础
 ```
 
