@@ -1,9 +1,8 @@
 # XMU-ChemLearning
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/alkali210/XMU-ChemLearning?style=for-the-badge)
-![Static Badge](https://img.shields.io/badge/Git_LFS-102_MB-green?style=for-the-badge)
-![Static Badge](https://img.shields.io/badge/File_count-1,746-violet?style=for-the-badge)
-
+![Static Badge](https://img.shields.io/badge/Git_LFS-102_MiB-green?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/File_count-1,763-violet?style=for-the-badge)
 
 整理了在 xmu 化院的学习资料，如果有侵权内容请联系我删除
 
