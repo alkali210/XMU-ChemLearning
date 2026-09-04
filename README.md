@@ -3,6 +3,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/alkali210/XMU-ChemLearning?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/Git_LFS-102_MiB-green?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/File_count-1,900-violet?style=for-the-badge)
+![GitHub Closed Pull Requests](https://img.shields.io/github/issues-pr-closed/alkali210/xmu-chemlearning?style=for-the-badge)
 
 整理了在 xmu 化院的学习资料，如果有侵权内容请联系我删除
 
@@ -10,8 +11,8 @@
 
 ## 使用说明
 
-由于 `.git` 目录较大，在 `clone` 时建议使用 `--depth 1` 来跳过对之前版本的追踪，节省时间和空间。
-也可以直接下载 zip 或者下载需要的单文件。
+- 由于 `.git` 目录较大，在 `clone` 时建议使用 `--depth 1` 来跳过对之前版本的追踪，节省时间和空间，也可以直接下载 zip 或者单文件。
+- 仓库目前主要依据学期分类，`extras` 目录下是不太好归类到具体学期和课程的内容，比较杂乱，建议配合搜索使用。
 
 ## 相关链接推荐
 
@@ -67,8 +68,6 @@ XMU 2022 级软件工程课程资料整理 [YUK1PEDIA/XMU-SE](https://github.com
 │   ├── 概率统计II
 │   ├── 概率统计I期末
 │   └── 课程表
-├── releases
-│   └── 1
 ├── 大一第1学期
 │   ├── 基础化学I
 │   ├── '大学英语4 科技发展史'
@@ -186,4 +185,4 @@ XMU 2022 级软件工程课程资料整理 [YUK1PEDIA/XMU-SE](https://github.com
 
 ## License
 
-[Creative Commons Attribution-NonCommercial-ShareAlike 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0](LICENSE)
