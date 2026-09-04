@@ -2,7 +2,7 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/alkali210/XMU-ChemLearning?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/Git_LFS-102_MiB-green?style=for-the-badge)
-![Static Badge](https://img.shields.io/badge/File_count-1,835-violet?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/File_count-1,900-violet?style=for-the-badge)
 
 整理了在 xmu 化院的学习资料，如果有侵权内容请联系我删除
 
@@ -58,6 +58,12 @@ XMU 2022 级软件工程课程资料整理 [YUK1PEDIA/XMU-SE](https://github.com
 │   │   ├── 期末
 │   │   └── 试卷（期中
 │   ├── 无机化学
+│   ├── 有机化学
+│   │   ├── ppt
+│   │   ├── 叶剑良ppt
+│   │   ├── 吴亚林ppt
+│   │   ├── 练习题+复习题
+│   │   └── 试卷真题
 │   ├── 概率统计II
 │   ├── 概率统计I期末
 │   └── 课程表
