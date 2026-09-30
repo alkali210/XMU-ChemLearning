@@ -22,9 +22,11 @@
 
 XMU 2022 级软件工程课程资料整理 [YUK1PEDIA/XMU-SE](https://github.com/YUK1PEDIA/XMU-SE)
 
-厦门大学数字化教学平台浏览器文件下载扩展  [XMUFD Inline](https://chromewebstore.google.com/detail/xmufd-inline/imannochailfofibofphcpmlddlbbhao)
+数字化教学平台浏览器文件下载扩展  [XMUFD Inline](https://chromewebstore.google.com/detail/xmufd-inline/imannochailfofibofphcpmlddlbbhao)
 
 厦门大学攻略大全 [XMU-Helper/home](https://github.com/XMU-Helper/home)
+
+资料共享平台 [鹭岛书阁](https://xmu.vintces.icu/)
 
 🦐兵资料库 (QQ群) `389898216`
 
