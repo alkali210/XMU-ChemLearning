@@ -1,0 +1,129 @@
+% !TeX program = xelatex
+% 编译：latexmk -xelatex -interaction=nonstopmode 高等配位化学_复习笔记.tex
+\documentclass[UTF8,zihao=5,a4paper,fontset=fandol]{ctexart}
+\usepackage[left=23mm,right=21mm,top=23mm,bottom=22mm,headheight=15pt,headsep=7mm]{geometry}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Pagella}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{Latin Modern Mono}[Scale=MatchLowercase]
+\usepackage{amsmath,amssymb}
+\usepackage{unicode-math}
+\setmathfont{TeX Gyre Pagella Math}
+\usepackage[version=4]{mhchem}
+\usepackage{graphicx,booktabs,tabularx,longtable,array,multicol}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\definecolor{Ink}{HTML}{20384C}
+\definecolor{Teal}{HTML}{087F82}
+\definecolor{Gold}{HTML}{A16D27}
+\definecolor{Muted}{HTML}{5C6C79}
+\definecolor{Pale}{HTML}{EEF6F6}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathreplacing}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{needspace}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=Teal,urlcolor=Teal,
+  pdftitle={高等配位化学：循序渐进复习笔记},pdfauthor={讲义整理},
+  pdfsubject={配位概念、立体化学、分子对称性、群论与光谱应用},bookmarksnumbered=true}
+\usepackage{bookmark}
+\usepackage{microtype}
+\microtypesetup{protrusion=true,expansion=false}
+\linespread{1.22}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\setlength{\emergencystretch}{1.5em}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\setlist[itemize]{leftmargin=1.7em,itemsep=0.2em,topsep=0.4em,parsep=0pt}
+\setlist[enumerate]{leftmargin=1.9em,itemsep=0.25em,topsep=0.4em,parsep=0pt}
+\ctexset{
+ section={format=\Large\sffamily\bfseries\color{Ink},name={,},number=\arabic{section},
+   aftername=\hspace{0.65em},beforeskip=1.5em,afterskip=0.7em},
+ subsection={format=\large\sffamily\bfseries\color{Teal},number=\thesection.\arabic{subsection},
+   beforeskip=1.1em,afterskip=0.4em},
+ subsubsection={format=\normalsize\sffamily\bfseries\color{Ink},beforeskip=0.8em,afterskip=0.3em}}
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{Muted}高等配位化学\quad /\quad 复习笔记}
+\fancyhead[R]{\small\sffamily\color{Muted}\nouppercase{\leftmark}}
+\fancyfoot[L]{\footnotesize\sffamily\color{Muted}概念\enspace ·\enspace 结构\enspace ·\enspace 对称性\enspace ·\enspace 应用}
+\fancyfoot[R]{\small\sffamily\bfseries\color{Teal}\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection\quad #1}{}}
+\newcommand{\learning}[1]{\par\noindent{\small\sffamily\color{Teal}\textbf{本节目标}\enspace #1}\par}
+\newcommand{\sources}[1]{\par\noindent{\footnotesize\color{Muted}讲义定位：#1}\par\vspace{0.35em}}
+\newtcolorbox{keyidea}[1][]{enhanced,breakable,colback=Pale,colframe=Teal,
+ boxrule=0pt,borderline west={1.2pt}{0pt}{Teal},sharp corners,
+ left=9pt,right=9pt,top=7pt,bottom=7pt,before skip=9pt,after skip=9pt,
+ title={#1},coltitle=Teal,fonttitle=\sffamily\bfseries,
+ attach title to upper={\par\smallskip},colbacktitle=Pale}
+\newtcolorbox{worked}[1][]{enhanced,breakable,colback=Gold!4!white,colframe=Gold!45,
+ boxrule=0.4pt,arc=1mm,left=9pt,right=9pt,top=7pt,bottom=7pt,
+ before skip=9pt,after skip=9pt,title={例题\enspace #1},
+ coltitle=Gold,fonttitle=\sffamily\bfseries,attach title to upper={\par\smallskip}}
+\newcommand{\partlabel}[2]{\clearpage\markboth{}{}\noindent
+ {\small\sffamily\bfseries\color{Teal}#1}\hspace{0.7em}
+ {\small\sffamily\color{Muted}#2}\par\vspace{0.25em}}
+\begin{document}
+\thispagestyle{empty}
+\noindent{\small\sffamily\bfseries\color{Teal}课程讲义整理\quad /\quad 第一至三章}
+\vspace{1.2cm}
+
+\noindent{\Huge\sffamily\bfseries\color{Ink}高等配位化学}\par
+\vspace{0.35cm}
+\noindent{\LARGE\sffamily\color{Teal}循序渐进复习笔记}\par
+\vspace{0.5cm}
+\noindent{\large 从读懂配合物，到用对称性分析结构、光谱与成键。}
+\vspace{0.7cm}
+
+\subsection*{先学会这条主线}
+\noindent
+\begin{tikzpicture}[node distance=5mm, every node/.style={font=\small},
+ stage/.style={draw=Teal!50,rounded corners=1mm,minimum width=35mm,minimum height=13mm,align=center},
+ >={Stealth[length=2mm]}]
+\node[stage] (a) {读化学式\\电荷、配位数、配体};
+\node[stage,right=7mm of a] (b) {画空间结构\\几何异构、手性};
+\node[stage,right=7mm of b] (c) {识别对称性\\点群、表示、约化};
+\node[stage,right=7mm of c] (d) {解决具体问题\\振动谱、分子轨道};
+\draw[->,Teal] (a)--(b);\draw[->,Teal] (b)--(c);\draw[->,Teal] (c)--(d);
+\end{tikzpicture}
+
+\subsection*{怎样使用}
+第一遍顺序阅读正文与例题，先把“为什么”和计算步骤接起来。已经熟悉的概念可以略读，但不要跳过点群判定、特征标约化和振动分析的完整算例。
+
+第二遍合上答案完成末尾自测。哪里卡住，就按答案标出的节号回查；最后用一页速查表复述整条解题链。这里的“快速上手”是尽快学会判断与计算，不是只背结论。
+
+\subsection*{四份材料的范围}
+\noindent
+\begin{tabularx}{\linewidth}{@{}l X r@{}}
+\toprule
+代号 & 原始讲义 & PDF 页数\\
+\midrule
+A & 第一章：配位化学发展简史及基本概念 & 79\\
+B & 第二章：配合物的立体结构与异构现象 & 70\\
+C & 第三章：分子的对称性和群论初步（一） & 44\\
+D & 第三章：分子的对称性和群论初步（二） & 57\\
+\bottomrule
+\end{tabularx}
+
+\vfill
+\noindent{\small\color{Muted}正文每节标注讲义定位，页码从各 PDF 的第一页计起。内容覆盖这四份材料；第一章预告的后续课程主题不另行扩写。为便于复算，本文统一符号、补全推导，并将分子异构体与外消旋混合物分开计数。}
+\clearpage
+\markboth{阅读导航}{阅读导航}
+{\small\tableofcontents}
+\vspace{0.6em}
+\noindent{\small\color{Muted}\textbf{阅读约定}\quad $\Delta/\Lambda$ 表示配位骨架的螺旋构型，$(+)/(−)$ 表示给定条件下的旋光方向；$E$ 既可能指恒等操作，也可能是二维不可约表示的行名，须按上下文区分。}
+
+\partlabel{第一部分\quad 认识配合物}{先读懂化学式，再讨论结构与手性}
+\input{01_概念与立体化学.tex}
+\partlabel{第二部分\quad 学会对称性语言}{从几何操作到特征标与约化}
+\input{02_对称性与群论.tex}
+\partlabel{第三部分\quad 用群论解决问题}{振动光谱、局部伸缩与分子轨道}
+\input{03_光谱与轨道应用.tex}
+\partlabel{复习收束}{自测、答案与一页速查}
+\input{04_自测与速查.tex}
+\end{document}

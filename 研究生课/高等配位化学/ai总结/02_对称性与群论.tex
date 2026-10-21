@@ -1,0 +1,273 @@
+\section{对称操作与点群：先看结构，再给它命名}
+\learning{会找出结构中的对称操作，能区分“一个轴”和“轴上的多个操作”，并据此判断常见点群。}
+\sources{C：第5--26页；与手性的联系见 B：第33--36页。}
+
+\subsection{五种操作只回答一个问题：做完后能否与原结构重合？}
+对称操作允许\textbf{相同种类的原子互换位置}，但必须让整个分子与原结构重合。转动分子时，配体的连接、取代基和构象也要一起转动；不能只检查几个配位原子。
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\toprule
+操作 & 做法 & 一个可计算的例子 \\
+\midrule
+$E$ & 恒等，不改变结构 & $(x,y,z)\mapsto(x,y,z)$ \\
+$C_n$ & 绕轴转过 $360^\circ/n$ & $C_2(z):(x,y,z)\mapsto(-x,-y,z)$ \\
+$\sigma$ & 对一个平面作镜面反映 & $\sigma(xz):(x,y,z)\mapsto(x,-y,z)$ \\
+$i$ & 以一点为中心反演 & $(x,y,z)\mapsto(-x,-y,-z)$ \\
+$S_n$ & 先作 $C_n$，再对垂直于轴的平面反映 & $S_2=i$，$S_1=\sigma$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{对称元素是几何对象，对称操作是动作。}一根 $C_3$ 轴上有 $C_3$ 和 $C_3^2$ 两个非恒等旋转；$C_3^3=E$，不是第三个新的操作。主轴通常取转次最高的旋转轴，并把它定为 $z$ 轴。
+
+镜面的下标描述它与主轴的关系：$\sigma_h$ 垂直于主轴；$\sigma_v$ 包含主轴；$\sigma_d$ 也包含主轴，但还平分相邻、垂直于主轴的 $C_2$ 轴之间的夹角。$\sigma_d$ 不是另一种镜面操作，而是更具体的位置标记。
+
+\begin{keyidea}[反轴不要求两个分步动作分别成立]
+若组合操作 $S_n$ 能使分子复原，它就是分子的对称操作；单独的 $C_n$ 和水平反映却未必各自是对称操作。例如交错式乙烷有 $S_6$，却没有 $C_6$ 或 $\sigma_h$。
+\end{keyidea}
+
+\subsection{用群把操作组织起来}
+把一个分子的全部对称操作收在一起，它们在复合运算下满足四条群公理：封闭性、结合律、恒等元、逆元。由于这些操作至少保留一个公共点不动，称为\textbf{点群}。群的阶 $h$ 是操作总数，不是轴或镜面的条数。
+
+记 $AB$ 为\textbf{先做 $B$，再做 $A$}。通常 $AB\ne BA$，但结合律总成立，即 $(AB)C=A(BC)$。对同一旋转轴，$C_n^aC_n^b=C_n^{a+b}$，指数按 $n$ 取余；$(C_n^a)^{-1}=C_n^{n-a}$。镜面反映和反演各做两次都是 $E$。
+
+\begin{worked}[$C_{2v}$：四个操作组成一个完整的小群]
+取主轴为 $z$，两个镜面为 $xz$、$yz$，则
+\[
+ C_{2v}=\{E,C_2(z),\sigma(xz),\sigma(yz)\}.
+\]
+例如先对 $yz$ 反映，再对 $xz$ 反映，坐标变化为
+\[
+ (x,y,z)\xrightarrow{\sigma(yz)}(-x,y,z)
+ \xrightarrow{\sigma(xz)}(-x,-y,z),
+\]
+所以 $\sigma(xz)\sigma(yz)=C_2(z)$。全部乘法都留在这四个操作中：
+\begin{center}
+\small
+\begin{tabular}{c|cccc}
+ & $E$ & $C_2$ & $\sigma(xz)$ & $\sigma(yz)$\\\hline
+$E$ & $E$ & $C_2$ & $\sigma(xz)$ & $\sigma(yz)$\\
+$C_2$ & $C_2$ & $E$ & $\sigma(yz)$ & $\sigma(xz)$\\
+$\sigma(xz)$ & $\sigma(xz)$ & $\sigma(yz)$ & $E$ & $C_2$\\
+$\sigma(yz)$ & $\sigma(yz)$ & $\sigma(xz)$ & $C_2$ & $E$
+\end{tabular}
+\end{center}
+这个群恰好可交换；不能由此认为所有点群都可交换。
+\end{worked}
+
+\subsection{点群判定的可执行顺序}
+\begin{enumerate}
+\item \textbf{先检查线形和高对称结构。}线形分子有反心时为 $D_{\infty h}$，无反心时为 $C_{\infty v}$。理想正四面体与正八面体分别常为 $T_d$ 和 $O_h$；这一步要求配体也保留相应对称性。
+\item \textbf{一般分子先找最高次主轴 $C_n$。}若没有任何非平凡旋转轴，只有 $E$ 则为 $C_1$；只有一个镜面则为 $C_s$；只有反心则为 $C_i$。
+\item \textbf{检查是否有 $n$ 根垂直于主轴的 $C_2$ 轴。}有则进入 $D$ 系：有 $\sigma_h$ 为 $D_{nh}$；无 $\sigma_h$ 而有二面镜面为 $D_{nd}$；两者都没有为 $D_n$。
+\item \textbf{没有那组垂直 $C_2$ 轴则进入 $C$ 系。}有 $\sigma_h$ 为 $C_{nh}$；无 $\sigma_h$ 而有竖直镜面为 $C_{nv}$；两者都没有时，继续检查与主轴同向的 $S_{2n}$，存在相应完整反轴群时为 $S_{2n}$，否则为 $C_n$。
+\end{enumerate}
+
+$D_n$ 中的字母 $D$ 关键在于那组垂直 $C_2$ 轴，而不是“有没有两个镜面”。判群后应把关键操作实际做一遍，检查没有遗漏配体骨架。
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\toprule
+点群 & 阶 $h$ & 典型结构与识别点 \\
+\midrule
+$C_1,C_s,C_i$ & $1,2,2$ & 分别只有 $E$；$E+\sigma$；$E+i$ \\
+$C_n$ & $n$ & 仅一组同轴正旋转 \\
+$C_{nv},C_{nh}$ & $2n$ & 主轴分别配竖直镜面、水平镜面 \\
+$D_n$ & $2n$ & 主轴加 $n$ 根垂直 $C_2$ 轴；理想三螯合骨架可为 $D_3$ \\
+$D_{nh},D_{nd}$ & $4n$ & 在 $D_n$ 基础上分别有水平、二面镜面 \\
+$S_{2n}$ & $2n$ & 由一个 $S_{2n}$ 操作生成，如 $S_4$、$S_6$ \\
+$C_{2v}$ & $4$ & 弯曲的 \ce{H2O} \\
+$C_{3v}$ & $6$ & 三角锥 \ce{NH3} \\
+$D_{3h}$ & $12$ & 平面三角形 \ce{BF3}；理想三角双锥骨架 \\
+$D_{3d}$ & $12$ & 交错式乙烷 \\
+$D_{4h}$ & $16$ & 理想平面正方形 \ce{[PtCl4]^2-} \\
+$T_d$ & $24$ & \ce{CH4}；无反心，但有 $S_4$ 和镜面 \\
+$O_h$ & $48$ & \ce{SF6}；有反心 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{worked}[为什么理想 $\ce{[Co(en)3]^3+}$ 不属于 $O_h$？]
+若只保留 Co 和六个 N 的理想八面体坐标，看上去有 $O_h$ 对称性；但任意交换两个 N 可能会拆开 en 的连接关系。把三条螯合桥一起考虑，理想化三螯合骨架只保留 $E$、两个 $C_3$ 操作和三个垂直 $C_2$ 操作，属于 $D_3$。它只含正旋转，所以可以有手性。具体螯环构象或取代基还可能进一步降低对称性。
+\end{worked}
+
+\subsection{用点群一眼检查手性}
+对一个固定分子构型，\textbf{存在任意非正旋转操作 $S_n$ 就不具有手性}，其中已包含 $S_1=\sigma$ 和 $S_2=i$。仅仅找不到镜面和反心还不够，例如 $S_4$ 点群也不具有手性。
+
+只含正旋转的点群可以容纳手性结构：$C_1$、$C_n$、$D_n$ 以及 $T$、$O$、$I$。这也说明高对称不等于非手性，低对称也不是判断手性的定义。
+
+\section{表示与特征标：把结构变化压缩成一行数字}
+\label{sec:characters}
+\learning{理解基、表示矩阵和特征标各自描述什么；读懂 $C_{2v}$、$C_{3v}$ 表中的行、列与基函数。}
+\sources{C：第27--44页；D：第2--9页。}
+
+\subsection{先选对象：同一个操作可以作用于不同的基}
+要研究坐标，就选 $(x,y,z)$；要研究四个 H 的轨道，就选四个 $1s$ 轨道；要研究羰基伸缩，就选每根 C--O 键的伸长量。\textbf{点群描述整个分子的对称性；表示描述所选这组对象在操作下怎样变化。}
+
+以绕 $z$ 轴的主动旋转为例，采用列向量坐标：
+\[
+ D(C_\theta)=
+ \begin{pmatrix}
+ \cos\theta&-\sin\theta&0\\
+ \sin\theta&\cos\theta&0\\
+ 0&0&1
+ \end{pmatrix},\qquad
+ \begin{pmatrix}x'\\y'\\z'\end{pmatrix}
+ =D(C_\theta)\begin{pmatrix}x\\y\\z\end{pmatrix}.
+\]
+这些矩阵遵守操作的乘法，即 $D(AB)=D(A)D(B)$，所以是一组\textbf{表示矩阵}。选 $d$ 个基函数，表示矩阵就是 $d\times d$；$d$ 称为表示的维数。
+
+\textbf{特征标}是矩阵的迹：
+\[
+ \boxed{\chi(R)=\operatorname{tr}D(R)=\sum_jD(R)_{jj}}.
+\]
+它不是特征值，也不是行列式。换一组等价基使矩阵作相似变换 $D'(R)=Q^{-1}D(R)Q$，迹保持不变，所以用迹比保存全部矩阵更方便。
+
+\begin{worked}[三个坐标在 $C_{2v}$ 下的特征标]
+按照 $E,C_2(z),\sigma(xz),\sigma(yz)$ 的顺序，四个矩阵为
+\begin{align*}
+D(E)&=\operatorname{diag}(1,1,1), &
+D(C_2)&=\operatorname{diag}(-1,-1,1),\\
+D(\sigma_{xz})&=\operatorname{diag}(1,-1,1), &
+D(\sigma_{yz})&=\operatorname{diag}(-1,1,1).
+\end{align*}
+因此 $\Gamma_{xyz}$ 的特征标为 $(3,-1,1,1)$。后面将看到，它正好等于 $A_1+B_1+B_2$。恒等操作下的特征标为 $3$，也就是基的个数。
+\end{worked}
+
+\subsection{不可约表示不是另一种分子，而是基本的变换类型}
+若对全部操作都能用\textbf{同一个}基变换把矩阵分成更小的对角块，这个表示是可约的。不能再这样分块的基本表示称为不可约表示。可约表示分解后写为
+\[
+ \Gamma_{\mathrm{red}}=a_1\Gamma_1\oplus a_2\Gamma_2\oplus\cdots.
+\]
+这里的直和 $\oplus$ 表示把独立的变换空间并列起来；在特征标层面就是相加。化学中也常把 $\oplus$ 简写成 $+$。
+
+一维不可约表示中的 $+1$ 表示基在操作后不变，$-1$ 表示变号。二维或三维表示的特征标只是整个块的迹，不能把它读成“每个基函数各自的正负号”。
+
+\subsection{读表的四个位置}
+\begin{center}
+\small
+\begin{tabular}{@{}l rrrr ll@{}}
+\toprule
+$C_{2v}$ & $E$ & $C_2(z)$ & $\sigma(xz)$ & $\sigma(yz)$ & 坐标、转动 & 二次函数 \\
+\midrule
+$A_1$ & $1$ & $1$ & $1$ & $1$ & $z$ & $x^2,y^2,z^2$ \\
+$A_2$ & $1$ & $1$ & $-1$ & $-1$ & $R_z$ & $xy$ \\
+$B_1$ & $1$ & $-1$ & $1$ & $-1$ & $x,R_y$ & $xz$ \\
+$B_2$ & $1$ & $-1$ & $-1$ & $1$ & $y,R_x$ & $yz$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+\item \textbf{左侧行名}是不可约表示的标签。$A,B$ 为一维，$E$ 为二维，$T$ 为三维。表头的恒等操作 $E$ 与行名 $E$ 不是一个概念。
+\item \textbf{表头各列}是共轭类。若 $B=X^{-1}AX$，称 $A,B$ 共轭；同一类的操作在同一表示中有相同特征标。$C_{3v}$ 中的 $C_3,C_3^2$ 同属一类，三个镜面另属一类，故只有三列。
+\item \textbf{表中数字}是每个操作的特征标。表头 $2C_3$ 中的 $2$ 是该类有两个操作，不能把行中的 $-1$ 预先乘成 $-2$。
+\item \textbf{右侧基函数}告诉你什么对象按这一行变换。$x,y,z$ 对应偶极矩与平移；$R_x,R_y,R_z$ 对应整体转动；二次函数对应极化率分量，是 Raman 判据的入口。
+\end{enumerate}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}l rrr X X@{}}
+\toprule
+$C_{3v}$ & $E$ & $2C_3$ & $3\sigma_v$ & 坐标、转动 & 二次函数 \\
+\midrule
+$A_1$ & $1$ & $1$ & $1$ & $z$ & $z^2,x^2+y^2$ \\
+$A_2$ & $1$ & $1$ & $-1$ & $R_z$ & --- \\
+$E$ & $2$ & $-1$ & $0$ & $(x,y),(R_x,R_y)$ & $(x^2-y^2,xy),(xz,yz)$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+$C_{3v}$ 的二维 $E$ 行在恒等操作下为 $2$：一对基函数在一般操作下互相混合，必须放在一起讨论。若一对简正坐标属于这个表示，它们具有相同频率，称为二重简并。
+
+\subsection{Mulliken 标签的读法}
+$A$、$B$ 的区别是一维表示对主轴的基本旋转分别对称或反对称；下标 $1,2$ 常根据某根垂直 $C_2$ 轴，若不存在则根据指定竖直镜面的对称性区分，具体看所用表的约定。
+
+有反心时，$g$ 表示反演不变，$u$ 表示反演变号；$g/u$ 与轨道是否成键无关。有水平镜面时，$'$、$''$ 分别表示对 $\sigma_h$ 对称、反对称。全对称表示的特征标全部为 $1$，可能叫 $A_1$、$A_{1g}$、$A_1'$ 等，取决于点群。
+
+\section{约化与直积：从一行数字走到可用的结论}
+\label{sec:reduction}
+\learning{会做加权约化，会用维数检查结果；分清直和与直积，知道对称性可以排除哪些跃迁或轨道相互作用。}
+\sources{C：第37--44页；D：第9--11、32--37、54--57页。}
+
+\subsection{正交关系给出约化公式}
+有限群中，不可约特征标满足加权正交关系：
+\[
+ \frac{1}{h}\sum_k n_k\chi_i(R_k)^*\chi_j(R_k)=\delta_{ij}.
+\]
+$k$ 遍历共轭类，$n_k$ 是该类的操作数，$h=\sum_kn_k$；星号表示复共轭。课程常用表的特征标是实数，复共轭不改变数值。由此直接得到
+\begin{keyidea}[约化公式：把目标行投影到每一个基本行]
+\[
+ \boxed{a_i=\frac{1}{h}\sum_k n_k\,
+ \chi_{\mathrm{red}}(R_k)\chi_i(R_k)^*}.
+\]
+算出的 $a_i$ 是不可约表示出现的次数，应为非负整数。操作数的权重只能乘一次。
+\end{keyidea}
+
+\begin{worked}[讲义中的 $C_{3v}$ 约化：$(12,0,2)$]
+表头为 $E,2C_3,3\sigma_v$，所以 $h=6$，类权重为 $(1,2,3)$：
+\begin{align*}
+a_{A_1}&=\frac{12\times1+2\times0\times1+3\times2\times1}{6}=3,\\
+a_{A_2}&=\frac{12\times1+2\times0\times1+3\times2\times(-1)}{6}=1,\\
+a_E&=\frac{12\times2+2\times0\times(-1)+3\times2\times0}{6}=4.
+\end{align*}
+因此 $\Gamma=3A_1+A_2+4E$。维数检查：$3\times1+1\times1+4\times2=12$。逐列加回得到 $(12,0,2)$，计算闭合。
+\end{worked}
+
+做题时按“写列顺序与权重 $\to$ 算每个 $a_i$ $\to$ 检查维数”完成。若出现分数或负数，先检查原始特征标是否正确、是否漏乘类权重，再检查抄表时的列顺序。
+
+\subsection{不必背完整证明，但要会用两个自检条件}
+\[
+ \text{不可约表示数}=\text{共轭类数},\qquad
+ \sum_i l_i^2=h,
+\]
+其中 $l_i=\chi_i(E)$ 是第 $i$ 个不可约表示的维数。$C_{2v}$ 有四类，$h=4$，所以有四个一维表示；$C_{3v}$ 有三类，$h=6$，对应维数 $1,1,2$，因为 $1^2+1^2+2^2=6$。
+
+对 $C_{3v}$ 的二维行写成 $(2,a,b)$，与 $A_1$、$A_2$ 正交可得
+\[
+ 2+2a+3b=0,\qquad 2+2a-3b=0,
+\]
+所以 $a=-1,b=0$。这就是常用特征标表中的 $E$ 行，并不需要把每个二维矩阵全部写出来。
+
+\subsection{直和是相加，直积是组合对象的相乘}
+\label{sec:products}
+若把两套独立基并列，得到直和，维数相加、特征标相加。若研究两种函数的乘积，例如轨道乘积或跃迁积分中的被积函数，则用直积，维数相乘、特征标\textbf{按列相乘}：
+\[
+ \chi_{\Gamma\oplus\Lambda}(R)=\chi_\Gamma(R)+\chi_\Lambda(R),\qquad
+ \chi_{\Gamma\otimes\Lambda}(R)=\chi_\Gamma(R)\chi_\Lambda(R).
+\]
+直积得到的表示还可能需要约化。
+
+\begin{worked}[$C_{3v}$ 中 $E\otimes E$ 是什么？]
+先逐列相乘：$(2,-1,0)\times(2,-1,0)=(4,1,0)$。约化得
+\[
+ a_{A_1}=1,\qquad a_{A_2}=1,\qquad a_E=1,
+ \qquad \boxed{E\otimes E=A_1+A_2+E}.
+\]
+左边维数为 $2\times2=4$，右边为 $1+1+2=4$。同样可得
+\[
+ A_1\otimes\Gamma=\Gamma,\quad
+ A_2\otimes A_2=A_1,\quad A_2\otimes E=E.
+\]
+对照直和 $E\oplus E=2E$：它的特征标是 $(4,-2,0)$，与上面的 $(4,1,0)$ 不同。
+\end{worked}
+
+\subsection{群论的用途：先判断积分是否被对称性强制为零}
+跃迁矩阵元可以写成
+\[
+ M_{fi}=\int\psi_f^*\,\hat O\,\psi_i\,\mathrm d\tau.
+\]
+其中 $\psi_i,\psi_f$ 为初、末态，$\hat O$ 为相应相互作用算符。若
+\[
+ \Gamma_f^*\otimes\Gamma_O\otimes\Gamma_i
+\]
+\textbf{不含全对称表示}，积分必为零，称为对称禁阻；含全对称表示则是对称允许，但不能由此保证强度大或积分一定非零。
+
+在谐振动的基频跃迁中，振动基态为全对称，单量子激发态按对应简正坐标变换，于是 IR 活性可直接查 $x,y,z$，Raman 活性可直接查二次函数。这里说的是\textbf{振动基态}，不能扩展为“所有分子的电子基态都必为全对称”。
+
+\begin{keyidea}[从数学接回化学]
+下一部分只需重复两种计算：选好一组基并求特征标，再约化。分析全部简正振动时，基是所有原子的 $3N$ 个位移；只分析羰基伸缩时，基是各根 C--O 键的伸长量；构造分子轨道时，基是选定的原子轨道。
+\end{keyidea}
